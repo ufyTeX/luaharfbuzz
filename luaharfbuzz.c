@@ -8,6 +8,18 @@
 #include <lauxlib.h>
 #include <lualib.h>
 
+// Taken from http://stackoverflow.com/questions/34021480/any-tips-to-reduce-repetition-when-using-lua-c-functions/34021760#34021760
+#define lua_push(X) _Generic((X), \
+  const char*: lua_pushstring, \
+  float: lua_pushnumber, \
+  double: lua_pushnumber, \
+  int: lua_pushinteger, \
+  unsigned int: lua_pushinteger)(L, X)
+
+#define lua_setfield_generic(NAME, X) \
+  lua_push(X); \
+  lua_setfield(L, -2, NAME);
+
 int shape (lua_State *L) {
   // Extract font and text
   size_t font_l;
@@ -37,6 +49,7 @@ int shape (lua_State *L) {
   hb_glyph_info_t *info = hb_buffer_get_glyph_infos (hb_buffer, NULL);
   hb_glyph_position_t *pos = hb_buffer_get_glyph_positions (hb_buffer, NULL);
 
+  // Create Lua table and push glyph data onto it.
   int r = lua_checkstack(L, len);
   if (!r) {
     lua_pushstring(L, "Cannot allocate space on stack");
@@ -50,36 +63,16 @@ int shape (lua_State *L) {
 
     lua_newtable(L);
 
-    lua_pushstring(L, "gid");
-    lua_pushinteger(L, info[i].codepoint);
-    lua_settable(L, -3);
-    lua_pushstring(L, "cl");
-    lua_pushinteger(L, info[i].cluster);
-    lua_settable(L, -3);
-    lua_pushstring(L, "ax");
-    lua_pushnumber(L, pos[i].x_advance);
-    lua_settable(L, -3);
-    lua_pushstring(L, "ay");
-    lua_pushnumber(L, pos[i].y_advance);
-    lua_settable(L, -3);
-    lua_pushstring(L, "dx");
-    lua_pushnumber(L, pos[i].x_offset);
-    lua_settable(L, -3);
-    lua_pushstring(L, "dy");
-    lua_pushnumber(L, pos[i].y_offset);
-    lua_settable(L, -3);
-    lua_pushstring(L, "w");
-    lua_pushinteger(L, extents.width);
-    lua_settable(L, -3);
-    lua_pushstring(L, "h");
-    lua_pushinteger(L, extents.height);
-    lua_settable(L, -3);
-    lua_pushstring(L, "yb");
-    lua_pushinteger(L, extents.y_bearing);
-    lua_settable(L, -3);
-    lua_pushstring(L, "xb");
-    lua_pushinteger(L, extents.x_bearing);
-    lua_settable(L, -3);
+    lua_setfield_generic("gid", info[i].codepoint);
+    lua_setfield_generic("cl", info[i].cluster);
+    lua_setfield_generic("ax", pos[i].x_advance);
+    lua_setfield_generic("ay", pos[i].y_advance);
+    lua_setfield_generic("dx", pos[i].x_offset);
+    lua_setfield_generic("dy", pos[i].y_offset);
+    lua_setfield_generic("w", extents.width);
+    lua_setfield_generic("h", extents.height);
+    lua_setfield_generic("xb", extents.x_bearing);
+    lua_setfield_generic("yb", extents.y_bearing);
   }
 
   hb_buffer_destroy (hb_buffer);
