@@ -1,5 +1,5 @@
-harfbuzz = require('luaharfbuzz')
-pl = require('pl.pretty')
+local harfbuzz = require('luaharfbuzz')
+local pl = require('pl.pretty')
 
 print("Using harfbuzz version", harfbuzz.version())
 
