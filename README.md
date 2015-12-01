@@ -1,16 +1,22 @@
 # Lua Harfbuzz bindings
 
-Simple Lua binding to Harbuzz (Very much a WIP).
+Simple Lua binding to Harbuzz (WIP).
+
+Documentation, packaging etc. will be added once the API has evolved a bit
+more.
 
 ### How to use
 
-Make sure you have Harfbuzz and [penlight](https://luarocks.org/modules/steved/penlight) installed before running `make test`
+Make sure you have Harfbuzz and
+[penlight](https://luarocks.org/modules/steved/penlight) installed before
+running `make test`. If everything works, you will see an out
 
 
 ```
 $> make test
-cc -O2 -fpic `pkg-config --cflags harfbuzz` `pkg-config --cflags lua` -c luaharfbuzz.c
-cc -O2 -fpic `pkg-config --libs harfbuzz` -dynamiclib -undefined dynamic_lookup -o luaharfbuzz.so luaharfbuzz.o
+
+…<compilation output>…
+
 lua harfbuzz_test.lua notonastaliq.ttf "یہ"
 No. of glyphs   4
 {
@@ -65,4 +71,6 @@ No. of glyphs   4
 }
 ```
 
+### Questions or comments
 
+Open a Github issue, or email me at <deepak.jois@gmail.com>.
