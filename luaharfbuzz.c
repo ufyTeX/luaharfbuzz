@@ -36,7 +36,12 @@ int shape (lua_State *L) {
   unsigned int len = hb_buffer_get_length (hb_buffer);
   hb_glyph_info_t *info = hb_buffer_get_glyph_infos (hb_buffer, NULL);
   hb_glyph_position_t *pos = hb_buffer_get_glyph_positions (hb_buffer, NULL);
-  lua_checkstack(L, len);
+
+  int r = lua_checkstack(L, len);
+  if (!r) {
+    lua_pushstring(L, "Cannot allocate space on stack");
+    lua_error(L);
+  }
 
   for (unsigned int i = 0; i < len; i++)
   {
