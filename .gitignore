@@ -1,0 +1,8 @@
+*.la
+*.lo
+*.o
+*.so
+.libs/*
+*.pdf
+*.log
+*.aux
