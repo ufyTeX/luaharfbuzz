@@ -81,6 +81,40 @@ int shape (lua_State *L) {
   return len;
 }
 
+typedef hb_blob_t* blob;
+
+static int blob_new(lua_State *L) {
+  blob *b;
+  size_t data_l;
+
+  const char * data = luaL_checklstring(L, 1, &data_l);
+
+  b = (blob *)lua_newuserdata(L, sizeof(*b));
+  /* Add the metatable to the stack. */
+  luaL_getmetatable(L, "harfbuzz.Blob");
+  /* Set the metatable on the userdata. */
+  lua_setmetatable(L, -2);
+
+  *b = hb_blob_create(data, data_l, HB_MEMORY_MODE_DUPLICATE, (void*)data, NULL);
+  return 1;
+}
+
+static int blob_length(lua_State *L) {
+  blob *b;
+  b = (blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
+  lua_pushinteger(L, hb_blob_get_length(*b));
+  return 1;
+}
+
+static int blob_destroy(lua_State *L) {
+  blob *b;
+  b = (blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
+
+  hb_blob_destroy(*b);
+
+  return 0;
+}
+
 int get_harfbuzz_version (lua_State *L) {
   unsigned int major;
   unsigned int minor;
@@ -103,6 +137,16 @@ int list_shapers (lua_State *L) {
   return i;
 }
 
+static const struct luaL_Reg blob_methods[] = {
+  { "length", blob_length },
+	{"__gc", blob_destroy },
+  { NULL, NULL },
+};
+
+static const struct luaL_Reg blob_functions[] = {
+  { "new", blob_new },
+  { NULL,  NULL }
+};
 
 static const struct luaL_Reg lib_table [] = {
   {"_shape", shape},
@@ -111,9 +155,33 @@ static const struct luaL_Reg lib_table [] = {
   {NULL, NULL}
 };
 
+int register_blob(lua_State *L) {
+  /* Create the metatable and put it on the stack. */
+  luaL_newmetatable(L, "harfbuzz.Blob");
+  /* Duplicate the metatable on the stack (We know have 2). */
+  lua_pushvalue(L, -1);
+  /* Pop the first metatable off the stack and assign it to __index
+   * of the second one. We set the metatable for the table to itself.
+   * This is equivalent to the following in lua:
+   * metatable = {}
+   * metatable.__index = metatable
+   */
+  lua_setfield(L, -2, "__index");
+
+  /* Set the methods to the metatable that should be accessed via object:func */
+  luaL_setfuncs(L, blob_methods, 0);
+
+  luaL_newlib(L, blob_functions);
+  return 1;
+}
+
 int luaopen_luaharfbuzz (lua_State *L) {
   lua_newtable(L);
-  luaL_setfuncs(L, lib_table, 0);
+
+  register_blob(L);
+  lua_setfield(L, -2, "Blob");
+
+  luaL_setfuncs(L, lib_table,0);
   return 1;
 }
 

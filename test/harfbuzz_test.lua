@@ -11,6 +11,10 @@ local text = arg[2]
 
 local glyphs = { harfbuzz._shape(text, fontdata, 0) }
 
-print("No. of glyphs", #glyphs)
 
+local b = harfbuzz.Blob.new("hi there")
+print("Length of test blob "..b:length())
+
+print("No. of glyphs", #glyphs)
 pl.dump(glyphs)
+
