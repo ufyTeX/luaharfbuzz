@@ -1,25 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <assert.h>
-#include "harfbuzz/hb.h"
-#include "harfbuzz/hb-ot.h"
-#include <string.h>
-
-#include <lua.h>
-#include <lauxlib.h>
-#include <lualib.h>
-
-// Taken from http://stackoverflow.com/questions/34021480/any-tips-to-reduce-repetition-when-using-lua-c-functions/34021760#34021760
-#define lua_push(X) _Generic((X), \
-  const char*: lua_pushstring, \
-  float: lua_pushnumber, \
-  double: lua_pushnumber, \
-  int: lua_pushinteger, \
-  unsigned int: lua_pushinteger)(L, X)
-
-#define lua_setfield_generic(NAME, X) \
-  lua_push(X); \
-  lua_setfield(L, -2, NAME);
+#include "luaharfbuzz.h"
 
 int shape (lua_State *L) {
   // Extract font and text
@@ -82,40 +61,6 @@ int shape (lua_State *L) {
   return len;
 }
 
-typedef hb_blob_t* blob;
-
-static int blob_new(lua_State *L) {
-  blob *b;
-  size_t data_l;
-
-  const char * data = luaL_checklstring(L, 1, &data_l);
-
-  b = (blob *)lua_newuserdata(L, sizeof(*b));
-  /* Add the metatable to the stack. */
-  luaL_getmetatable(L, "harfbuzz.Blob");
-  /* Set the metatable on the userdata. */
-  lua_setmetatable(L, -2);
-
-  *b = hb_blob_create(data, data_l, HB_MEMORY_MODE_DUPLICATE, (void*)data, NULL);
-  return 1;
-}
-
-static int blob_length(lua_State *L) {
-  blob *b;
-  b = (blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
-  lua_pushinteger(L, hb_blob_get_length(*b));
-  return 1;
-}
-
-static int blob_destroy(lua_State *L) {
-  blob *b;
-  b = (blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
-
-  hb_blob_destroy(*b);
-
-  return 0;
-}
-
 int get_harfbuzz_version (lua_State *L) {
   unsigned int major;
   unsigned int minor;
@@ -138,43 +83,12 @@ int list_shapers (lua_State *L) {
   return i;
 }
 
-static const struct luaL_Reg blob_methods[] = {
-  { "length", blob_length },
-	{"__gc", blob_destroy },
-  { NULL, NULL },
-};
-
-static const struct luaL_Reg blob_functions[] = {
-  { "new", blob_new },
-  { NULL,  NULL }
-};
-
 static const struct luaL_Reg lib_table [] = {
   {"_shape", shape},
   {"version", get_harfbuzz_version},
   {"shapers", list_shapers},
   {NULL, NULL}
 };
-
-int register_blob(lua_State *L) {
-  /* Create the metatable and put it on the stack. */
-  luaL_newmetatable(L, "harfbuzz.Blob");
-  /* Duplicate the metatable on the stack (We know have 2). */
-  lua_pushvalue(L, -1);
-  /* Pop the first metatable off the stack and assign it to __index
-   * of the second one. We set the metatable for the table to itself.
-   * This is equivalent to the following in lua:
-   * metatable = {}
-   * metatable.__index = metatable
-   */
-  lua_setfield(L, -2, "__index");
-
-  /* Set the methods to the metatable that should be accessed via object:func */
-  luaL_setfuncs(L, blob_methods, 0);
-
-  luaL_newlib(L, blob_functions);
-  return 1;
-}
 
 int luaopen_luaharfbuzz (lua_State *L) {
   lua_newtable(L);
