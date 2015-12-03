@@ -27,13 +27,9 @@ external_dependencies = {
   HARFBUZZ = { header = "harfbuzz/hb-ot.h", library = "harfbuzz" }
 }
 build = {
-  type = "builtin",
-  modules = {
-    luaharfbuzz = {
-      sources = { "src/luaharfbuzz/luaharfbuzz.c" },
-      incdirs = {"$(HARFBUZZ_INCDIR)"},
-      libdirs = {"$(HARFBUZZ_LIBDIR)"}
-    }
+  type = "make",
+  install_variables = {
+    INST_LIBDIR="$(LIBDIR)",
+    INST_LUADIR="$(LUADIR)",
   },
-  copy_directories = {"spec"}
 }
