@@ -7,3 +7,5 @@
 *.log
 *.aux
 build/*
+luacov.report.out
+luacov.stats.out
