@@ -1,76 +1,91 @@
 # Lua Harfbuzz bindings
 
-Simple Lua binding to Harbuzz (WIP).
+Lua bindings for [Harbuzz] (WIP).
 
-Documentation, packaging etc. will be added once the API has evolved a bit
-more.
+[Harfbuzz]:http://harfbuzz.org
 
-### How to use
+## Contents
 
-Make sure you have Harfbuzz and
-[penlight](https://luarocks.org/modules/steved/penlight) installed before
-running `make test`. If everything works, you will see an out
+* [Overview](#overview)
+* [Installing Harfbuzz](#installing-harfbuzz)
+* [Installing luaharfbuzz](#installing-luaharfbuzz)
+* [Documentation and examples](#documentation-and-examples)
+* [Building](#building)
+* [Testing and Linting](#testing-and-linting)
+* [Contact](#contact)
 
+## Overview
+HarfBuzz is an OpenType text shaping engine. It is used in software like Qt,
+Pango, Firefox, Chromium, XeTeX and LibreOffice.
+
+luaharfbuzz provides bindings for the most common types in Harfbuzz. The
+initial motivation for building it is to use Harfbuzz with the [LuaTeX]
+typesetting system. However, the codebase isn’t tied to LuaTeX in any way. It
+can be used with any Lua code.
+
+[LuaTeX]:luatex.org
+
+## Installing Harfbuzz
+
+Make sure you have [Harfbuzz] libraries and headers installed on your system.
+
+#### OS X
 
 ```
-$> make test
-
-…<compilation output>…
-
-lua harfbuzz_test.lua notonastaliq.ttf "یہ"
-No. of glyphs   4
-{
-  {
-    h = -1591,
-    ax = 472,
-    w = 711,
-    yb = 1096,
-    dy = 0,
-    cl = 2,
-    gid = 277,
-    xb = 0,
-    ay = 0,
-    dx = 0
-  },
-  {
-    h = -549,
-    ax = 0,
-    w = 659,
-    yb = 0,
-    dy = -383,
-    cl = 0,
-    gid = 19,
-    xb = -328,
-    ay = 0,
-    dx = 310
-  },
-  {
-    h = 0,
-    ax = 0,
-    w = 0,
-    yb = 0,
-    dy = 0,
-    cl = 0,
-    gid = 985,
-    xb = 0,
-    ay = 0,
-    dx = 0
-  },
-  {
-    h = -1566,
-    ax = 731,
-    w = 551,
-    yb = 1049,
-    dy = -68,
-    cl = 0,
-    gid = 316,
-    xb = -67,
-    ay = 0,
-    dx = 0
-  }
-}
+brew install harfbuzz
 ```
 
-### Questions or comments
+#### Other Platforms
+_Send a pull request if you want to include specific instructions to install
+Harfbuzz on your preferred platform._
 
+Before building, the Makefile looks for Harfbuzz headers and libraries using `pkg-config`. If your system returns a value for the following commands, then you should be able to install luaharfbuzz on it by following instructions in the next section.
+
+```
+pkg-config --cflags harfbuzz lua
+pkg-config --libs harfbuzz
+```
+
+## Installing luaharfbuzz
+
+#### Luarocks
+_The package hasn’t been submitted for inclusion in the rocks server yet_
+
+If you have [Luarocks] installed, you can install the package like:
+
+```
+luarocks make
+```
+
+[Luarocks]: https://luarocks.org
+
+#### Directly Using Makefile
+See [Building](#building)
+
+## Documentation and Examples
+
+_COMING SOON_
+
+## Building
+It is possible to build a copy of luaharfbuzz using the Makefile provided in the distribution. Running `make` will build a copy of the library `luaharfbuzz.so` in the root folder of the repo. You can then copy the .so file into your `package.cpath` and copy `src/harfbuzz.lua` into `package.path` folder.
+
+## Testing and Linting
+In order to make changes to the code and run the tests, you will need to install the following dependencies:
+
+```
+lua install busted
+lua install luacheck
+```
+
+After that, you can run the tests
+```
+busted .
+```
+
+or lint the code
+```
+make lint
+```
+
+## Contact
 Open a Github issue, or email me at <deepak.jois@gmail.com>.

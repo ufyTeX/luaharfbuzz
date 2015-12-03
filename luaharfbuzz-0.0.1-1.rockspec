@@ -6,16 +6,6 @@ source = {
 }
 description = {
   summary = "Lua bindings for the Harfbuzz text shaping library",
-  detailed = [[
-  HarfBuzz is an OpenType text shaping engine. It is used
-  in software like Qt, Pango, Firefox, Chromium, XeTeX
-  and LibreOffice.
-
-  luaharfbuzz provides bindings for the most common types
-  in Harfbuzz. The initial motivation for building it is to
-  use Harfbuzz with the LuaTeX typesetting system. However,
-  it can be used with any Lua code.
-  ]],
   homepage = "https://github.com/luaharfbuzz",
   license = "MIT",
   maintainer = "Deepak Jois <deepak.jois@gmail.com>"
