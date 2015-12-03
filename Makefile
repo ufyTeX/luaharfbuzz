@@ -1,10 +1,9 @@
-# Guide to building Lua Modules: http://lua-users.org/wiki/BuildingModules
-
 PKGS = harfbuzz
 
 CFLAGS = -O2 -fpic -std=c99 `pkg-config --cflags $(PKGS)` `pkg-config --cflags lua`
 LDFLAGS = -O2 -fpic `pkg-config --libs $(PKGS)`
 
+# Guide to building Lua Modules: http://lua-users.org/wiki/BuildingModules
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
     LIBFLAGS = -shared
