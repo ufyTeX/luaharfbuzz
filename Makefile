@@ -22,13 +22,18 @@ C_SRC_ROOT := src/luaharfbuzz
 SOURCES := luaharfbuzz.c blob.c face.c
 OBJECTS := $(SOURCES:%.c=$(BUILD_DIR)/%.o)
 
-all: luaharfbuzz.so
+all: dirs luaharfbuzz.so
 
-luaharfbuzz.so: dirs $(OBJECTS)
+luaharfbuzz.so: $(OBJECTS)
 	$(CC) $(LDFLAGS) $(LIBFLAGS) $(OBJECTS) -o $@
 
 $(BUILD_DIR)/%.o: $(C_SRC_ROOT)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
+
+dirs: ${BUILD_DIR}
+
+${BUILD_DIR}:
+	mkdir -p ${BUILD_DIR}
 
 test: all
 	lua -e "package.path = package.path..';./src/?.lua'" test/harfbuzz_test.lua fonts/notonastaliq.ttf "یہ"
@@ -38,9 +43,6 @@ spec: all
 
 clean:
 	rm -rf build *.so
-
-dirs:
-	mkdir -p ${BUILD_DIR}
 
 lint:
 	luacheck src spec
