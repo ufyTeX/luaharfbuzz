@@ -36,6 +36,11 @@ describe("harfbuzz module", function()
     it("can be initialized with a blob only", function()
       harfbuzz.Face.new('fonts/notonastaliq.ttf')
     end)
+
+    it("returns a valid upem value", function()
+      local f = harfbuzz.Face.new('fonts/notonastaliq.ttf')
+      assert.are_equal(2048,f:get_upem())
+    end)
   end)
 
 end)

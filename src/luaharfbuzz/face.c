@@ -13,6 +13,13 @@ static int face_new_from_blob(lua_State *L) {
   return 1;
 }
 
+static int face_get_upem(lua_State *L) {
+  Face *f;
+  f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  lua_pushinteger(L, hb_face_get_upem(*f));
+  return 1;
+}
+
 static int face_destroy(lua_State *L) {
   Face *f;
   f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
@@ -24,6 +31,7 @@ static int face_destroy(lua_State *L) {
 
 static const struct luaL_Reg face_methods[] = {
 	{"__gc", face_destroy },
+	{"get_upem", face_get_upem },
   { NULL, NULL },
 };
 
