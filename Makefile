@@ -32,7 +32,10 @@ $(BUILD_DIR)/%.o: $(C_SRC_ROOT)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 test: all
-	lua test/harfbuzz_test.lua fonts/notonastaliq.ttf "یہ"
+	lua -e "package.path = package.path..';./src/?.lua'" test/harfbuzz_test.lua fonts/notonastaliq.ttf "یہ"
+
+spec: all
+	busted .
 
 clean:
 	rm -rf build *.so
@@ -48,4 +51,4 @@ install: luaharfbuzz.so src/harfbuzz.lua
 	cp luaharfbuzz.so $(INST_LIBDIR)
 	cp src/harfbuzz.lua $(INST_LUADIR)
 
-.PHONY: all clean test dirs install lint
+.PHONY: all clean test dirs install lint spec

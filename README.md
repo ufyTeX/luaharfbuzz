@@ -79,7 +79,7 @@ lua install luacheck
 
 After that, you can run the tests
 ```
-busted .
+make spec
 ```
 
 or lint the code

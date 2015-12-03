@@ -1,12 +1,22 @@
-describe("harfbuzz module", function()
-  it("loads successfully", function()
-    local harfbuzz = require('harfbuzz')
-  end)
-end)
+local harfbuzz = require("harfbuzz")
 
-describe("luaharfbuzz module", function()
-  it("loads successfully", function()
-    local harfbuzz = require('luaharfbuzz')
+describe("harfbuzz module", function()
+
+  it("returns a valid version string", function()
+    assert.are_equal("string", type(harfbuzz.version()))
+  end)
+
+  it("returns a valid list of shapers", function()
+    local shapers = { harfbuzz.shapers }
+    assert.is_not.True(#shapers == 0)
+  end)
+
+  describe("harfbuzz.Blob", function()
+    it("can be initialized with a string", function()
+      local s = "test string"
+      local blob = harfbuzz.Blob.new(s)
+      assert.are_equal(string.len(s), blob:length())
+    end)
   end)
 end)
 

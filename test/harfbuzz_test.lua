@@ -1,4 +1,5 @@
-local harfbuzz = require('luaharfbuzz')
+print(package.path)
+local harfbuzz = require('harfbuzz')
 local pl = require('pl.pretty')
 
 print("Using harfbuzz version", harfbuzz.version())
@@ -10,10 +11,6 @@ fontfile:close()
 local text = arg[2]
 
 local glyphs = { harfbuzz._shape(text, fontdata, 0) }
-
-
-local b = harfbuzz.Blob.new("hi there")
-print("Length of test blob "..b:length())
 
 print("No. of glyphs", #glyphs)
 pl.dump(glyphs)
