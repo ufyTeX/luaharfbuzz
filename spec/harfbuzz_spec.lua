@@ -18,5 +18,25 @@ describe("harfbuzz module", function()
       assert.are_equal(string.len(s), blob:length())
     end)
   end)
+
+  describe("harfbuzz.Face", function()
+    it("can be initialized with a blob", function()
+      local fontfile = io.open('fonts/notonastaliq.ttf', "r")
+      local fontdata = fontfile:read("*all")
+      fontfile:close()
+
+      local blob = harfbuzz.Blob.new(fontdata)
+      harfbuzz.Face.new_from_blob(blob,0)
+    end)
+
+    it("can be initialized with a blob and a font index", function()
+      harfbuzz.Face.new('fonts/notonastaliq.ttf',0)
+    end)
+
+    it("can be initialized with a blob only", function()
+      harfbuzz.Face.new('fonts/notonastaliq.ttf')
+    end)
+  end)
+
 end)
 

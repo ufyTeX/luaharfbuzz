@@ -1,7 +1,5 @@
 #include "luaharfbuzz.h"
 
-typedef hb_blob_t* Blob;
-
 static int blob_new(lua_State *L) {
   Blob *b;
   size_t data_l;
@@ -9,9 +7,7 @@ static int blob_new(lua_State *L) {
   const char * data = luaL_checklstring(L, 1, &data_l);
 
   b = (Blob *)lua_newuserdata(L, sizeof(*b));
-  /* Add the metatable to the stack. */
   luaL_getmetatable(L, "harfbuzz.Blob");
-  /* Set the metatable on the userdata. */
   lua_setmetatable(L, -2);
 
   *b = hb_blob_create(data, data_l, HB_MEMORY_MODE_DUPLICATE, (void*)data, NULL);
@@ -49,7 +45,9 @@ int register_blob(lua_State *L) {
   luaL_newmetatable(L, "harfbuzz.Blob");
   lua_pushvalue(L, -1);
   lua_setfield(L, -2, "__index");
+
   luaL_setfuncs(L, blob_methods, 0);
+  lua_pop(L,1);
 
   luaL_newlib(L, blob_functions);
   return 1;

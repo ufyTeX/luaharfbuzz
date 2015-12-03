@@ -21,6 +21,11 @@
   lua_push(X); \
   lua_setfield(L, -2, NAME);
 
-// Creates a Blob class and pushes it onto the virtual stack
+
+typedef hb_blob_t* Blob;
+typedef hb_face_t* Face;
+
+// Functions to create classes and push them onto the stack
 int register_blob(lua_State *L);
+int register_face(lua_State *L);
 
