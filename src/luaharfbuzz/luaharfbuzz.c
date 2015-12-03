@@ -1,7 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <assert.h>
-#include <hb-ot.h>
+#include "harfbuzz/hb.h"
+#include "harfbuzz/hb-ot.h"
 #include <string.h>
 
 #include <lua.h>

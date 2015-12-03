@@ -10,22 +10,21 @@ ifeq ($(UNAME_S),Linux)
     LIBFLAGS = -shared
 endif
 ifeq ($(UNAME_S),Darwin)
-    LIBFLAGS = -dynamiclib -undefined dynamic_lookup
+    LIBFLAGS = -bundle -undefined dynamic_lookup -all_load
 endif
 
-.PHONY: all clean test
+.PHONY: all clean test luarocks
 
 all: luaharfbuzz.so
 
-luaharfbuzz.o: luaharfbuzz.c
-	$(CC) $(CFLAGS) -c luaharfbuzz.c
+src/luaharfbuzz/luaharfbuzz.o: src/luaharfbuzz/luaharfbuzz.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
-luaharfbuzz.so: luaharfbuzz.o
-	$(CC) $(LDFLAGS) $(LIBFLAGS) -o luaharfbuzz.so luaharfbuzz.o
+luaharfbuzz.so: src/luaharfbuzz/luaharfbuzz.o
+	$(CC) $(LDFLAGS) $(LIBFLAGS) $<  -o $@
 
 test: all
 	lua test/harfbuzz_test.lua fonts/notonastaliq.ttf "یہ"
 
 clean:
-	rm -f *.o *.so
-
+	rm -f src/luaharfbuzz/*.o *.so
