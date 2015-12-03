@@ -13,6 +13,7 @@ ifeq ($(UNAME_S),Darwin)
     LIBFLAGS = -bundle -undefined dynamic_lookup -all_load
 endif
 
+# For compatibility with Luarocks
 INST_PREFIX = /usr/local
 INST_LIBDIR = $(INST_PREFIX)/lib/lua/5.2
 INST_LUADIR = $(INST_PREFIX)/share/lua/5.2
