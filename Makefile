@@ -40,9 +40,12 @@ clean:
 dirs:
 	mkdir -p ${BUILD_DIR}
 
+lint:
+	luacheck src spec
+
 # For use with Luarocks
 install: luaharfbuzz.so src/harfbuzz.lua
 	cp luaharfbuzz.so $(INST_LIBDIR)
 	cp src/harfbuzz.lua $(INST_LUADIR)
 
-.PHONY: all clean test dirs install
+.PHONY: all clean test dirs install lint
