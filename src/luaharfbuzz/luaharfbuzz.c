@@ -1,6 +1,6 @@
 #include "luaharfbuzz.h"
 
-int shape (lua_State *L) {
+int _shape (lua_State *L) {
   // Extract font and text
   size_t font_l;
   const char * text = luaL_checkstring(L, 1);
@@ -61,6 +61,40 @@ int shape (lua_State *L) {
   return len;
 }
 
+int shape (lua_State *L) {
+  Font *font = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Buffer *buf = (Buffer *)luaL_checkudata(L, 2, "harfbuzz.Buffer");
+
+  // Shape text
+  hb_shape (*font, *buf, NULL, 0);
+
+  // Get glyph info and positions out of buffer
+  unsigned int len = hb_buffer_get_length(*buf);
+  hb_glyph_info_t *info = hb_buffer_get_glyph_infos(*buf, NULL);
+  hb_glyph_position_t *pos = hb_buffer_get_glyph_positions(*buf, NULL);
+
+  // Create Lua table and push glyph data onto it.
+  int r = lua_checkstack(L, len);
+  if (!r) {
+    lua_pushstring(L, "Cannot allocate space on stack");
+    lua_error(L);
+  }
+
+  for (unsigned int i = 0; i < len; i++)
+  {
+    lua_newtable(L);
+
+    lua_setfield_generic("codepoint", info[i].codepoint);
+    lua_setfield_generic("cluster", info[i].cluster);
+    lua_setfield_generic("x_advance", pos[i].x_advance);
+    lua_setfield_generic("y_advance", pos[i].y_advance);
+    lua_setfield_generic("x_offset", pos[i].x_offset);
+    lua_setfield_generic("y_offset", pos[i].y_offset);
+  }
+
+  return len;
+}
+
 int get_harfbuzz_version (lua_State *L) {
   unsigned int major;
   unsigned int minor;
@@ -84,7 +118,8 @@ int list_shapers (lua_State *L) {
 }
 
 static const struct luaL_Reg lib_table [] = {
-  {"_shape", shape},
+  {"_shape", _shape}, // Deprecated
+  {"shape", shape},
   {"version", get_harfbuzz_version},
   {"shapers", list_shapers},
   {NULL, NULL}

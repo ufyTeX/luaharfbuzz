@@ -35,9 +35,6 @@ dirs: ${BUILD_DIR}
 ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}
 
-test: all
-	lua -e "package.path = package.path..';./src/?.lua'" test/harfbuzz_test.lua fonts/notonastaliq.ttf "یہ"
-
 spec: all
 	busted .
 
