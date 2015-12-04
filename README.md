@@ -67,7 +67,7 @@ See [Building](#building)
 
 ## Sample Code
 
-Here is some sample code, showcasing the core types and methids in the API.
+Here is some sample code, showcasing the core types and methods in the API.
 
 ```lua
 local harfbuzz = require('harfbuzz')
@@ -106,7 +106,10 @@ pl.dump(glyphs)
 
 ## Documentation and Examples
 
-_COMING SOON_
+_COMING SOON_ (Tasks being tracked in [#10] and [#11], so any help is appreciated)
+
+[#10]: https://github.com/deepakjois/luaharfbuzz/issues/10
+[#11]: https://github.com/deepakjois/luaharfbuzz/issues/10
 
 ## Building
 It is possible to build a copy of _luaharfbuzz_ using the Makefile provided in the distribution. Running `make` will build a copy of the library `luaharfbuzz.so` in the root directory of the repo. The Lua source files are located under the `src` directory.
