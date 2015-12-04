@@ -102,6 +102,9 @@ int luaopen_luaharfbuzz (lua_State *L) {
   register_font(L);
   lua_setfield(L, -2, "Font");
 
+  register_buffer(L);
+  lua_setfield(L, -2, "Buffer");
+
   luaL_setfuncs(L, lib_table,0);
 
   return 1;

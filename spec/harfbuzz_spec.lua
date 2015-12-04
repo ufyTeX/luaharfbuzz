@@ -65,5 +65,16 @@ describe("harfbuzz module", function()
       assert.are_equal(2048, ys)
     end)
   end)
+
+  describe("harfbuzz.Buffer", function()
+    it("can be created", function()
+      harfbuzz.Buffer.new()
+    end)
+
+    it("can add a UTF8 string to the buffer", function()
+      local b = harfbuzz.Buffer.new()
+      b:add_utf8("Some String")
+    end)
+  end)
 end)
 

@@ -19,7 +19,7 @@ INST_LUADIR = $(INST_PREFIX)/share/lua/5.2
 
 BUILD_DIR := build
 C_SRC_ROOT := src/luaharfbuzz
-SOURCES := luaharfbuzz.c blob.c face.c font.c
+SOURCES := luaharfbuzz.c blob.c face.c font.c buffer.c
 OBJECTS := $(SOURCES:%.c=$(BUILD_DIR)/%.o)
 
 all: dirs luaharfbuzz.so
