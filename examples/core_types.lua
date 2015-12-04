@@ -1,5 +1,5 @@
 local harfbuzz = require('harfbuzz')
-local pl = require('pl.pretty')
+local pl = require('pl.pretty') -- luarocks install penlight
 
 -- Harfbuzz API Version
 print("Harfbuzz API version", harfbuzz.version())
