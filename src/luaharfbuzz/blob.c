@@ -21,18 +21,8 @@ static int blob_length(lua_State *L) {
   return 1;
 }
 
-static int blob_destroy(lua_State *L) {
-  Blob *b;
-  b = (Blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
-
-  hb_blob_destroy(*b);
-
-  return 0;
-}
-
 static const struct luaL_Reg blob_methods[] = {
   { "length", blob_length },
-	{"__gc", blob_destroy },
   { NULL, NULL },
 };
 
