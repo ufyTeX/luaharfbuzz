@@ -24,8 +24,10 @@
 
 typedef hb_blob_t* Blob;
 typedef hb_face_t* Face;
+typedef hb_font_t* Font;
 
 // Functions to create classes and push them onto the stack
 int register_blob(lua_State *L);
 int register_face(lua_State *L);
+int register_font(lua_State *L);
 

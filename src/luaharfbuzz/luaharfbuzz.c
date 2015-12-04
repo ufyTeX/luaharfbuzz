@@ -93,14 +93,17 @@ static const struct luaL_Reg lib_table [] = {
 int luaopen_luaharfbuzz (lua_State *L) {
   lua_newtable(L);
 
-
   register_blob(L);
   lua_setfield(L, -2, "Blob");
 
   register_face(L);
   lua_setfield(L, -2, "Face");
 
+  register_font(L);
+  lua_setfield(L, -2, "Font");
+
   luaL_setfuncs(L, lib_table,0);
+
   return 1;
 }
 
