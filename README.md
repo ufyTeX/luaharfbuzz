@@ -111,6 +111,11 @@ _COMING SOON_ (Tasks being tracked in [#10] and [#11], so any help is appreciate
 [#10]: https://github.com/deepakjois/luaharfbuzz/issues/10
 [#11]: https://github.com/deepakjois/luaharfbuzz/issues/10
 
+Meanwhile, take a look at the [specs], which contain a comprehensive
+overview of the methods and types that have been wrapped so far.
+
+[specs]: https://github.com/deepakjois/luaharfbuzz/tree/master/spec
+
 ## Building
 It is possible to build a copy of _luaharfbuzz_ using the Makefile provided in the distribution. Running `make` will build a copy of the library `luaharfbuzz.so` in the root directory of the repo. The Lua source files are located under the `src` directory.
 
