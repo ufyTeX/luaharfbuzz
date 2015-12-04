@@ -73,4 +73,3 @@ int register_font(lua_State *L) {
   return 1;
 }
 
-
