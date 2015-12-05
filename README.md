@@ -106,7 +106,7 @@ pl.dump(glyphs)
 
 ## Documentation and Examples
 
-_COMING SOON_ (Tasks being tracked in [#10] and [#11], so any help is appreciated)
+_WORK IN PROGRESS_ (Tasks being tracked in [#10] and [#11], so any help is appreciated)
 
 [#10]: https://github.com/deepakjois/luaharfbuzz/issues/10
 [#11]: https://github.com/deepakjois/luaharfbuzz/issues/11
