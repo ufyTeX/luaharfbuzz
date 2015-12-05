@@ -1,0 +1,17 @@
+hb_blob_create
+hb_blob_destroy
+hb_blob_get_length
+hb_buffer_add_utf8
+hb_buffer_create
+hb_buffer_destroy
+hb_buffer_guess_segment_properties
+hb_face_create
+hb_face_destroy
+hb_face_get_upem
+hb_font_create
+hb_font_destroy
+hb_font_get_scale
+hb_font_set_scale
+hb_shape
+hb_shape_list_shapers
+hb_version
