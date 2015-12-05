@@ -95,14 +95,8 @@ int shape (lua_State *L) {
   return len;
 }
 
-int get_harfbuzz_version (lua_State *L) {
-  unsigned int major;
-  unsigned int minor;
-  unsigned int micro;
-  char version[256];
-  hb_version(&major, &minor, &micro);
-  sprintf(version, "%i.%i.%i", major, minor, micro);
-  lua_pushstring(L, version);
+int version (lua_State *L) {
+  lua_pushstring(L, hb_version_string());
   return 1;
 }
 
@@ -120,7 +114,7 @@ int list_shapers (lua_State *L) {
 static const struct luaL_Reg lib_table [] = {
   {"_shape", _shape}, // Deprecated
   {"shape", shape},
-  {"version", get_harfbuzz_version},
+  {"version", version},
   {"shapers", list_shapers},
   {NULL, NULL}
 };
