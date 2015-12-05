@@ -66,23 +66,6 @@ describe("harfbuzz module", function()
     end)
   end)
 
-  describe("harfbuzz.Buffer", function()
-    it("can be created", function()
-      harfbuzz.Buffer.new()
-    end)
-
-    it("can add a UTF8 string to the buffer", function()
-      local b = harfbuzz.Buffer.new()
-      b:add_utf8("Some String")
-    end)
-
-    it("can call guess_segment_properties", function()
-      local b = harfbuzz.Buffer.new()
-      b:add_utf8("Some String")
-      b:guess_segment_properties()
-    end)
-  end)
-
   it("can take a buffer and font and shape it, with output matching hb-shape", function()
     local face = harfbuzz.Face.new('fonts/notonastaliq.ttf')
     local font = harfbuzz.Font.new(face)

@@ -21,6 +21,29 @@ static int buffer_guess_segment_properties(lua_State *L) {
   return 0;
 }
 
+static int buffer_get_direction(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  lua_pushstring(L,hb_direction_to_string(hb_buffer_get_direction(*b)));
+
+  return 1;
+}
+
+static int buffer_set_direction(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+  const char* d = luaL_checkstring(L, 2);
+  hb_direction_t dir  = hb_direction_from_string(d, strlen(d));
+
+  if (dir == HB_DIRECTION_INVALID) {
+    lua_pushstring(L, "Invalid direction");
+    lua_error(L);
+  }
+
+  hb_buffer_set_direction(*b, dir);
+
+  return 0;
+}
+
 static int buffer_add_utf8(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
@@ -40,9 +63,11 @@ static int buffer_destroy(lua_State *L) {
 }
 
 static const struct luaL_Reg buffer_methods[] = {
-	{"__gc", buffer_destroy },
-  {"add_utf8", buffer_add_utf8 },
-  {"guess_segment_properties", buffer_guess_segment_properties },
+	{ "__gc", buffer_destroy },
+  { "add_utf8", buffer_add_utf8 },
+  { "set_direction", buffer_set_direction },
+  { "get_direction", buffer_get_direction },
+  { "guess_segment_properties", buffer_guess_segment_properties },
   { NULL, NULL },
 };
 

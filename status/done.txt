@@ -15,3 +15,5 @@ hb_font_set_scale
 hb_shape
 hb_shape_list_shapers
 hb_version
+hb_buffer_get_direction
+hb_buffer_set_direction
