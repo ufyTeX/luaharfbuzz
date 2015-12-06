@@ -129,14 +129,6 @@ static const struct luaL_Reg buffer_functions[] = {
 };
 
 int register_buffer(lua_State *L) {
-  luaL_newmetatable(L, "harfbuzz.Buffer");
-  lua_pushvalue(L, -1);
-  lua_setfield(L, -2, "__index");
-
-  luaL_setfuncs(L, buffer_methods, 0);
-  lua_pop(L,1);
-
-  luaL_newlib(L, buffer_functions);
-  return 1;
+  return register_class(L, "harfbuzz.Buffer", buffer_methods, buffer_functions);
 }
 

@@ -32,14 +32,6 @@ static const struct luaL_Reg blob_functions[] = {
 };
 
 int register_blob(lua_State *L) {
-  luaL_newmetatable(L, "harfbuzz.Blob");
-  lua_pushvalue(L, -1);
-  lua_setfield(L, -2, "__index");
-
-  luaL_setfuncs(L, blob_methods, 0);
-  lua_pop(L,1);
-
-  luaL_newlib(L, blob_functions);
-  return 1;
+  return register_class(L, "harfbuzz.Blob", blob_methods, blob_functions);
 }
 

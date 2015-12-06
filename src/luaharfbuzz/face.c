@@ -41,14 +41,6 @@ static const struct luaL_Reg face_functions[] = {
 };
 
 int register_face(lua_State *L) {
-  luaL_newmetatable(L, "harfbuzz.Face");
-  lua_pushvalue(L, -1);
-  lua_setfield(L, -2, "__index");
-
-  luaL_setfuncs(L, face_methods, 0);
-  lua_pop(L,1);
-
-  luaL_newlib(L, face_functions);
-  return 1;
+  return register_class(L, "harfbuzz.Face", face_methods, face_functions);
 }
 

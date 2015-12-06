@@ -62,14 +62,6 @@ static const struct luaL_Reg font_functions[] = {
 };
 
 int register_font(lua_State *L) {
-  luaL_newmetatable(L, "harfbuzz.Font");
-  lua_pushvalue(L, -1);
-  lua_setfield(L, -2, "__index");
-
-  luaL_setfuncs(L, font_methods, 0);
-  lua_pop(L,1);
-
-  luaL_newlib(L, font_functions);
-  return 1;
+  return register_class(L, "harfbuzz.Font", font_methods, font_functions);
 }
 
