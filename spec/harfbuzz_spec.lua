@@ -65,5 +65,23 @@ describe("harfbuzz module", function()
       assert.are_equal(2048, ys)
     end)
   end)
+
+  describe("harfbuzz.Feature", function()
+    it("can be initialised with a valid feature string", function()
+      harfbuzz.Feature.new('kern')
+      harfbuzz.Feature.new('+kern')
+    end)
+
+    it("throws an error when trying to initialise a new Feature with an invalid string", function()
+       assert.has_error(function() harfbuzz.Feature.new('') end)
+       assert.has_error(function() harfbuzz.Feature.new('#kern') end)
+    end)
+
+    it("has a valid tostring value", function()
+      local fs = 'kern'
+      local f = harfbuzz.Feature.new(fs)
+      assert.are_equal(fs, tostring(f))
+    end)
+  end)
 end)
 

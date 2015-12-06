@@ -72,6 +72,8 @@ int luaopen_luaharfbuzz (lua_State *L) {
   register_buffer(L);
   lua_setfield(L, -2, "Buffer");
 
+  register_feature(L);
+  lua_setfield(L, -2, "Feature");
   luaL_setfuncs(L, lib_table,0);
 
   return 1;
