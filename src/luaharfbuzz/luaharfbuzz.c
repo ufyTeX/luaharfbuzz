@@ -33,9 +33,11 @@ int shape_full (lua_State *L) {
     lua_error(L);
   }
 
-  for (unsigned int i = 0; i < len; i++)
-  {
-    lua_newtable(L);
+  lua_newtable(L); // parent table
+
+  for (unsigned int i = 0; i < len; i++) {
+    lua_pushnumber(L, i+1); // 1-indexed key for parent table
+    lua_newtable(L);        // child table
 
     lua_setfield_generic("codepoint", info[i].codepoint);
     lua_setfield_generic("cluster", info[i].cluster);
@@ -43,11 +45,13 @@ int shape_full (lua_State *L) {
     lua_setfield_generic("y_advance", pos[i].y_advance);
     lua_setfield_generic("x_offset", pos[i].x_offset);
     lua_setfield_generic("y_offset", pos[i].y_offset);
+
+    lua_settable(L,-3); // Add child table at index i+1 to parent table
   }
 
   free(features);
 
-  return len;
+  return 1;
 }
 
 int version (lua_State *L) {

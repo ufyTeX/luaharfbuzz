@@ -46,7 +46,7 @@ hb.shape = function(font, buf, options)
     error("Invalid features option")
   end
 
-  return { hb.shape_full(font,buf,features) }
+  return hb.shape_full(font,buf,features)
 end
 
 return hb
