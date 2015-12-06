@@ -42,7 +42,7 @@ brew install harfbuzz
 _Send a pull request if you want to include specific instructions to install
 Harfbuzz on your preferred platform._
 
-Before building, the Makefile looks for Harfbuzz headers and libraries using `pkg-config`. If the following commands run without errors, then it should be possible to install _luaharfbuzz_ on it by following instructions given in the next section.
+Before building, the Makefile looks for Harfbuzz headers and libraries using `pkg-config`. If the following commands run without errors, then it should be possible to install _luaharfbuzz_ by following instructions given in the next section.
 
 ```
 pkg-config --cflags harfbuzz lua
