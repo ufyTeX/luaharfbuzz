@@ -27,11 +27,6 @@ int shape_full (lua_State *L) {
   hb_glyph_position_t *pos = hb_buffer_get_glyph_positions(*buf, NULL);
 
   // Create Lua table and push glyph data onto it.
-  int r = lua_checkstack(L, len);
-  if (!r) {
-    lua_pushstring(L, "Cannot allocate space on stack");
-    lua_error(L);
-  }
 
   lua_newtable(L); // parent table
 
