@@ -3,9 +3,23 @@
 int shape_full (lua_State *L) {
   Font *font = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
   Buffer *buf = (Buffer *)luaL_checkudata(L, 2, "harfbuzz.Buffer");
+  luaL_checktype(L, 3, LUA_TTABLE);
+
+  lua_len (L, 3);
+  unsigned int num_features = luaL_checkint(L, 4);
+  lua_pop(L, 1);
+
+  Feature *features = (Feature *) malloc (num_features * sizeof(hb_feature_t));
+
+  lua_pushnil(L); int i = 0;
+  while (lua_next(L, 3) != 0) {
+    Feature* f = (Feature *)luaL_checkudata(L, -1, "harfbuzz.Feature");
+    features[i++] = *f;
+    lua_pop(L, 1);
+  }
 
   // Shape text
-  hb_shape (*font, *buf, NULL, 0);
+  hb_shape_full(*font, *buf, features, num_features, NULL);
 
   // Get glyph info and positions out of buffer
   unsigned int len = hb_buffer_get_length(*buf);
@@ -30,6 +44,8 @@ int shape_full (lua_State *L) {
     lua_setfield_generic("x_offset", pos[i].x_offset);
     lua_setfield_generic("y_offset", pos[i].y_offset);
   }
+
+  free(features);
 
   return len;
 }

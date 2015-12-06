@@ -2,7 +2,7 @@ local harfbuzz = require("harfbuzz")
 
 local compare_glyphs_against_fixture = function(glyphs, fixture)
   local json = require('dkjson')
-  local f = io.open(fixture)
+  local f = io.open("fixtures/"..fixture)
   local s = f:read("*all")
   f:close()
   local hb_shape_glyphs = json.decode(s)
@@ -33,7 +33,7 @@ describe("harfbuzz module shaping functions", function()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
-    compare_glyphs_against_fixture(glyphs, 'fixtures/notonastaliq_U06CC_U06C1.json')
+    compare_glyphs_against_fixture(glyphs, 'notonastaliq_U06CC_U06C1.json')
   end)
 
   it("can take a buffer, font and an options table with script, language and direction settings.", function()
@@ -44,7 +44,7 @@ describe("harfbuzz module shaping functions", function()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
-    compare_glyphs_against_fixture(glyphs, 'fixtures/notonastaliq_U06CC_U06C1.json')
+    compare_glyphs_against_fixture(glyphs, 'notonastaliq_U06CC_U06C1.json')
   end)
 
   it("can take a string containing a comma-delimited list of valid features", function()
@@ -57,11 +57,12 @@ describe("harfbuzz module shaping functions", function()
 
   describe("features option", function()
     local buf
-    local options = { language = "urd", script = "Arab", direction = "rtl" }
+    local options
 
     before_each(function()
       buf= harfbuzz.Buffer.new()
       buf:add_utf8(urdu_text)
+      options = { language = "urd", script = "Arab", direction = "rtl" }
     end)
 
     it("can take a table containing a valid features", function()
@@ -86,6 +87,38 @@ describe("harfbuzz module shaping functions", function()
       assert.has_error(function()
         harfbuzz.shape(font, buf, options)
       end, "Invalid features option")
+    end)
+
+    it("throws an error if features table does not contain a feature", function()
+      options.features = {
+        harfbuzz.Feature.new('+kern'),
+        25,
+        harfbuzz.Feature.new('smcp')
+      }
+      assert.has_error(function()
+        harfbuzz.shape(font, buf, options)
+      end, "bad argument #-1 to 'shape_full' (harfbuzz.Feature expected, got number)")
+    end)
+
+    it("shapes a string appropriately with the features turned on",function()
+      buf= harfbuzz.Buffer.new()
+      buf:add_utf8("123")
+      local opts = { language = "eng", script = "Latn", direction = "ltr" }
+      local amiri_face = harfbuzz.Face.new('fonts/amiri-regular.ttf')
+      local amiri_font = harfbuzz.Font.new(amiri_face)
+
+      -- Check normal shaping w/o features
+      buf= harfbuzz.Buffer.new()
+      buf:add_utf8("123")
+      local glyphs =  harfbuzz.shape(amiri_font, buf, opts)
+      compare_glyphs_against_fixture(glyphs, "amiri-regular_123.json")
+
+      -- Check shaping with '+numr'
+      buf= harfbuzz.Buffer.new()
+      buf:add_utf8("123")
+      opts.features = "+numr"
+      glyphs =  harfbuzz.shape(amiri_font, buf, opts)
+      compare_glyphs_against_fixture(glyphs, "amiri-regular_123_numr.json")
     end)
   end)
 end)
