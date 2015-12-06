@@ -14,10 +14,13 @@ hb_buffer_set_script
 hb_face_create
 hb_face_destroy
 hb_face_get_upem
+hb_feature_from_string
+hb_feature_to_string
 hb_font_create
 hb_font_destroy
 hb_font_get_scale
 hb_font_set_scale
 hb_shape
+hb_shape_full
 hb_shape_list_shapers
 hb_version
