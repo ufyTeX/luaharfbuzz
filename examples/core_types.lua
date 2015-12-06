@@ -21,11 +21,10 @@ print("Default font scale = X: "..xs..", Y: "..xy)
 local text = "یہ" -- U+06CC U+06C1
 local buf = harfbuzz.Buffer.new()
 buf:add_utf8(text)
-buf:guess_segment_properties()
 
 -- harfbuzz.shape (Shapes text)
 print("Shaping '"..text.."' set with Noto Nastaliq Urdu")
-local glyphs = { harfbuzz.shape(font, buf) }
+local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
 
 print("No. of glyphs", #glyphs)
 pl.dump(glyphs)

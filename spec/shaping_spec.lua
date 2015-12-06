@@ -29,7 +29,7 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    local glyphs = { harfbuzz.shape(font, buf) }
+    local glyphs = harfbuzz.shape(font, buf)
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
@@ -40,7 +40,7 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    local glyphs = { harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" }) }
+    local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape

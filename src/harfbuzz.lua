@@ -27,7 +27,7 @@ hb.shape = function(font, buf, options)
   -- to set the right properties.
   buf:guess_segment_properties()
 
-  return hb.shape_full(font,buf)
+  return { hb.shape_full(font,buf) }
 end
 
 return hb
