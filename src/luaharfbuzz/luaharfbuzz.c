@@ -1,6 +1,6 @@
 #include "luaharfbuzz.h"
 
-int shape (lua_State *L) {
+int shape_full (lua_State *L) {
   Font *font = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
   Buffer *buf = (Buffer *)luaL_checkudata(L, 2, "harfbuzz.Buffer");
 
@@ -51,7 +51,7 @@ int list_shapers (lua_State *L) {
 }
 
 static const struct luaL_Reg lib_table [] = {
-  {"shape", shape},
+  {"shape_full", shape_full},
   {"version", version},
   {"shapers", list_shapers},
   {NULL, NULL}
