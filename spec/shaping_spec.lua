@@ -47,4 +47,45 @@ describe("harfbuzz module shaping functions", function()
     compare_glyphs_against_fixture(glyphs, 'fixtures/notonastaliq_U06CC_U06C1.json')
   end)
 
+  it("can take a string containing a comma-delimited list of valid features", function()
+    local buf = harfbuzz.Buffer.new()
+    buf:add_utf8(urdu_text)
+
+    local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl", features = "+kern,smcp" })
+    assert.True(#glyphs > 0)
+  end)
+
+  describe("features option", function()
+    local buf
+    local options = { language = "urd", script = "Arab", direction = "rtl" }
+
+    before_each(function()
+      buf= harfbuzz.Buffer.new()
+      buf:add_utf8(urdu_text)
+    end)
+
+    it("can take a table containing a valid features", function()
+      options.features = {
+        harfbuzz.Feature.new('+kern'),
+        harfbuzz.Feature.new('smcp')
+      }
+
+      local glyphs = harfbuzz.shape(font, buf, options)
+      assert.True(#glyphs > 0)
+    end)
+
+    it("throws an error if feature string is invalid", function()
+      options.features = "#kern"
+      assert.has_error(function()
+        harfbuzz.shape(font, buf, options)
+      end, "Invalid feature string")
+    end)
+
+    it("throws an error if feature option is not a table or string", function()
+      options.features = 25
+      assert.has_error(function()
+        harfbuzz.shape(font, buf, options)
+      end, "Invalid features option")
+    end)
+  end)
 end)

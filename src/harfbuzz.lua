@@ -33,7 +33,20 @@ hb.shape = function(font, buf, options)
   -- to set the right properties.
   buf:guess_segment_properties()
 
-  return { hb.shape_full(font,buf) }
+  local features = {}
+
+  -- Parse features
+  if type(options.features) == "string" then
+    for fs in string.gmatch(options.features, '([^,]+)') do
+      table.insert(features, hb.Feature.new(fs))
+    end
+  elseif type(options.features) == "table" then
+    features = options.features
+  elseif options.features then -- non-nil but not a string or table
+    error("Invalid features option")
+  end
+
+  return { hb.shape_full(font,buf,features) }
 end
 
 return hb
