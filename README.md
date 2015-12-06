@@ -71,23 +71,22 @@ Here is some sample code, showcasing the core types and methods in the API.
 
 ```lua
 local harfbuzz = require('harfbuzz')
-local pl = require('pl.pretty') -- luarocks install penlight
+local serpent  = require('serpent') -- luarocks install serpent
 
 -- Harfbuzz API Version
 print("Harfbuzz API version", harfbuzz.version())
 
 -- Shapers available
-print("Shapers:")
-pl.dump({ harfbuzz.shapers() })
+print("Shapers:", serpent.line({ harfbuzz.shapers() }, {comment = false}))
 
 -- harfbuzz.Face
 local face = harfbuzz.Face.new('fonts/notonastaliq.ttf')
-print('Face upem = '..face:get_upem())
+print('\nFace upem = '..face:get_upem())
 
 -- harfbuzz.Font
 local font = harfbuzz.Font.new(face)
 local xs, xy = font:get_scale()
-print("Default font scale = X: "..xs..", Y: "..xy)
+print("\nDefault font scale = X: "..xs..", Y: "..xy)
 
 -- harfbuzz.Buffer
 local text = "یہ" -- U+06CC U+06C1
@@ -95,12 +94,28 @@ local buf = harfbuzz.Buffer.new()
 buf:add_utf8(text)
 
 -- harfbuzz.shape (Shapes text)
-print("Shaping '"..text.."' set with Noto Nastaliq Urdu")
+print("\nShaping '"..text.."' set with Noto Nastaliq Urdu")
 local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
 
 print("No. of glyphs", #glyphs)
-pl.dump(glyphs)
+print(serpent.line(glyphs, {comment = false}))
 
+local opts = { language = "eng", script = "Latn", direction = "ltr" }
+local amiri_face = harfbuzz.Face.new('fonts/amiri-regular.ttf')
+local amiri_font = harfbuzz.Font.new(amiri_face)
+
+-- shaping '123' w/o features
+print("\nShaping '123' set with Amiri Regular and no features")
+buf= harfbuzz.Buffer.new()
+buf:add_utf8("123")
+print(serpent.line(harfbuzz.shape(amiri_font, buf, opts), {comment = false}))
+
+-- shaping '123' with '+numr' (numerators)
+print("\nShaping '123' set with Amiri Regular with 'numr' feature turned on")
+buf= harfbuzz.Buffer.new()
+buf:add_utf8("123")
+opts.features = "+numr"
+print(serpent.line(harfbuzz.shape(amiri_font, buf, opts), {comment = false}))
 ```
 
 ## Documentation and Examples

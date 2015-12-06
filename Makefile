@@ -42,7 +42,7 @@ clean:
 	rm -rf build *.so
 
 lint:
-	luacheck src spec
+	luacheck src spec examples
 
 # For use with Luarocks
 install: luaharfbuzz.so src/harfbuzz.lua
