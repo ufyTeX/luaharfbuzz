@@ -29,7 +29,8 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    local glyphs = harfbuzz.shape(font, buf)
+    harfbuzz.shape(font, buf)
+    local glyphs = buf:get_glyph_infos_and_positions()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
@@ -40,7 +41,8 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
+    harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
+    local glyphs = buf:get_glyph_infos_and_positions()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
@@ -51,7 +53,8 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl", features = "+kern,smcp" })
+    harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl", features = "+kern,smcp" })
+    local glyphs = buf:get_glyph_infos_and_positions()
     assert.True(#glyphs > 0)
   end)
 
@@ -71,7 +74,8 @@ describe("harfbuzz module shaping functions", function()
         harfbuzz.Feature.new('smcp')
       }
 
-      local glyphs = harfbuzz.shape(font, buf, options)
+      harfbuzz.shape(font, buf, options)
+      local glyphs = buf:get_glyph_infos_and_positions()
       assert.True(#glyphs > 0)
     end)
 
@@ -110,14 +114,17 @@ describe("harfbuzz module shaping functions", function()
       -- Check normal shaping w/o features
       buf= harfbuzz.Buffer.new()
       buf:add_utf8("123")
-      local glyphs =  harfbuzz.shape(amiri_font, buf, opts)
+
+      harfbuzz.shape(amiri_font, buf, opts)
+      local glyphs = buf:get_glyph_infos_and_positions()
       compare_glyphs_against_fixture(glyphs, "amiri-regular_123.json")
 
       -- Check shaping with '+numr'
       buf= harfbuzz.Buffer.new()
       buf:add_utf8("123")
       opts.features = "+numr"
-      glyphs =  harfbuzz.shape(amiri_font, buf, opts)
+      harfbuzz.shape(amiri_font, buf, opts)
+      glyphs = buf:get_glyph_infos_and_positions()
       compare_glyphs_against_fixture(glyphs, "amiri-regular_123_numr.json")
     end)
   end)

@@ -21,32 +21,9 @@ int shape_full (lua_State *L) {
   // Shape text
   hb_shape_full(*font, *buf, features, num_features, NULL);
 
-  // Get glyph info and positions out of buffer
-  unsigned int len = hb_buffer_get_length(*buf);
-  hb_glyph_info_t *info = hb_buffer_get_glyph_infos(*buf, NULL);
-  hb_glyph_position_t *pos = hb_buffer_get_glyph_positions(*buf, NULL);
-
-  // Create Lua table and push glyph data onto it.
-
-  lua_newtable(L); // parent table
-
-  for (unsigned int i = 0; i < len; i++) {
-    lua_pushnumber(L, i+1); // 1-indexed key for parent table
-    lua_newtable(L);        // child table
-
-    lua_setfield_generic("codepoint", info[i].codepoint);
-    lua_setfield_generic("cluster", info[i].cluster);
-    lua_setfield_generic("x_advance", pos[i].x_advance);
-    lua_setfield_generic("y_advance", pos[i].y_advance);
-    lua_setfield_generic("x_offset", pos[i].x_offset);
-    lua_setfield_generic("y_offset", pos[i].y_offset);
-
-    lua_settable(L,-3); // Add child table at index i+1 to parent table
-  }
-
   free(features);
 
-  return 1;
+  return 0;
 }
 
 int version (lua_State *L) {

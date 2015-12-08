@@ -95,8 +95,9 @@ buf:add_utf8(text)
 
 -- harfbuzz.shape (Shapes text)
 print("\nShaping '"..text.."' set with Noto Nastaliq Urdu")
-local glyphs = harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
+harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
 
+local glyphs = buf:get_glyph_infos_and_positions()
 print("No. of glyphs", #glyphs)
 print(serpent.line(glyphs, {comment = false}))
 
@@ -108,14 +109,18 @@ local amiri_font = harfbuzz.Font.new(amiri_face)
 print("\nShaping '123' set with Amiri Regular and no features")
 buf= harfbuzz.Buffer.new()
 buf:add_utf8("123")
-print(serpent.line(harfbuzz.shape(amiri_font, buf, opts), {comment = false}))
+harfbuzz.shape(amiri_font, buf, opts)
+glyphs = buf:get_glyph_infos_and_positions()
+print(serpent.line(glyphs, {comment = false}))
 
 -- shaping '123' with '+numr' (numerators)
 print("\nShaping '123' set with Amiri Regular with 'numr' feature turned on")
 buf= harfbuzz.Buffer.new()
 buf:add_utf8("123")
 opts.features = "+numr"
-print(serpent.line(harfbuzz.shape(amiri_font, buf, opts), {comment = false}))
+harfbuzz.shape(amiri_font, buf, opts)
+glyphs = buf:get_glyph_infos_and_positions()
+print(serpent.line(glyphs, {comment = false}))
 ```
 
 ## Documentation and Examples
