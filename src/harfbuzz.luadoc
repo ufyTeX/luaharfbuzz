@@ -1,6 +1,6 @@
 --- @module harfbuzz
 
---- Wraps `hb_shape` Harfbuzz API function
+--- Wraps `hb_shape`.
 --  @param font `Font` to use for shaping
 --
 --  @param buffer `Buffer` to shape
@@ -18,8 +18,32 @@
 --- Lua wrapper for `hb_blob_t` type
 --  @type Blob
 
+--- Wraps `hb_blob_create`.
+--  Initializes a new `hb_blob_t`.
+--  @param data lua string containing binary or character data
+--  @function Blob.new
+
+--- Wraps `hb_blob_get_length`.
+--  @function Blob:get_length
+
 --- Lua wrapper for `hb_face_t` type
 --  @type Face
+
+--- Wraps `hb_face_create`.
+--  Initializes a new `hb_face_t`.
+--  @param blob `Blob` to read the font from
+--  @param font_index index of font to read (defaults to 0)
+--  @function Face.new_from_blob
+
+--- Create a new `Face` from a file.
+--  Makes a call to `Face:new_from_blob` after creating a `Blob` from the
+--  file contents.
+--  @param file path to font file
+--  @param font_index index of font to read (defaults to 0)
+--  @function Face.new
+
+--- Wraps `hb_face_get_upem`
+--  @function Face:get_upem
 
 --- Lua wrapper for `hb_font_t` type
 --  @type Font
