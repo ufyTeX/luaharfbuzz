@@ -3,7 +3,7 @@
 -- * [Documentation on wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
 -- * [Source on Github](https://github.com/deepakjois/luaharfbuzz)
 --
--- @author Deepak Jois
+-- @author Deepak Jois <<deepak.jois@gmail.com>>
 -- @copyright 2016
 -- @license MIT
 -- @module harfbuzz
