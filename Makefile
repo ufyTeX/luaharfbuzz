@@ -17,6 +17,7 @@ INST_PREFIX = /usr/local
 INST_LIBDIR = $(INST_PREFIX)/lib/lua/5.2
 INST_LUADIR = $(INST_PREFIX)/share/lua/5.2
 
+DOCS_DIR := api
 BUILD_DIR := build
 C_SRC_ROOT := src/luaharfbuzz
 SOURCES := luaharfbuzz.c blob.c face.c font.c buffer.c feature.c class_utils.c
@@ -44,9 +45,12 @@ clean:
 lint:
 	luacheck src spec examples
 
+doc:
+	ldoc -d ${DOCS_DIR}  -p "luaharfbuzz" -t "luaharfbuzz" -f markdown src/harfbuzz.luadoc
+
 # For use with Luarocks
 install: luaharfbuzz.so src/harfbuzz.lua
 	cp luaharfbuzz.so $(INST_LIBDIR)
 	cp src/harfbuzz.lua $(INST_LUADIR)
 
-.PHONY: all clean test dirs install lint spec
+.PHONY: all clean test dirs install lint spec doc

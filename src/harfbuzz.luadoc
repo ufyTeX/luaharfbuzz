@@ -1,0 +1,31 @@
+--- @module harfbuzz
+
+--- Wraps `hb_shape` Harfbuzz API function
+--  @param font `Font` to use for shaping
+--
+--  @param buffer `Buffer` to shape
+--
+--  @param options table containing one or more supported options:
+--
+--  * `direction`: one of `rtl`, `ltr`, `ttb` or `btt`.
+--  * `script`: [four-letter script tag](http://www.microsoft.com/typography/otspec/scripttags.htm).
+--  * `language`: [three-letter language tag](http://www.microsoft.com/typography/otspec/languagetags.htm).
+--  * `features`: features to enable, specified as either of the following.
+--    - comma-separated list of features. See [feature string syntax reference](https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings)
+--    - table of `Feature` objects
+--  @function shape
+
+--- Lua wrapper for `hb_blob_t` type
+--  @type Blob
+
+--- Lua wrapper for `hb_face_t` type
+--  @type Face
+
+--- Lua wrapper for `hb_font_t` type
+--  @type Font
+
+--- Lua wrapper for `hb_buffer_t` type.
+--  @type Buffer
+
+--- Lua wrapper for `hb_feature_t` type
+--  @type Feature
