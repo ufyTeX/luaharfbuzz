@@ -15,7 +15,7 @@ describe("harfbuzz module", function()
     it("can be initialized with a string", function()
       local s = "test string"
       local blob = harfbuzz.Blob.new(s)
-      assert.are_equal(string.len(s), blob:length())
+      assert.are_equal(string.len(s), blob:get_length())
     end)
   end)
 
