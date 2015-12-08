@@ -1,4 +1,12 @@
---- @module harfbuzz
+-----------
+-- Lua bindings to Harfbuzz.
+-- * [Documentation on wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
+-- * [Source on Github](https://github.com/deepakjois/luaharfbuzz)
+--
+-- @author Deepak Jois
+-- @copyright 2016
+-- @license MIT
+-- @module harfbuzz
 
 --- Wraps `hb_shape`.
 --  @param font `Font` to use for shaping
