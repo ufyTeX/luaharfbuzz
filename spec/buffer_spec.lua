@@ -72,6 +72,34 @@ describe("harfbuzz.Buffer", function()
     b:guess_segment_properties()
     assert.are_equal("Arab", b:get_script())
   end)
+
+  it("can reverse the buffer", function()
+    local face = harfbuzz.Face.new('fonts/notonastaliq.ttf')
+    local font = harfbuzz.Font.new(face)
+    local urdu_text = "یہ" -- U+06CC U+06C1
+    local options = { language = "urd", script = "Arab", direction = "rtl" }
+
+    local buf= harfbuzz.Buffer.new()
+    buf:add_utf8(urdu_text)
+    harfbuzz.shape(font, buf, options)
+    local orig_glyphs = buf:get_glyph_infos_and_positions()
+    buf:reverse()
+    local reversed_glyphs = buf:get_glyph_infos_and_positions()
+
+    assert.are_equal(#orig_glyphs, #reversed_glyphs)
+
+    for c = 1, #orig_glyphs do
+      local g = orig_glyphs[#orig_glyphs - (c - 1)]
+      local r = reversed_glyphs[c]
+      assert.are_equal(g.codepoint, r.codepoint)
+      assert.are_equal(g.cluster, r.cluster)
+      assert.are_equal(g.x_advance, r.x_advance)
+      assert.are_equal(g.y_advance, r.y_advance)
+      assert.are_equal(g.x_offset, r.x_offset)
+      assert.are_equal(g.y_offset, r.y_offset)
+    end
+
+  end)
 end)
 
 

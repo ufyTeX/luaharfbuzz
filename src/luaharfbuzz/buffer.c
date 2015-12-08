@@ -138,6 +138,14 @@ static int buffer_get_glyph_infos_and_positions(lua_State *L) {
   return 1;
 }
 
+static int buffer_reverse(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  hb_buffer_reverse(*b);
+
+  return 0;
+}
+
 static const struct luaL_Reg buffer_methods[] = {
 	{ "__gc", buffer_destroy },
   { "add_utf8", buffer_add_utf8 },
@@ -149,6 +157,7 @@ static const struct luaL_Reg buffer_methods[] = {
   { "get_script", buffer_get_script },
   { "get_glyph_infos_and_positions", buffer_get_glyph_infos_and_positions },
   { "guess_segment_properties", buffer_guess_segment_properties },
+  { "reverse", buffer_reverse },
   { NULL, NULL },
 };
 
