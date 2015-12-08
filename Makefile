@@ -46,7 +46,7 @@ lint:
 	luacheck src spec examples
 
 doc:
-	ldoc -d ${DOCS_DIR}  -p "luaharfbuzz" -t "luaharfbuzz" -f markdown src/harfbuzz.luadoc
+	ldoc -d ${DOCS_DIR}  .
 
 # For use with Luarocks
 install: luaharfbuzz.so src/harfbuzz.lua
