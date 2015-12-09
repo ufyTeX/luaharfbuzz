@@ -1,12 +1,12 @@
 package = "luaharfbuzz"
 version = "0.0.1-1"
 source = {
-  url = "https://github.com/luaharfbuzz",
+  url = "https://github.com/deepakjois/luaharfbuzz",
   tag = "master"
 }
 description = {
   summary = "Lua bindings for the Harfbuzz text shaping library",
-  homepage = "https://github.com/luaharfbuzz",
+  homepage = "https://github.com/deepakjois/luaharfbuzz",
   license = "MIT",
   maintainer = "Deepak Jois <deepak.jois@gmail.com>"
 }
