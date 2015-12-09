@@ -11,3 +11,4 @@ luacov.report.out
 luacov.stats.out
 .luacheckcache
 api
+*.src.rock
