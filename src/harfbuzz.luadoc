@@ -1,6 +1,6 @@
 -----------
 -- Lua bindings to Harfbuzz.
--- * [Documentation on wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
+-- * [Wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
 -- * [Source on Github](https://github.com/deepakjois/luaharfbuzz)
 -- * [API Coverage Status](https://github.com/deepakjois/luaharfbuzz/blob/master/status/done.txt)
 --

@@ -67,17 +67,7 @@ See [Building](#building)
 
 ## Documentation
 * [API Docs](http://deepakjois.github.io/luaharfbuzz/api/)
-* [Documentation on wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
-* [API Coverage Status](https://github.com/deepakjois/luaharfbuzz/blob/master/status/done.txt)
-
-Other resources:
-* Files in the [examples] folder.
-* The [specs], which contain a comprehensive overview of the methods and types that have been wrapped so far.
-* Michal Hoftich’s (highly) experimental code [integrating luaharfbuzz with LuaTeX][lua-harfbuzz-luatex].
-
-[specs]:https://github.com/deepakjois/luaharfbuzz/tree/master/spec
-[examples]:https://github.com/deepakjois/luaharfbuzz/tree/master/examples
-[lua-harfbuzz-luatex]:https://github.com/michal-h21/luaharfbuzz-luatex-test
+* [Wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
 
 ## Sample Code
 
