@@ -53,12 +53,10 @@ pkg-config --libs harfbuzz
 ## Installing _luaharfbuzz_
 
 #### Luarocks
-_The package hasn’t been submitted for inclusion in the rocks server yet_
-
 If [Luarocks] is installed, _luaharfbuzz_ can be installed like this:
 
 ```
-luarocks make
+luarocks install luaharfbuzz
 ```
 
 [Luarocks]: https://luarocks.org
