@@ -28,7 +28,7 @@
 
 --- Wraps `hb_blob_create`.
 --  Initializes a new `hb_blob_t`.
---  @param data lua string containing binary or character data
+--  @param data lua string containing binary or character data.
 --  @function Blob.new
 
 --- Wraps `hb_blob_get_length`.
@@ -38,23 +38,41 @@
 --  @type Face
 
 --- Wraps `hb_face_create`.
---  Initializes a new `hb_face_t`.
---  @param blob `Blob` to read the font from
---  @param font_index index of font to read (defaults to 0)
+--  Initializes a new `hb_face_t` from a `Blob` object.
+--  @param blob `Blob` to read the font from.
+--  @param font_index index of font to read (defaults to 0).
 --  @function Face.new_from_blob
 
 --- Create a new `Face` from a file.
 --  Makes a call to `Face:new_from_blob` after creating a `Blob` from the
 --  file contents.
---  @param file path to font file
---  @param font_index index of font to read (defaults to 0)
+--  @param file path to font file.
+--  @param font_index index of font to read (defaults to 0).
 --  @function Face.new
 
---- Wraps `hb_face_get_upem`
+--- Wraps `hb_face_get_upem`.
 --  @function Face:get_upem
+
 
 --- Lua wrapper for `hb_font_t` type
 --  @type Font
+
+--- Wraps `hb_font_create`.
+--  Initializes a new `hb_font_t` from a `Face` object. Sets the default scale
+--  to the face’s upem value, and sets the font shaping functions by
+--  calling `hb_ot_font_set_funcs` on it.
+--  @param face `Face` object.
+--- Wraps `hb_font_get_scale`
+--  @function Font:scale
+
+--- Wraps `hb_font_get_scale`.
+--  @return two values for the x-scale and y-scale of the font.
+--  @function Font:get_scale
+
+--- Wraps `hb_font_set_scale`.
+--  @param x_scale desired x-scale of font.
+--  @param y_scale desired y-scale of font.
+--  @function Font:set_scale
 
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer
