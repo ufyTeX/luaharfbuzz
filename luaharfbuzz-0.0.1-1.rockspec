@@ -13,13 +13,10 @@ description = {
 dependencies = {
   "lua ~> 5.2"
 }
-external_dependencies = {
-  HARFBUZZ = { header = "harfbuzz/hb-ot.h", library = "harfbuzz" }
-}
 build = {
   type = "make",
   install_variables = {
     INST_LIBDIR="$(LIBDIR)",
     INST_LUADIR="$(LUADIR)",
-  },
+  }
 }
