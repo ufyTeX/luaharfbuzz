@@ -1,6 +1,6 @@
 # _luaharfbuzz_
 
-Lua bindings for [Harbuzz] (WIP).
+Lua bindings for [Harbuzz].
 
 [Harfbuzz]:http://harfbuzz.org
 
@@ -9,8 +9,8 @@ Lua bindings for [Harbuzz] (WIP).
 * [Overview](#overview)
 * [Installing Harfbuzz](#installing-harfbuzz)
 * [Installing _luaharfbuzz_](#installing-luaharfbuzz)
+* [Documentation](#documentation)
 * [Sample Code](#sample-code)
-* [Documentation and examples](#documentation-and-examples)
 * [Building](#building)
 * [Testing and Linting](#testing-and-linting)
 * [Contact](#contact)
@@ -64,6 +64,20 @@ luarocks make
 
 #### Directly Using Makefile
 See [Building](#building)
+
+## Documentation
+* [API Docs](http://deepakjois.github.io/luaharfbuzz/api/)
+* [Documentation on wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
+* [API Coverage Status](https://github.com/deepakjois/luaharfbuzz/blob/master/status/done.txt)
+
+Other resources:
+* Files in the [examples] folder.
+* The [specs], which contain a comprehensive overview of the methods and types that have been wrapped so far.
+* Michal Hoftich’s (highly) experimental code [integrating luaharfbuzz with LuaTeX][lua-harfbuzz-luatex].
+
+[specs]:https://github.com/deepakjois/luaharfbuzz/tree/master/spec
+[examples]:https://github.com/deepakjois/luaharfbuzz/tree/master/examples
+[lua-harfbuzz-luatex]:https://github.com/michal-h21/luaharfbuzz-luatex-test
 
 ## Sample Code
 
@@ -122,22 +136,6 @@ harfbuzz.shape(amiri_font, buf, opts)
 glyphs = buf:get_glyph_infos_and_positions()
 print(serpent.line(glyphs, {comment = false}))
 ```
-
-## Documentation and Examples
-
-_WORK IN PROGRESS_ (Tasks being tracked in [#10] and [#11], so any help is appreciated)
-
-[#10]: https://github.com/deepakjois/luaharfbuzz/issues/10
-[#11]: https://github.com/deepakjois/luaharfbuzz/issues/11
-
-Meanwhile, take a look at:
-
-* The sample code posted above.
-* The [specs], which contain a comprehensive overview of the methods and types that have been wrapped so far.
-* Michal Hoftich’s (highly) experimental code [integrating luaharfbuzz with LuaTeX][lua-harfbuzz-luatex].
-
-[specs]:https://github.com/deepakjois/luaharfbuzz/tree/master/spec
-[lua-harfbuzz-luatex]:https://github.com/michal-h21/luaharfbuzz-luatex-test
 
 ## Building
 It is possible to build _luaharfbuzz_ using the Makefile provided in the distribution. Running `make` will build the library `luaharfbuzz.so` in the root directory of the repo. The Lua source files are located under the `src` directory. To use them with Lua, you will need to update your `package.path` and `package.cpath` approrpriately.
