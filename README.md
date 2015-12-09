@@ -28,7 +28,8 @@ can be used with any Lua codebase.
 
 ## Installing Harfbuzz
 
-Make sure [Harfbuzz] libraries and headers are installed.
+Make sure [Harfbuzz] libraries and headers are installed. before trying to
+install _luaharfbuzz_
 
 #### OS X
 
