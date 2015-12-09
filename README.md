@@ -1,6 +1,6 @@
 # _luaharfbuzz_
 
-Lua bindings for [Harbuzz].
+Lua bindings for [Harfbuzz].
 
 [Harfbuzz]:http://harfbuzz.org
 
