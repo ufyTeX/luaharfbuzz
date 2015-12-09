@@ -2,6 +2,7 @@
 -- Lua bindings to Harfbuzz.
 -- * [Documentation on wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
 -- * [Source on Github](https://github.com/deepakjois/luaharfbuzz)
+-- * [API Coverage Status](https://github.com/deepakjois/luaharfbuzz/blob/master/status/done.txt)
 --
 -- @author Deepak Jois <<deepak.jois@gmail.com>>
 -- @copyright 2016
@@ -57,7 +58,7 @@
 --- Lua wrapper for `hb_font_t` type
 --  @type Font
 
---- Wraps `hb_font_create`.
+--- Wraps `hb_font_create`, and sets up some defaults for scale and shaping functions.
 --  Initializes a new `hb_font_t` from a `Face` object. Sets the default scale
 --  to the face’s upem value, and sets the font shaping functions by
 --  calling `hb_ot_font_set_funcs` on it.
@@ -77,5 +78,61 @@
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer
 
+--- Wraps `hb_buffer_create`.
+--  @function Buffer.new
+
+--- Wraps `hb_buffer_add_utf8`.
+--  @param text UTF8 encoded string.
+--  @function Buffer:add_utf8
+
+--- Wraps `hb_buffer_set_direction`.
+--  @param dir  one of `rtl`, `ltr`, `ttb` or `btt`.
+--  @function Buffer:set_direction
+
+--- Wraps `hb_buffer_get_direction`.
+--  @function Buffer:get_direction
+
+--- Wraps `hb_buffer_set_script`.
+--  @param script [four-letter script tag](http://www.microsoft.com/typography/otspec/scripttags.htm).
+--  @function Buffer:set_script
+
+--- Wraps `hb_buffer_get_script`.
+--  @function Buffer:get_script
+
+--- Wraps `hb_buffer_set_language`.
+--  @param lang [three-letter language tag](http://www.microsoft.com/typography/otspec/languagetags.htm).
+--  @function Buffer:set_language
+
+--- Wraps `hb_buffer_get_language`.
+--  @function Buffer:get_language
+
+--- Wraps `hb_buffer_reverse`.
+--  @function Buffer:reverse
+
+--- Wraps `hb_buffer_guess_segment_properties`.
+--  @function Buffer:guess_segment_properties
+
+--- Helper method to get shaped glyph data.
+--  Calls `hb_buffer_get_glyph_infos` and `hb_buffer_get_glyph_positions`
+--  and assembles the data into a Lua table.
+--  @return table containing data for each glyph, in a nested table. Each nested
+--  table contains the following:
+--
+--  * `x_advance`: horizontal advance.
+--  * `y_advance`: vertical advance.
+--  * `x_offset`: horizontal displacement.
+--  * `y_offset`: vertical displacement.
+--  * `cluster`: glyph cluster index within input.
+--  * `codepoint`: glyph index inside the font _(this field name is a bit misleading, but that’s what Harfbuzz uses)_.
+--  @function Buffer:get_glyphs_and_positions
+
 --- Lua wrapper for `hb_feature_t` type
 --  @type Feature
+
+--- Wraps `hb_feature_from_string`
+--  @param feature_string See [feature string syntax reference](https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings)
+--  @function Feature.new
+
+--- Wraps `hb_feature_to_string`.
+--  Enables nice output with `tostring(…)`.
+--  @function Feature:__tostring
