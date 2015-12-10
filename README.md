@@ -11,8 +11,7 @@ Lua bindings for [Harfbuzz].
 * [Installing _luaharfbuzz_](#installing-luaharfbuzz)
 * [Documentation](#documentation)
 * [Sample Code](#sample-code)
-* [Building](#building)
-* [Testing and Linting](#testing-and-linting)
+* [Development](#development)
 * [Contact](#contact)
 
 ## Overview
@@ -126,10 +125,12 @@ glyphs = buf:get_glyph_infos_and_positions()
 print(serpent.line(glyphs, {comment = false}))
 ```
 
-## Building
+## Development
+
+#### Building
 It is possible to build _luaharfbuzz_ using the Makefile provided in the distribution. Running `make` will build the library `luaharfbuzz.so` in the root directory of the repo. The Lua source files are located under the `src` directory. To use them with Lua, you will need to update your `package.path` and `package.cpath` approrpriately.
 
-## Testing and Linting
+#### Testing and Linting
 In order to make changes to the code and run the tests, the following dependencies need to be installed:
 
 * [Busted](http://olivinelabs.com/busted/) – `luarocks install busted`
