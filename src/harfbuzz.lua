@@ -1,10 +1,6 @@
 local hb = require("luaharfbuzz")
 
-local Face = hb.Face
-
---- Extends Face to accept a file name and optional font index
--- in the constructor.
-function Face.new(file, font_index)
+function hb.Face.new(file, font_index)
   local i = font_index or 0
   local fontfile = io.open(file, "r")
   local fontdata = fontfile:read("*all")
@@ -15,12 +11,6 @@ function Face.new(file, font_index)
   return hb.Face.new_from_blob(blob,i)
 end
 
---- Lua wrapper around Harfbuzz’s hb_shape_full() function. Take language,
---  script, direction and feature string in an optional argument. Sets up the
---  buffer correctly, creates the features by parsing the features string and
---  passes it on to hb_shape_full().
---
---  Returns a table containing shaped glyphs.
 hb.shape = function(font, buf, options)
   options = options or { }
 
