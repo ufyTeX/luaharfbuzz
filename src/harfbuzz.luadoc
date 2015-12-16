@@ -41,14 +41,14 @@
 --- Wraps `hb_face_create`.
 --  Initializes a new `hb_face_t` from a `Blob` object.
 --  @param blob `Blob` to read the font from.
---  @param font_index index of font to read (defaults to 0).
+--  @param font_index _(optional)_ index of font to read (defaults to 0).
 --  @function Face.new_from_blob
 
 --- Create a new `Face` from a file.
 --  Makes a call to `Face:new_from_blob` after creating a `Blob` from the
 --  file contents.
 --  @param file path to font file.
---  @param font_index index of font to read (defaults to 0).
+--  @param font_index _(optional)_ index of font to read (defaults to 0).
 --  @function Face.new
 
 --- Wraps `hb_face_get_upem`.
