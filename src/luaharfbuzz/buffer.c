@@ -96,8 +96,10 @@ static int buffer_add_utf8(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   const char *text = luaL_checkstring(L, 2);
+  unsigned int item_offset = luaL_checkint(L,3);
+  int item_length = luaL_checkint(L,4);
 
-  hb_buffer_add_utf8(*b, text, strlen(text), 0, strlen(text));
+  hb_buffer_add_utf8(*b, text, -1, item_offset, item_length);
 
   return 0;
 }
@@ -146,9 +148,17 @@ static int buffer_reverse(lua_State *L) {
   return 0;
 }
 
+static int buffer_get_length(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  lua_pushinteger(L, hb_buffer_get_length(*b));
+
+  return 1;
+}
+
 static const struct luaL_Reg buffer_methods[] = {
 	{ "__gc", buffer_destroy },
-  { "add_utf8", buffer_add_utf8 },
+  { "add_utf8_c", buffer_add_utf8 },
   { "set_direction", buffer_set_direction },
   { "get_direction", buffer_get_direction },
   { "set_language", buffer_set_language },
@@ -158,7 +168,8 @@ static const struct luaL_Reg buffer_methods[] = {
   { "get_glyph_infos_and_positions", buffer_get_glyph_infos_and_positions },
   { "guess_segment_properties", buffer_guess_segment_properties },
   { "reverse", buffer_reverse },
-  { NULL, NULL },
+  { "get_length", buffer_get_length },
+  { NULL, NULL }
 };
 
 static const struct luaL_Reg buffer_functions[] = {

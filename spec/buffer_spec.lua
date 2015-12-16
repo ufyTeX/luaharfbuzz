@@ -7,7 +7,26 @@ describe("harfbuzz.Buffer", function()
 
   it("can add a UTF8 string to the buffer", function()
     local b = harfbuzz.Buffer.new()
-    b:add_utf8("Some String")
+    local s = "Some String"
+    b:add_utf8(s)
+    assert.are_equal(string.len(s), b:get_length())
+  end)
+
+  it("can add a UTF 8 string with item_offset", function()
+    local b = harfbuzz.Buffer.new()
+    local s = "Some String"
+    local o = 5
+    b:add_utf8(s,o)
+    assert.are_equal(string.len(s) - o, b:get_length())
+  end)
+
+  it("can add a UTF 8 string with item_offset", function()
+    local b = harfbuzz.Buffer.new()
+    local s = "Some String"
+    local o = 5
+    local l = 2
+    b:add_utf8(s,o,l)
+    assert.are_equal(l, b:get_length())
   end)
 
   it("can call guess_segment_properties", function()
@@ -99,6 +118,13 @@ describe("harfbuzz.Buffer", function()
       assert.are_equal(g.y_offset, r.y_offset)
     end
 
+  end)
+
+  it("can get the length of the buffer", function()
+    local b = harfbuzz.Buffer.new()
+    local s = "some string"
+    b:add_utf8(s)
+    assert.are_equal(string.len(s), b:get_length())
   end)
 end)
 

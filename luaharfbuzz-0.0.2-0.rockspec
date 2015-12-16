@@ -1,7 +1,8 @@
 package = "luaharfbuzz"
-version = "0.0.1-1"
+version = "0.0.2-0"
 source = {
   url = "git://github.com/deepakjois/luaharfbuzz",
+  tag = "v0.0.2"
 }
 description = {
   summary = "Lua bindings for the Harfbuzz text shaping library",

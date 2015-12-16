@@ -83,6 +83,8 @@
 
 --- Wraps `hb_buffer_add_utf8`.
 --  @param text UTF8 encoded string.
+--  @param item_offset _(optional)_ 0-indexed offset in `text`, from where to start adding (defaults to 0)
+--  @param item_length _(optional)_ length to add from `item_offset` (defaults to -1, which adds till end of&nbsp;`text`)
 --  @function Buffer:add_utf8
 
 --- Wraps `hb_buffer_set_direction`.
@@ -108,6 +110,9 @@
 
 --- Wraps `hb_buffer_reverse`.
 --  @function Buffer:reverse
+
+--- Wraps `hb_buffer_get_length`
+--  @function Buffer:get_length
 
 --- Wraps `hb_buffer_guess_segment_properties`.
 --  @function Buffer:guess_segment_properties
