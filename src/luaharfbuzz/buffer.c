@@ -122,7 +122,7 @@ static int buffer_get_glyph_infos_and_positions(lua_State *L) {
   lua_newtable(L); // parent table
 
   for (unsigned int i = 0; i < len; i++) {
-    lua_pushnumber(L, i+1); // 1-indexed key parent table
+    lua_pushinteger(L, i+1); // 1-indexed key parent table
     lua_newtable(L);        // child table
 
     lua_setfield_generic("codepoint", info[i].codepoint);
