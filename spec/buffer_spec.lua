@@ -5,7 +5,7 @@ describe("harfbuzz.Buffer", function()
     harfbuzz.Buffer.new()
   end)
 
-  it("can add a UTF8 string to the buffer", function()
+  it("can add a UTF8 string", function()
     local b = harfbuzz.Buffer.new()
     local s = "Some String"
     b:add_utf8(s)
@@ -20,7 +20,7 @@ describe("harfbuzz.Buffer", function()
     assert.are_equal(string.len(s) - o, b:get_length())
   end)
 
-  it("can add a UTF 8 string with item_offset", function()
+  it("can add a UTF 8 string with item_length", function()
     local b = harfbuzz.Buffer.new()
     local s = "Some String"
     local o = 5
