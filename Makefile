@@ -37,6 +37,9 @@ ${BUILD_DIR}:
 	mkdir -p ${BUILD_DIR}
 
 spec: all
+	busted --exclude-tags="mac" .
+
+spec-all: all
 	busted .
 
 clean:
