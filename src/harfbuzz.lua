@@ -19,6 +19,12 @@ function buffer_metatable.add_utf8(self, text, item_offset, item_length)
   return self:add_utf8_c(text,item_offset,item_length)
 end
 
+function buffer_metatable.add_codepoints(self, text, item_offset, item_length)
+  item_offset = item_offset or 0
+  item_length = item_length or -1
+  return self:add_codepoints_c(text,item_offset,item_length)
+end
+
 hb.shape = function(font, buf, options)
   options = options or { }
 

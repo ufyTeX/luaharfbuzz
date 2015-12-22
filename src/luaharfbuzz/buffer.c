@@ -92,6 +92,32 @@ static int buffer_set_script(lua_State *L) {
   return 0;
 }
 
+static int buffer_add_codepoints(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+  luaL_checktype(L, 2, LUA_TTABLE);
+  unsigned int item_offset = luaL_checkint(L,3);
+  int item_length = luaL_checkint(L,4);
+
+  lua_len (L, 2);
+  unsigned int n = luaL_checkint(L, -1);
+  lua_pop(L, 1);
+
+  hb_codepoint_t *text = (hb_codepoint_t *) malloc(n * sizeof(hb_codepoint_t));
+
+  lua_pushnil(L); int i = 0;
+  while (lua_next(L, 2) != 0) {
+    hb_codepoint_t c = (hb_codepoint_t) luaL_checkinteger(L, -1);
+    text[i++] = c;
+    lua_pop(L, 1);
+  }
+
+  hb_buffer_add_codepoints(*b, text, n, item_offset, item_length);
+
+  free(text);
+
+  return 0;
+}
+
 static int buffer_add_utf8(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
@@ -159,6 +185,7 @@ static int buffer_get_length(lua_State *L) {
 static const struct luaL_Reg buffer_methods[] = {
 	{ "__gc", buffer_destroy },
   { "add_utf8_c", buffer_add_utf8 },
+  { "add_codepoints_c", buffer_add_codepoints },
   { "set_direction", buffer_set_direction },
   { "get_direction", buffer_get_direction },
   { "set_language", buffer_set_language },

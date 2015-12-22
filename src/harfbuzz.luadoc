@@ -87,6 +87,12 @@
 --  @param item_length _(optional)_ length to add from `item_offset` (defaults to -1, which adds till end of&nbsp;`text`)
 --  @function Buffer:add_utf8
 
+--- Wraps `hb_buffer_add_codepoints`.
+--  @param text table with codepoints as lua numbers.
+--  @param item_offset _(optional)_ 0-indexed offset in `text`, from where to start adding (defaults to 0)
+--  @param item_length _(optional)_ length to add from `item_offset` (defaults to -1, which adds till end of&nbsp;`text`)
+--  @function Buffer:add_codepoints
+
 --- Wraps `hb_buffer_set_direction`.
 --  @param dir  one of `rtl`, `ltr`, `ttb` or `btt`.
 --  @function Buffer:set_direction

@@ -29,6 +29,30 @@ describe("harfbuzz.Buffer", function()
     assert.are_equal(l, b:get_length())
   end)
 
+  it("can add codepoints", function()
+    local b = harfbuzz.Buffer.new()
+    local s = { 0x06CC, 0x06C1 }
+    b:add_codepoints(s)
+    assert.are_equal(#s, b:get_length())
+  end)
+
+  it("can add codepoints with item_offset", function()
+    local b = harfbuzz.Buffer.new()
+    local s = { 0x06CC, 0x06C1 }
+    local o = 1
+    b:add_codepoints(s,o)
+    assert.are_equal(#s - o, b:get_length())
+  end)
+
+  it("can add codepoints with item_length", function()
+    local b = harfbuzz.Buffer.new()
+    local s = { 0x06CC, 0x06C1 }
+    local o = 1
+    local l = 1
+    b:add_codepoints(s,o,l)
+    assert.are_equal(l, b:get_length())
+  end)
+
   it("can call guess_segment_properties", function()
     local b = harfbuzz.Buffer.new()
     b:add_utf8("Some String")
