@@ -56,4 +56,4 @@ install: luaharfbuzz.so src/harfbuzz.lua
 	cp luaharfbuzz.so $(INST_LIBDIR)
 	cp src/harfbuzz.lua $(INST_LUADIR)
 
-.PHONY: all clean test dirs install lint spec doc
+.PHONY: all clean test dirs install lint spec spec-all doc
