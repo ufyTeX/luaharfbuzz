@@ -49,6 +49,22 @@ describe("harfbuzz module shaping functions", function()
     compare_glyphs_against_fixture(glyphs, 'notonastaliq_U06CC_U06C1.json')
   end)
 
+  it("can take codepoints, font and an options table with script, language and direction settings. #mac", function()
+    local buf = harfbuzz.Buffer.new()
+    local korean_text = { 0xAC00, 0xB098, 0xB2E4 }
+    buf:add_codepoints(korean_text)
+
+    local face_korean = harfbuzz.Face.new('/Library/Fonts/AppleGothic.ttf')
+    local font_korean = harfbuzz.Font.new(face_korean)
+
+    harfbuzz.shape(font_korean, buf, { language = "KOR", script = "hang", direction = "ltr" })
+    local glyphs = buf:get_glyph_infos_and_positions()
+    assert.True(#glyphs > 0)
+
+    -- Compare against output of hb-shape
+    compare_glyphs_against_fixture(glyphs, 'AppleGothic_korean_issue_22.json')
+  end)
+
   it("can take a string containing a comma-delimited list of valid features", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
