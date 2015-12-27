@@ -131,7 +131,7 @@ function show_nodes (head)
     if i == GLYF then
       i = unicode.utf8.char(item.char)
     else
-      i = i .. ( item.subtype and ("(".. item.subtype .. ")") or '') 
+      i = i .. ( item.subtype and ("(".. item.subtype .. ")") or '')
     end
     nodes = nodes .. i .. ' '
   end
