@@ -1,0 +1,21 @@
+\directlua { tex.enableprimitives('',tex.extraprimitives()) }
+\protected\edef\pdfpkresolution {\pdfvariable pkresolution}
+\protected\edef\pdfminorversion {\pdfvariable minorversion}
+\outputmode=1
+\pagewidth=210 true mm
+\pageheight=297 true mm
+\pdfpkresolution=600
+\pdfminorversion=5
+\hoffset=1in
+\voffset=1in
+\directlua { dofile('doc.lua') }
+\nopagenumbers
+\parindent=0pt
+\font\noto={/Users/deepak/Library/Fonts/NotoNastaliqUrdu-Regular.ttf}
+Hello World
+
+\textdir TRT
+\pardir TRT
+\noto
+کِتنے برس ہوۓ کہ ہم نے قِسمت سے ایک بازی لگائی تھی۔
+\bye
