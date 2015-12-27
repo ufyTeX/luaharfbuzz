@@ -43,6 +43,8 @@ local print_table = function(t)
   texio.write(serpent.block(t, {comment = false}))
 end
 
+-- Load OpenType font
+-- https://tug.org/TUGboat/tb33-1/tb103isambert.pdf
 function read_font (name, size, fontid)
   if size < 0 then
     size = size * tex.sp("10pt") / -1000
@@ -126,15 +128,20 @@ function show_nodes (head)
   local nodes = ""
   for item in node.traverse(head) do
     local i = item.id
-    nodes = nodes .. i .. "("..(item.subtype or '')..")".." "
+    if i == GLYF then
+      i = unicode.utf8.char(item.char)
+    else
+      i = i .. ( item.subtype and ("(".. item.subtype .. ")") or '') 
+    end
+    nodes = nodes .. i .. ' '
   end
   texio.write_nl(nodes)
   return true
 end
 
-callback.register("hyphenate", nil)
-callback.register("ligaturing", nil)
-callback.register("kerning", nil)
+callback.register("hyphenate", false)
+callback.register("ligaturing", false)
+callback.register("kerning", false)
 callback.register("pre_linebreak_filter", show_nodes)
 
 callback.register("buildpage_filter", function(extrainfo) texio.write_nl("BUILDPAGE_FILTER "..extrainfo) end)
