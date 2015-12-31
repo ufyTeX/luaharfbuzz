@@ -1,20 +1,18 @@
-\directlua { tex.enableprimitives('',tex.extraprimitives()) }
-\protected\edef\pdfpkresolution {\pdfvariable pkresolution}
-\protected\edef\pdfminorversion {\pdfvariable minorversion}
-\outputmode=1
+\input setup
+% Page Setup
 \pagewidth=210mm
 \pageheight=297mm
-\pdfpkresolution=600
-\pdfminorversion=5
 \hsize=210mm
-\directlua { dofile('doc.lua') }
+\hsize=190mm
+\hoffset=10mm
+% Document starts here.
 \nopagenumbers
-\parindent=0pt
-\font\noto={/Users/deepak/Library/Fonts/NotoNastaliqUrdu-Regular.ttf}
-Hello World
+\parindent=0mm
+\font\noto={../../fonts/notonastaliq.ttf}
+This paragraph will not be shaped by Harfbuzz, because it uses TFM fonts included by default in \TeX.
 
 \textdir TRT
 \pardir TRT
 \noto
-کِتنے برس ہوۓ کہ ہم نے قِسمت سے ایک بازی لگائی تھی۔
+یہ اردو ہے۔
 \bye
