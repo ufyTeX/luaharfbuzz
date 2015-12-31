@@ -127,12 +127,12 @@ callback.register('define_font', read_font, "font loader")
 -- Print the contents of a nodelist.
 -- Glyph nodes are printed as UTF-8 characters, while other nodes are printed
 -- by calling node.type on it, along with the subtype of the node.
-function show_nodes (head)
+function show_nodes (head, raw)
   local nodes = ""
   for item in node.traverse(head) do
     local i = item.id
     if i == node.id("glyph") then
-      i = unicode.utf8.char(item.char)
+      if raw then i = '<glyph ' .. item.char .. '>' else i = unicode.utf8.char(item.char) end
     else
       i = '<' .. node.type(i) .. ( item.subtype and ("(".. item.subtype .. ")") or '') .. '>'
     end
