@@ -208,7 +208,8 @@ function process_nodes(head)
   for _, v in ipairs(glyphs) do
     local n,k -- Node and (optional) Kerning nodes
     local char = font.backmap[v.codepoint]
-    if char == 0x20 then
+    if codepoints[v.cluster+1] == 0x20 then
+      assert(char == 0x20 or char == 0xa0)
       n = node.new("glue")
       n.subtype = 0
       n.width = font.parameters.space
