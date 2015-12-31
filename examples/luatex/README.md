@@ -15,7 +15,7 @@ are doing.  TeXLive 2015 contains LuaTeX 0.80, which is too old.
 
 It is recommended that you setup _luatexminimal_.  The examples assume a very
 basic LuaTeX environment with only the plain TeX format loaded. TeXLive formats
-for LuaTeX come with a lot more initialization code, which can interfere with
+for LuaTeX come with a lot more initialization code, which could interfere with
 the commands in the example files.
 
 The examples can be run like:
