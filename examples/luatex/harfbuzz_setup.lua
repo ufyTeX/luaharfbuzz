@@ -206,7 +206,7 @@ function process_nodes(head)
   local glyphs = buf:get_glyph_infos_and_positions()
 
   for _, v in ipairs(glyphs) do
-    local n,k -- Node and (optional) Kerning nodes
+    local n,k -- Node and (optional) Kerning
     local char = font.backmap[v.codepoint]
     if codepoints[v.cluster+1] == 0x20 then
       assert(char == 0x20 or char == 0xa0)
