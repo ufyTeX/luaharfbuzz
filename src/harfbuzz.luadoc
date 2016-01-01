@@ -117,8 +117,16 @@
 --- Wraps `hb_buffer_reverse`.
 --  @function Buffer:reverse
 
---- Wraps `hb_buffer_get_length`
+--- Wraps `hb_buffer_get_length`.
 --  @function Buffer:get_length
+
+--- Wraps `hb_buffer_get_cluster_level`.
+--  @return see [Cluster Levels](#Cluster_Levels)
+--  @function Buffer:get_cluster_level
+
+--- Wraps `hb_buffer_set_cluster_level`.
+--  @param level see [Cluster Levels](#Cluster_Levels)
+--  @function Buffer:set_cluster_level
 
 --- Wraps `hb_buffer_guess_segment_properties`.
 --  @function Buffer:guess_segment_properties
@@ -147,3 +155,18 @@
 --- Wraps `hb_feature_to_string`.
 --  Enables nice output with `tostring(…)`.
 --  @function Feature:__tostring
+
+--- Cluster Levels
+--  @section
+
+--- Wraps `HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES`.
+--  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES
+
+--- Wraps `HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS`.
+--  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS
+
+--- Wraps `HB_BUFFER_CLUSTER_LEVEL_CHARACTERS`.
+--  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS
+
+--- Wraps `HB_BUFFER_CLUSTER_LEVEL_DEFAULT`.
+--  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT

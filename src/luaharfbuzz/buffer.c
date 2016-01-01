@@ -182,8 +182,26 @@ static int buffer_get_length(lua_State *L) {
   return 1;
 }
 
+static int buffer_get_cluster_level(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  lua_pushinteger(L, hb_buffer_get_cluster_level(*b));
+
+  return 1;
+}
+
+static int buffer_set_cluster_level(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  unsigned int l = luaL_checkint(L, 2);
+
+  hb_buffer_set_cluster_level(*b, l);
+
+  return 0;
+}
+
 static const struct luaL_Reg buffer_methods[] = {
-	{ "__gc", buffer_destroy },
+  { "__gc", buffer_destroy },
   { "add_utf8_c", buffer_add_utf8 },
   { "add_codepoints_c", buffer_add_codepoints },
   { "set_direction", buffer_set_direction },
@@ -196,6 +214,8 @@ static const struct luaL_Reg buffer_methods[] = {
   { "guess_segment_properties", buffer_guess_segment_properties },
   { "reverse", buffer_reverse },
   { "get_length", buffer_get_length },
+  { "get_cluster_level", buffer_get_cluster_level },
+  { "set_cluster_level", buffer_set_cluster_level },
   { NULL, NULL }
 };
 

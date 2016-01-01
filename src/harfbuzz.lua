@@ -25,6 +25,12 @@ function buffer_metatable.add_codepoints(self, text, item_offset, item_length)
   return self:add_codepoints_c(text,item_offset,item_length)
 end
 
+-- buffer cluster levels
+hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES  = 0
+hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS = 1
+hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS          = 2
+hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT             = hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES
+
 hb.shape = function(font, buf, options)
   options = options or { }
 
