@@ -143,7 +143,7 @@ function show_nodes (head, raw)
 end
 
 -- Process a paragraph nodelist and shape it with Harfbuzz.
--- Only works for the most simple paragraphs. Check the assertions in the code 
+-- Only works for the most simple paragraphs. Check the assertions in the code
 -- to understand what kind of nodes the shaping routine is expecting at
 -- any point.
 function process_nodes(head)
