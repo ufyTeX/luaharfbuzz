@@ -1,134 +1,29 @@
--- Package Loading References:
--- 1. http://www.lua.org/manual/5.2/manual.html#pdf-package.searchers
--- 2. LuaTeX Manual, Section 2.2, Lua behavior
-local make_loader = function(path, pos,loadfunc)
-  local default_loader = package.searchers[pos]
-  local loader = function(name)
-    local file = package.searchpath(name,path)
-    if not file then
-      local msg = "\n\t[lualoader] Search failed"
-      local ret = default_loader(name)
-      if type(ret) == "string" then
-        return msg ..ret
-        elseif type(ret) == "nil" then
-          return msg
-        else
-          return ret
-        end
-      end
-      local loader,err = loadfunc(file)
-      if not loader then
-        return "\n\t[lualoader] Loading error:\n\t"..err
-      end
-      return loader
-  end
-    package.searchers[pos] = loader
-end
+-- Allow external Lua modules to be loaded.
+dofile 'package_path_searcher.lua'
 
-local binary_loader = function(file)
-  local base = file:match("/([^%.]+)%.[%w]+$")
-  local symbol = base:gsub("%.","_")
-  return package.loadlib(file, "luaopen_"..symbol)
-end
+-- Attach a OpenType font loader to define_font callback.
+require 'ot_font_loader'
 
-make_loader(package.path,2,loadfile)
-make_loader(package.cpath,3, binary_loader)
+-- Disable some callbacks, and attach debug logging to others.
+require 'custom_callbacks'
 
--- Load harfbuzz from standard package path.
-local harfbuzz = require('harfbuzz')
+-- Load luaharfbuzz
+local harfbuzz = require 'harfbuzz'
 
--- Load OpenType font.
--- https://tug.org/TUGboat/tb33-1/tb103isambert.pdf
-local function read_font (name, size, fontid)
-  if size < 0 then
-    size = size * tex.sp("10pt") / -1000
-  end
-
-  -- Load file using fontloader.open
-  local f = fontloader.open (name)
-  local fonttable = fontloader.to_table(f)
-  fontloader.close(f)
-
-  local metrics = {
-    name = fonttable.fontname,
-    fullname = fonttable.fontname..fontid,
-    psname = fonttable.fontname,
-    type = "real",
-    filename = name,
-    format = string.match(string.lower(name), "otf$") and "opentype" or string.match(string.lower(name), "ttf$") and "truetype",
-    embedding = 'subset',
-    size = size,
-    designsize = fonttable.design_size*6553.6,
-    cidinfo = fonttable.cidinfo
-  }
-
-  metrics.parameters = {
-    slant = 0,
-    space = size * 0.25,  -- FIXME use the glyph width for 0x20 codepoint
-    space_stretch = 0.3 * size,
-    space_shrink = 0.1 * size,
-    x_height = 0.4 * size,
-    quad = 1.0 * size,
-    extra_space = 0
-  }
-
-  metrics.characters = { }
-
-  local mag = size / fonttable.units_per_em
-  metrics.units_per_em = fonttable.units_per_em
-  local names_of_char = { }
-  for _, glyph in pairs(fonttable.map.map) do
-    names_of_char[fonttable.glyphs[glyph].name] = fonttable.map.backmap[glyph]
-  end
-  -- save backmap in TeX font, so we can get char code from glyph index
-  -- obtainded from Harfbuzz
-  metrics.backmap = fonttable.map.backmap
-  for char, glyph in pairs(fonttable.map.map) do
-    local glyph_table = fonttable.glyphs[glyph]
-    metrics.characters[char] = {
-      index = glyph,
-      width = glyph_table.width * mag,
-      name = glyph_table.name,
-    }
-    if glyph_table.boundingbox[4] then
-      metrics.characters[char].height = glyph_table.boundingbox[4] * mag
-    end
-    if glyph_table.boundingbox[2] then
-      metrics.characters[char].depth = -glyph_table.boundingbox[2] * mag
-    end
-    if glyph_table.kerns then
-      local kerns = { }
-      for _, kern in pairs(glyph_table.kerns) do
-        kerns[names_of_char[kern.char]] = kern.off * mag
-      end
-      metrics.characters[char].kerns = kerns
-    end
-  end
-
-  -- Store Harfbuzz data in the font to retrieve it in the shaping routine.
-  local face = harfbuzz.Face.new(name)
-  metrics.harfbuzz = {
-    face = face,
-    font = harfbuzz.Font.new(face)
-  }
-
-  return metrics
-end
-
--- Register OpenType font loader in define_font callback.
-callback.register('define_font', read_font, "font loader")
+local lt_to_hb_dir = { TLT = "ltr", TRT = "rtl" }
+-- local hb_to_lt_dir = { ltr = "TLT", rtl = "TRT" }
 
 -- Print the contents of a nodelist.
 -- Glyph nodes are printed as UTF-8 characters, while other nodes are printed
 -- by calling node.type on it, along with the subtype of the node.
 local function show_nodes (head, raw)
-  local nodes = ""
+  local nodes = ''
   for item in node.traverse(head) do
     local i = item.id
     if i == node.id("glyph") then
-      if raw then i = '<glyph ' .. item.char .. '>' else i = unicode.utf8.char(item.char) end
+      if raw then i = string.format('<glyph %d>', item.char) else i = unicode.utf8.char(item.char) end
     else
-      i = '<' .. node.type(i) .. ( item.subtype and ("(".. item.subtype .. ")") or '') .. '>'
+      i = string.format('<%s %s>', node.type(i), ( item.subtype and ("(".. item.subtype .. ")") or ''))
     end
     nodes = nodes .. i .. ' '
   end
@@ -141,16 +36,16 @@ end
 -- to understand what kind of nodes the shaping routine is expecting at
 -- any point.
 local function process_nodes(head)
-  -- Store a pointer to head
+  -- Pointer to traverse head nodelist
   local headslider = head
 
   -- First node is a local_par
   assert(headslider.id == node.id("local_par"))
 
   -- Get direction
-  local dir_map = { TLT = "ltr", TRT = "rtl" }
   local dir = headslider.dir
   texio.write_nl("direction is: "..dir)
+
 
   -- Second node is indentation glue
   headslider = headslider.next
@@ -166,6 +61,8 @@ local function process_nodes(head)
   -- Initialise new head
   local newhead = node.copy_list(head, headslider.next)
   assert(node.length(newhead) == 2)
+
+  -- Pointer to traverse new heade nodelist
   local newheadslider = node.slide(newhead)
 
   -- Build text
@@ -181,8 +78,9 @@ local function process_nodes(head)
     end
   end
 
-  -- Initialise new tail
+  -- Initialise new tail at the last penalty node.
   local newtail = headslider.next
+
   -- Skip over penalty node
   headslider = headslider.next.next
 
@@ -193,7 +91,7 @@ local function process_nodes(head)
   -- Shape text
   local buf = harfbuzz.Buffer.new()
   buf:add_codepoints(codepoints)
-  harfbuzz.shape(font.harfbuzz.font,buf, { direction = dir_map[dir] })
+  harfbuzz.shape(font.harfbuzz.font,buf, { direction = lt_to_hb_dir[dir] })
 
   -- Create new nodes from shaped text
   if dir == 'TRT' then buf:reverse() end
@@ -261,23 +159,4 @@ end
 -- Register shaping callback
 callback.register("pre_linebreak_filter", show_and_process_nodes)
 
--- Switch off some callbacks
-callback.register("hyphenate", false)
-callback.register("ligaturing", false)
-callback.register("kerning", false)
 
--- Add debug statements to some callbacks
-callback.register("post_linebreak_filter", function()
-  texio.write_nl("POST_LINEBREAK")
-  return true
-end)
-
-callback.register("hpack_filter", function() texio.write_nl("HPACK")
-  return true
-end)
-
-callback.register("vpack_filter", function() texio.write_nl("VPACK")
-  return true
-end)
-
-callback.register("buildpage_filter", function(extrainfo) texio.write_nl("BUILDPAGE_FILTER "..extrainfo) end)
