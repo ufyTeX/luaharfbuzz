@@ -35,6 +35,7 @@
 <li><a href="#Class_Font">Class Font </a></li>
 <li><a href="#Class_Buffer">Class Buffer </a></li>
 <li><a href="#Class_Feature">Class Feature </a></li>
+<li><a href="#Cluster_Levels">Cluster Levels </a></li>
 </ul>
 
 
@@ -45,6 +46,7 @@
 <h2>Examples</h2>
 <ul class="$(kind=='Topics' and '' or 'nowrap'">
   <li><a href="examples/core_types.lua.html">core_types.lua</a></li>
+  <li><a href="examples/harfbuzz_setup.lua.html">harfbuzz_setup.lua</a></li>
 </ul>
 
 </div>
@@ -72,7 +74,7 @@
 <h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#shape">shape (font, buffer, options)</a></td>
+	<td class="name" nowrap><a href="#shape">shape (font, buffer[, options])</a></td>
 	<td class="summary">Wraps <code>hb_shape</code>.</td>
 	</tr>
 </table>
@@ -90,11 +92,11 @@
 <h2><a href="#Class_Face">Class Face </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Face.new_from_blob">Face.new_from_blob (blob, font_index)</a></td>
+	<td class="name" nowrap><a href="#Face.new_from_blob">Face.new_from_blob (blob[, font_index=0])</a></td>
 	<td class="summary">Wraps <code>hb_face_create</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Face.new">Face.new (file, font_index)</a></td>
+	<td class="name" nowrap><a href="#Face.new">Face.new (file[, font_index=0])</a></td>
 	<td class="summary">Create a new <code>Face</code> from a file.</td>
 	</tr>
 	<tr>
@@ -124,11 +126,11 @@
 	<td class="summary">Wraps <code>hb_buffer_create</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer:add_utf8">Buffer:add_utf8 (text, item_offset, item_length)</a></td>
+	<td class="name" nowrap><a href="#Buffer:add_utf8">Buffer:add_utf8 (text[, item_offset=0[, item_length=-1]])</a></td>
 	<td class="summary">Wraps <code>hb_buffer_add_utf8</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer:add_codepoints">Buffer:add_codepoints (text, item_offset, item_length)</a></td>
+	<td class="name" nowrap><a href="#Buffer:add_codepoints">Buffer:add_codepoints (text[, item_offset=0[, item_length=-1]])</a></td>
 	<td class="summary">Wraps <code>hb_buffer_add_codepoints</code>.</td>
 	</tr>
 	<tr>
@@ -161,7 +163,15 @@
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Buffer:get_length">Buffer:get_length ()</a></td>
-	<td class="summary">Wraps <code>hb_buffer_get_length</code></td>
+	<td class="summary">Wraps <code>hb_buffer_get_length</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_cluster_level">Buffer:get_cluster_level ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_cluster_level</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_cluster_level">Buffer:set_cluster_level (level)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_cluster_level</code>.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#Buffer:guess_segment_properties">Buffer:guess_segment_properties ()</a></td>
@@ -183,6 +193,25 @@
 	<td class="summary">Wraps <code>hb_feature_to_string</code>.</td>
 	</tr>
 </table>
+<h2><a href="#Cluster_Levels">Cluster Levels </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS">Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT">Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.</td>
+	</tr>
+</table>
 
 <br/>
 <br/>
@@ -193,7 +222,7 @@
     <dl class="function">
     <dt>
     <a name = "shape"></a>
-    <strong>shape (font, buffer, options)</strong>
+    <strong>shape (font, buffer[, options])</strong>
     </dt>
     <dd>
     Wraps <code>hb_shape</code>.
@@ -222,6 +251,7 @@
     </ul></li>
 </ul>
 
+         (<em>optional</em>)
         </li>
     </ul>
 
@@ -281,7 +311,7 @@
     <dl class="function">
     <dt>
     <a name = "Face.new_from_blob"></a>
-    <strong>Face.new_from_blob (blob, font_index)</strong>
+    <strong>Face.new_from_blob (blob[, font_index=0])</strong>
     </dt>
     <dd>
     Wraps <code>hb_face_create</code>.
@@ -294,7 +324,8 @@
          <code>Blob</code> to read the font from.
         </li>
         <li><span class="parameter">font_index</span>
-         <em>(optional)</em> index of font to read (defaults to 0).
+         index of font to read.
+         (<em>default</em> 0)
         </li>
     </ul>
 
@@ -305,7 +336,7 @@
 </dd>
     <dt>
     <a name = "Face.new"></a>
-    <strong>Face.new (file, font_index)</strong>
+    <strong>Face.new (file[, font_index=0])</strong>
     </dt>
     <dd>
     Create a new <code>Face</code> from a file.
@@ -319,7 +350,8 @@
          path to font file.
         </li>
         <li><span class="parameter">font_index</span>
-         <em>(optional)</em> index of font to read (defaults to 0).
+         index of font to read.
+         (<em>default</em> 0)
         </li>
     </ul>
 
@@ -438,7 +470,7 @@
 </dd>
     <dt>
     <a name = "Buffer:add_utf8"></a>
-    <strong>Buffer:add_utf8 (text, item_offset, item_length)</strong>
+    <strong>Buffer:add_utf8 (text[, item_offset=0[, item_length=-1]])</strong>
     </dt>
     <dd>
     Wraps <code>hb_buffer_add_utf8</code>.
@@ -450,10 +482,12 @@
          UTF8 encoded string.
         </li>
         <li><span class="parameter">item_offset</span>
-         <em>(optional)</em> 0-indexed offset in <code>text</code>, from where to start adding (defaults to 0)
+         0-indexed offset in <code>text</code>, from where to start adding.
+         (<em>default</em> 0)
         </li>
         <li><span class="parameter">item_length</span>
-         <em>(optional)</em> length to add from <code>item_offset</code> (defaults to -1, which adds till end of&nbsp;<code>text</code>)
+         length to add from <code>item_offset</code>. <code>-1</code> adds till end of <code>text</code>.
+         (<em>default</em> -1)
         </li>
     </ul>
 
@@ -464,7 +498,7 @@
 </dd>
     <dt>
     <a name = "Buffer:add_codepoints"></a>
-    <strong>Buffer:add_codepoints (text, item_offset, item_length)</strong>
+    <strong>Buffer:add_codepoints (text[, item_offset=0[, item_length=-1]])</strong>
     </dt>
     <dd>
     Wraps <code>hb_buffer_add_codepoints</code>.
@@ -476,10 +510,12 @@
          table with codepoints as lua numbers.
         </li>
         <li><span class="parameter">item_offset</span>
-         <em>(optional)</em> 0-indexed offset in <code>text</code>, from where to start adding (defaults to 0)
+         0-indexed offset in <code>text</code>, from where to start adding.
+         (<em>default</em> 0)
         </li>
         <li><span class="parameter">item_length</span>
-         <em>(optional)</em> length to add from <code>item_offset</code> (defaults to -1, which adds till end of&nbsp;<code>text</code>)
+         length to add from <code>item_offset</code>. <code>-1</code> adds till end of&nbsp;<code>text</code>.
+         (<em>default</em> -1)
         </li>
     </ul>
 
@@ -609,9 +645,48 @@
     <strong>Buffer:get_length ()</strong>
     </dt>
     <dd>
-    Wraps <code>hb_buffer_get_length</code>
+    Wraps <code>hb_buffer_get_length</code>.
 
 
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_cluster_level"></a>
+    <strong>Buffer:get_cluster_level ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_cluster_level</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        see <a href="#Cluster_Levels">Cluster Levels</a>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_cluster_level"></a>
+    <strong>Buffer:set_cluster_level (level)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_cluster_level</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">level</span>
+         see <a href="#Cluster_Levels">Cluster Levels</a>
+        </li>
+    </ul>
 
 
 
@@ -708,13 +783,73 @@
 
 </dd>
 </dl>
+    <h2 class="section-header "><a name="Cluster_Levels"></a>Cluster Levels </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2015-12-22 16:33:11 </i>
+<i style="float:right;">Last updated 2016-01-01 12:22:25 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
