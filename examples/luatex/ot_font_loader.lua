@@ -22,30 +22,38 @@ local function read_font (name, size, fontid)
     embedding = 'subset',
     size = size,
     designsize = fonttable.design_size*6553.6,
-    cidinfo = fonttable.cidinfo
+    cidinfo = fonttable.cidinfo,
+    units_per_em = fonttable.units_per_em
   }
+
+  local mag = size / fonttable.units_per_em
+
+  -- Find glyph for 0x20, and get width for spacing glue.
+  local space_glyph = fonttable.map.map[0x20]
+  local space_glyph_table = fonttable.glyphs[space_glyph]
+  local space_glyph_width = space_glyph_table.width * mag
 
   metrics.parameters = {
     slant = 0,
-    space = size * 0.25,  -- FIXME use the glyph width for 0x20 codepoint
-    space_stretch = 0.3 * size,
-    space_shrink = 0.1 * size,
-    x_height = 0.4 * size,
+    space = space_glyph_width,
+    space_stretch = 1.5 * space_glyph_width,
+    space_shrink = 0.5 * space_glyph_width,
+    x_height = fonttable.pfminfo.os2_xheight * mag,
     quad = 1.0 * size,
     extra_space = 0
   }
 
   metrics.characters = { }
 
-  local mag = size / fonttable.units_per_em
-  metrics.units_per_em = fonttable.units_per_em
   local names_of_char = { }
   for _, glyph in pairs(fonttable.map.map) do
     names_of_char[fonttable.glyphs[glyph].name] = fonttable.map.backmap[glyph]
   end
+
   -- save backmap in TeX font, so we can get char code from glyph index
   -- obtainded from Harfbuzz
   metrics.backmap = fonttable.map.backmap
+
   for char, glyph in pairs(fonttable.map.map) do
     local glyph_table = fonttable.glyphs[glyph]
     metrics.characters[char] = {
