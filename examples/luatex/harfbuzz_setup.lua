@@ -23,7 +23,7 @@ local function show_nodes (head, raw)
     if i == node.id("glyph") then
       if raw then i = string.format('<glyph %d>', item.char) else i = unicode.utf8.char(item.char) end
     else
-      i = string.format('<%s %s>', node.type(i), ( item.subtype and ("(".. item.subtype .. ")") or ''))
+      i = string.format('<%s%s>', node.type(i), ( item.subtype and ("(".. item.subtype .. ")") or ''))
     end
     nodes = nodes .. i .. ' '
   end
@@ -37,56 +37,56 @@ end
 -- any point.
 local function process_nodes(head)
   -- Pointer to traverse head nodelist
-  local headslider = head
+  local head_slider = head
 
   -- First node is a local_par
-  assert(headslider.id == node.id("local_par"))
+  assert(head_slider.id == node.id("local_par"))
 
   -- Get direction
-  local dir = headslider.dir
+  local dir = head_slider.dir
   texio.write_nl("direction is: "..dir)
 
 
-  -- Second node is indentation glue
-  headslider = headslider.next
-  assert(headslider.id == node.id("hlist") and headslider.subtype == 3)
+  -- Second node is indentation
+  head_slider = head_slider.next
+  assert(head_slider.id == node.id("hlist") and head_slider.subtype == 3)
 
   -- Check if font can be shaped by Harfbuzz
-  local fontid = headslider.next.font
+  local fontid = head_slider.next.font
   texio.write_nl("fontid is "..fontid)
   local font = font.getfont(fontid)
   if not font.harfbuzz then return head end
   texio.write_nl("paragraph can be shaped by Harfbuzz")
 
   -- Initialise new head
-  local newhead = node.copy_list(head, headslider.next)
-  assert(node.length(newhead) == 2)
+  local new_head = node.copy_list(head, head_slider.next)
+  assert(node.length(new_head) == 2)
 
   -- Pointer to traverse new heade nodelist
-  local newheadslider = node.slide(newhead)
+  local new_head_slider = node.slide(new_head)
 
   -- Build text
   local codepoints = { }
-  while headslider.next.id ~= node.id("penalty") do
-    headslider = headslider.next
-    if headslider.id == node.id("glyph") then
-      table.insert(codepoints, headslider.char)
-    elseif headslider.id == node.id("glue") and headslider.subtype == 0 then
+  while head_slider.next.id ~= node.id("penalty") do
+    head_slider = head_slider.next
+    if head_slider.id == node.id("glyph") then
+      table.insert(codepoints, head_slider.char)
+    elseif head_slider.id == node.id("glue") and head_slider.subtype == 0 then
       table.insert(codepoints, 0x20)
     else
-      error("Cant handle node of type "..node.type(headslider.id))
+      error(string.format("Cant handle node of type %s, subtype %s", node.type(head_slider.id), tostring(head_slider.subtype)))
     end
   end
 
   -- Initialise new tail at the last penalty node.
-  local newtail = headslider.next
+  local new_tail = head_slider.next
 
   -- Skip over penalty node
-  headslider = headslider.next.next
+  head_slider = head_slider.next.next
 
   -- Last node is a \parfillskip
-  assert(headslider.id == node.id("glue") and headslider.subtype == 15)
-  assert(not headslider.next)
+  assert(head_slider.id == node.id("glue") and head_slider.subtype == 15)
+  assert(not head_slider.next)
 
   -- Shape text
   local buf = harfbuzz.Buffer.new()
@@ -107,7 +107,7 @@ local function process_nodes(head)
       n.width = font.parameters.space
       n.stretch = font.parameters.space_stretch
       n.shrink = font.parameters.space_shrink
-      newheadslider.next = n
+      new_head_slider.next = n
     else
       -- Create glyph node
       n = node.new("glyph")
@@ -132,21 +132,21 @@ local function process_nodes(head)
       if k then
         if dir == 'TRT' then -- kerning goes before glyph
           k.next = n
-          newheadslider.next = k
+          new_head_slider.next = k
         else -- kerning goes after glyph
           n.next = k
-          newheadslider.next = n
+          new_head_slider.next = n
         end
       else -- no kerning
-        newheadslider.next = n
+        new_head_slider.next = n
       end
     end
-    newheadslider = node.slide(newheadslider)
+    new_head_slider = node.slide(new_head_slider)
   end
 
-  newheadslider.next = newtail
-  texio.write_nl("No. of nodes after shaping: "..node.length(newhead))
-  return newhead
+  new_head_slider.next = new_tail
+  texio.write_nl("No. of nodes after shaping: "..node.length(new_head))
+  return new_head
 end
 
 -- Callback function
