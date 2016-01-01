@@ -4,7 +4,7 @@
 local make_loader = function(path, pos,loadfunc)
   local default_loader = package.searchers[pos]
   local loader = function(name)
-    local file, msg = package.searchpath(name,path)
+    local file = package.searchpath(name,path)
     if not file then
       local msg = "\n\t[lualoader] Search failed"
       local ret = default_loader(name)
@@ -37,15 +37,9 @@ make_loader(package.cpath,3, binary_loader)
 -- Load harfbuzz from standard package path.
 local harfbuzz = require('harfbuzz')
 
--- Load some debug tools
-local serpent = require('serpent')
-local print_table = function(t)
-  texio.write(serpent.block(t, {comment = false}))
-end
-
 -- Load OpenType font.
 -- https://tug.org/TUGboat/tb33-1/tb103isambert.pdf
-function read_font (name, size, fontid)
+local function read_font (name, size, fontid)
   if size < 0 then
     size = size * tex.sp("10pt") / -1000
   end
@@ -83,7 +77,7 @@ function read_font (name, size, fontid)
   local mag = size / fonttable.units_per_em
   metrics.units_per_em = fonttable.units_per_em
   local names_of_char = { }
-  for char, glyph in pairs(fonttable.map.map) do
+  for _, glyph in pairs(fonttable.map.map) do
     names_of_char[fonttable.glyphs[glyph].name] = fonttable.map.backmap[glyph]
   end
   -- save backmap in TeX font, so we can get char code from glyph index
@@ -127,7 +121,7 @@ callback.register('define_font', read_font, "font loader")
 -- Print the contents of a nodelist.
 -- Glyph nodes are printed as UTF-8 characters, while other nodes are printed
 -- by calling node.type on it, along with the subtype of the node.
-function show_nodes (head, raw)
+local function show_nodes (head, raw)
   local nodes = ""
   for item in node.traverse(head) do
     local i = item.id
@@ -146,7 +140,7 @@ end
 -- Only works for the most simple paragraphs. Check the assertions in the code
 -- to understand what kind of nodes the shaping routine is expecting at
 -- any point.
-function process_nodes(head)
+local function process_nodes(head)
   -- Store a pointer to head
   local headslider = head
 
@@ -258,7 +252,7 @@ function process_nodes(head)
 end
 
 -- Callback function
-function show_and_process_nodes(head)
+local function show_and_process_nodes(head)
   texio.write_nl("No. of nodes: "..node.length(head))
   show_nodes(head)
   return process_nodes(head)
