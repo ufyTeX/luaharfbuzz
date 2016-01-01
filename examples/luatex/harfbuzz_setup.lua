@@ -13,6 +13,10 @@ local harfbuzz = require 'harfbuzz'
 local lt_to_hb_dir = { TLT = "ltr", TRT = "rtl" }
 -- local hb_to_lt_dir = { ltr = "TLT", rtl = "TRT" }
 
+local function upem_to_sp(v,font)
+  return math.floor(v / font.units_per_em * font.size)
+end
+
 -- Print the contents of a nodelist.
 -- Glyph nodes are printed as UTF-8 characters, while other nodes are printed
 -- by calling node.type on it, along with the subtype of the node.
@@ -40,7 +44,7 @@ local function process_nodes(head)
   local head_slider = head
 
   -- First node is a local_par
-  assert(head_slider.id == node.id("local_par"))
+  assert(head_slider.id == node.id("local_par"), "local_par expected")
 
   -- Get direction
   local dir = head_slider.dir
@@ -49,7 +53,7 @@ local function process_nodes(head)
 
   -- Second node is indentation
   head_slider = head_slider.next
-  assert(head_slider.id == node.id("hlist") and head_slider.subtype == 3)
+  assert(head_slider.id == node.id("hlist") and head_slider.subtype == 3, "parindent hlist expected")
 
   -- Check if font can be shaped by Harfbuzz
   local fontid = head_slider.next.font
@@ -60,7 +64,7 @@ local function process_nodes(head)
 
   -- Initialise new head
   local new_head = node.copy_list(head, head_slider.next)
-  assert(node.length(new_head) == 2)
+  assert(node.length(new_head) == 2, "expected two nodes in new_head")
 
   -- Pointer to traverse new heade nodelist
   local new_head_slider = node.slide(new_head)
@@ -85,8 +89,8 @@ local function process_nodes(head)
   head_slider = head_slider.next.next
 
   -- Last node is a \parfillskip
-  assert(head_slider.id == node.id("glue") and head_slider.subtype == 15)
-  assert(not head_slider.next)
+  assert(head_slider.id == node.id("glue") and head_slider.subtype == 15, "\\parfillskip expected")
+  assert(not head_slider.next, "Expected this to be the last node.")
 
   -- Shape text
   local buf = harfbuzz.Buffer.new()
@@ -101,7 +105,7 @@ local function process_nodes(head)
     local n,k -- Node and (optional) Kerning
     local char = font.backmap[v.codepoint]
     if codepoints[v.cluster+1] == 0x20 then
-      assert(char == 0x20 or char == 0xa0)
+      assert(char == 0x20 or char == 0xa0, "Expected char to be 0x20 or 0xa0")
       n = node.new("glue")
       n.subtype = 0
       n.width = font.parameters.space
@@ -116,12 +120,12 @@ local function process_nodes(head)
       n.subtype = 1
 
       -- Set offsets from Harfbuzz data
-      n.yoffset = math.floor(v.y_offset / font.units_per_em * font.size)
-      n.xoffset = math.floor(v.x_offset / font.units_per_em * font.size)
+      n.yoffset = upem_to_sp(v.y_offset, font)
+      n.xoffset = upem_to_sp(v.x_offset, font)
       if dir == 'TRT' then n.xoffset = n.xoffset * -1 end
 
       -- Adjust kerning if Harfbuzz’s x_advance does not match glyph width
-      local x_advance = math.floor(v.x_advance / font.units_per_em * font.size)
+      local x_advance = upem_to_sp(v.x_advance, font)
       if  math.abs(x_advance - n.width) > 1 then -- needs kerning
         k = node.new("kern")
         k.kern = (x_advance - n.width)
