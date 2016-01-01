@@ -14,7 +14,7 @@
 --
 --  @param buffer `Buffer` to shape
 --
---  @param options table containing one or more supported options:
+--  @param[opt] options table containing one or more supported options:
 --
 --  * `direction`: one of `rtl`, `ltr`, `ttb` or `btt`.
 --  * `script`: [four-letter script tag](http://www.microsoft.com/typography/otspec/scripttags.htm).
@@ -41,14 +41,14 @@
 --- Wraps `hb_face_create`.
 --  Initializes a new `hb_face_t` from a `Blob` object.
 --  @param blob `Blob` to read the font from.
---  @param font_index _(optional)_ index of font to read (defaults to 0).
+--  @param[opt=0] font_index index of font to read.
 --  @function Face.new_from_blob
 
 --- Create a new `Face` from a file.
 --  Makes a call to `Face:new_from_blob` after creating a `Blob` from the
 --  file contents.
 --  @param file path to font file.
---  @param font_index _(optional)_ index of font to read (defaults to 0).
+--  @param[opt=0] font_index index of font to read.
 --  @function Face.new
 
 --- Wraps `hb_face_get_upem`.
@@ -83,14 +83,14 @@
 
 --- Wraps `hb_buffer_add_utf8`.
 --  @param text UTF8 encoded string.
---  @param item_offset _(optional)_ 0-indexed offset in `text`, from where to start adding (defaults to 0)
---  @param item_length _(optional)_ length to add from `item_offset` (defaults to -1, which adds till end of&nbsp;`text`)
+--  @param[opt=0] item_offset 0-indexed offset in `text`, from where to start adding.
+--  @param[opt=-1] item_length length to add from `item_offset`. `-1` adds till end of `text`.
 --  @function Buffer:add_utf8
 
 --- Wraps `hb_buffer_add_codepoints`.
 --  @param text table with codepoints as lua numbers.
---  @param item_offset _(optional)_ 0-indexed offset in `text`, from where to start adding (defaults to 0)
---  @param item_length _(optional)_ length to add from `item_offset` (defaults to -1, which adds till end of&nbsp;`text`)
+--  @param[opt=0] item_offset 0-indexed offset in `text`, from where to start adding.
+--  @param[opt=-1] item_length length to add from `item_offset`. `-1` adds till end of&nbsp;`text`.
 --  @function Buffer:add_codepoints
 
 --- Wraps `hb_buffer_set_direction`.
