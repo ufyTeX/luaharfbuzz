@@ -26,6 +26,7 @@ local function read_font (name, size, fontid)
     units_per_em = fonttable.units_per_em
   }
 
+  -- Scaling for font metrics
   local mag = size / fonttable.units_per_em
 
   -- Find glyph for 0x20, and get width for spacing glue.
@@ -43,17 +44,11 @@ local function read_font (name, size, fontid)
     extra_space = 0
   }
 
-  metrics.characters = { }
-
-  local names_of_char = { }
-  for _, glyph in pairs(fonttable.map.map) do
-    names_of_char[fonttable.glyphs[glyph].name] = fonttable.map.backmap[glyph]
-  end
-
-  -- save backmap in TeX font, so we can get char code from glyph index
+  -- Save backmap in TeX font, so we can get char code from glyph index
   -- obtainded from Harfbuzz
   metrics.backmap = fonttable.map.backmap
 
+  metrics.characters = { }
   for char, glyph in pairs(fonttable.map.map) do
     local glyph_table = fonttable.glyphs[glyph]
     metrics.characters[char] = {
@@ -66,13 +61,6 @@ local function read_font (name, size, fontid)
     end
     if glyph_table.boundingbox[2] then
       metrics.characters[char].depth = -glyph_table.boundingbox[2] * mag
-    end
-    if glyph_table.kerns then
-      local kerns = { }
-      for _, kern in pairs(glyph_table.kerns) do
-        kerns[names_of_char[kern.char]] = kern.off * mag
-      end
-      metrics.characters[char].kerns = kerns
     end
   end
 
