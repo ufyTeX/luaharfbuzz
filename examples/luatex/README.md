@@ -26,3 +26,6 @@ luatex --fmt=plain doc.tex
 ```
 
 If you encounter any issues, or have further questions, please [file an issue](https://github.com/deepakjois/luaharfbuzz/issues/new).
+
+### Sample PDFs
+Check the [Samples folder](./samples).
