@@ -94,6 +94,7 @@ local function process_nodes(head)
 
   -- Shape text
   local buf = harfbuzz.Buffer.new()
+  buf:set_cluster_level(harfbuzz.Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS)
   buf:add_codepoints(codepoints)
   harfbuzz.shape(font.harfbuzz.font,buf, { direction = lt_to_hb_dir[dir] })
 
