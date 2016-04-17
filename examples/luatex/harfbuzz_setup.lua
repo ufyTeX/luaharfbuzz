@@ -75,7 +75,7 @@ local function process_nodes(head)
     head_slider = head_slider.next
     if head_slider.id == node.id("glyph") then
       table.insert(codepoints, head_slider.char)
-    elseif head_slider.id == node.id("glue") and head_slider.subtype == 0 then
+    elseif head_slider.id == node.id("glue") and head_slider.subtype == 13 then
       table.insert(codepoints, 0x20)
     else
       error(string.format("Cant handle node of type %s, subtype %s", node.type(head_slider.id), tostring(head_slider.subtype)))
@@ -151,6 +151,7 @@ local function process_nodes(head)
 
   new_head_slider.next = new_tail
   texio.write_nl("No. of nodes after shaping: "..node.length(new_head))
+  show_nodes(new_head, true)
   return new_head
 end
 

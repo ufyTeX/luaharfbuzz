@@ -7,7 +7,7 @@ code which fail with an error, if the paragraph nodes do not conform to what the
 code expects.
 
 ### Running the examples
-The examples were tested with LuaTeX 0.87, inside a local [luatexminimal] texmf
+The examples were tested with LuaTeX 1.0, inside a local [luatexminimal] texmf
 tree.
 
 [luatexminimal]:https://github.com/deepakjois/luatexminimal
