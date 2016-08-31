@@ -1,5 +1,5 @@
 return {
-  default {
+  default = {
     coverage = true,
     verbose = true,
     ROOT = { "spec" }
