@@ -64,7 +64,7 @@ luarocks install luaharfbuzz
 See [Building](#building)
 
 ## Documentation
-* [API Docs](http://deepakjois.github.io/luaharfbuzz/api/)
+* [API Docs](http://deepakjois.github.io/luaharfbuzz/)
 * [Wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
 
 ## Sample Code
