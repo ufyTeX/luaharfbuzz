@@ -1,7 +1,13 @@
 return {
-  default = {
+  _all = {
     coverage = true,
     verbose = true,
     ROOT = { "spec" }
+  },
+  default = {
+    ["exclude-tags"] = "mac"
+  },
+  mac = {
+    tags = "mac"
   }
 }
