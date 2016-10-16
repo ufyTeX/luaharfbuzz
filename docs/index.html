@@ -1,0 +1,855 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>luaharfbuzz Documentation</title>
+    <link rel="stylesheet" href="ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>luaharfbuzz</h1>
+
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Class_Blob">Class Blob</a></li>
+<li><a href="#Class_Face">Class Face</a></li>
+<li><a href="#Class_Font">Class Font</a></li>
+<li><a href="#Class_Buffer">Class Buffer</a></li>
+<li><a href="#Class_Feature">Class Feature</a></li>
+<li><a href="#Cluster_Levels">Cluster Levels</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="nowrap">
+  <li><strong>harfbuzz</strong></li>
+</ul>
+<h2>Examples</h2>
+<ul class="nowrap">
+  <li><a href="examples/core_types.lua.html">core_types.lua</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>harfbuzz</code></h1>
+<p>Lua bindings to Harfbuzz.</p>
+<p>
+
+<ul>
+    <li><a href="http://github.com/deepakjois/luaharfbuzz/wiki">Wiki</a></li>
+    <li><a href="https://github.com/deepakjois/luaharfbuzz">Source on Github</a></li>
+    <li><a href="https://github.com/deepakjois/luaharfbuzz/blob/master/status/done.txt">API Coverage Status</a></li>
+</ul>
+</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>Copyright</strong>: 2016</li>
+        <li><strong>License</strong>: MIT</li>
+        <li><strong>Author</strong>: Deepak Jois <<a href="&#x6d;&#97;&#x69;&#108;&#x74;&#111;&#x3a;d&#101;&#x65;&#112;&#x61;&#107;&#x2e;&#106;&#x6f;i&#115;&#x40;&#103;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;m">&#x64;&#101;&#x65;&#112;&#x61;&#107;&#x2e;j&#111;&#x69;&#115;&#x40;&#103;&#x6d;&#97;&#x69;l&#46;&#x63;&#111;&#x6d;</a>></li>
+    </ul>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#shape">shape (font, buffer[, options])</a></td>
+	<td class="summary">Wraps <code>hb_shape</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Blob">Class Blob</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Blob.new">Blob.new (data)</a></td>
+	<td class="summary">Wraps <code>hb_blob_create</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Blob:get_length">Blob:get_length ()</a></td>
+	<td class="summary">Wraps <code>hb_blob_get_length</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Face">Class Face</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Face.new_from_blob">Face.new_from_blob (blob[, font_index=0])</a></td>
+	<td class="summary">Wraps <code>hb_face_create</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face.new">Face.new (file[, font_index=0])</a></td>
+	<td class="summary">Create a new <code>Face</code> from a file.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:get_upem">Face:get_upem ()</a></td>
+	<td class="summary">Wraps <code>hb_face_get_upem</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Font">Class Font</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Font:scale">Font:scale (face)</a></td>
+	<td class="summary">Wraps <code>hb_font_create</code>, and sets up some defaults for scale and shaping functions.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_scale">Font:get_scale ()</a></td>
+	<td class="summary">Wraps <code>hb_font_get_scale</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:set_scale">Font:set_scale (x_scale, y_scale)</a></td>
+	<td class="summary">Wraps <code>hb_font_set_scale</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Buffer">Class Buffer</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.new">Buffer.new ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_create</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:add_utf8">Buffer:add_utf8 (text[, item_offset=0[, item_length=-1]])</a></td>
+	<td class="summary">Wraps <code>hb_buffer_add_utf8</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:add_codepoints">Buffer:add_codepoints (text[, item_offset=0[, item_length=-1]])</a></td>
+	<td class="summary">Wraps <code>hb_buffer_add_codepoints</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_direction">Buffer:set_direction (dir)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_direction</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_direction">Buffer:get_direction ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_direction</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_script">Buffer:set_script (script)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_script</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_script">Buffer:get_script ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_script</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_language">Buffer:set_language (lang)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_language</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_language">Buffer:get_language ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_language</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:reverse">Buffer:reverse ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_reverse</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_length">Buffer:get_length ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_length</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_cluster_level">Buffer:get_cluster_level ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_get_cluster_level</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:set_cluster_level">Buffer:set_cluster_level (level)</a></td>
+	<td class="summary">Wraps <code>hb_buffer_set_cluster_level</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:guess_segment_properties">Buffer:guess_segment_properties ()</a></td>
+	<td class="summary">Wraps <code>hb_buffer_guess_segment_properties</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer:get_glyphs_and_positions">Buffer:get_glyphs_and_positions ()</a></td>
+	<td class="summary">Helper method to get shaped glyph data.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Feature">Class Feature</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Feature.new">Feature.new (feature_string)</a></td>
+	<td class="summary">Wraps <code>hb_feature_from_string</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Feature:__tostring">Feature:__tostring ()</a></td>
+	<td class="summary">Wraps <code>hb_feature_to_string</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Cluster_Levels">Cluster Levels</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS">Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT">Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</a></td>
+	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "shape"></a>
+    <strong>shape (font, buffer[, options])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_shape</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">font</span>
+         <code>Font</code> to use for shaping
+        </li>
+        <li><span class="parameter">buffer</span>
+         <code>Buffer</code> to shape
+        </li>
+        <li><span class="parameter">options</span>
+
+<p> table containing one or more supported options:</p>
+
+<ul>
+    <li><code>direction</code>: one of <code>rtl</code>, <code>ltr</code>, <code>ttb</code> or <code>btt</code>.</li>
+    <li><code>script</code>: <a href="http://www.microsoft.com/typography/otspec/scripttags.htm">four-letter script tag</a>.</li>
+    <li><code>language</code>: <a href="http://www.microsoft.com/typography/otspec/languagetags.htm">three-letter language tag</a>.</li>
+    <li><code>features</code>: features to enable, specified as either of the following.
+    <ul>
+        <li>comma-separated list of features. See <a href="https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings">feature string syntax reference</a></li>
+        <li>table of <code>Feature</code> objects</li>
+    </ul></li>
+</ul>
+
+         (<em>optional</em>)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Blob"></a>Class Blob</h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_blob_t</code> type
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Blob.new"></a>
+    <strong>Blob.new (data)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_blob_create</code>.
+  Initializes a new <code>hb_blob_t</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">data</span>
+         lua string containing binary or character data.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Blob:get_length"></a>
+    <strong>Blob:get_length ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_blob_get_length</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Face"></a>Class Face</h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_face_t</code> type
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Face.new_from_blob"></a>
+    <strong>Face.new_from_blob (blob[, font_index=0])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_create</code>.
+  Initializes a new <code>hb_face_t</code> from a <code>Blob</code> object.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">blob</span>
+         <code>Blob</code> to read the font from.
+        </li>
+        <li><span class="parameter">font_index</span>
+         index of font to read.
+         (<em>default</em> 0)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face.new"></a>
+    <strong>Face.new (file[, font_index=0])</strong>
+    </dt>
+    <dd>
+    Create a new <code>Face</code> from a file.
+  Makes a call to <code>Face:new_from_blob</code> after creating a <code>Blob</code> from the
+  file contents.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">file</span>
+         path to font file.
+        </li>
+        <li><span class="parameter">font_index</span>
+         index of font to read.
+         (<em>default</em> 0)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:get_upem"></a>
+    <strong>Face:get_upem ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_get_upem</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Font"></a>Class Font</h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_font_t</code> type
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Font:scale"></a>
+    <strong>Font:scale (face)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_create</code>, and sets up some defaults for scale and shaping functions.
+  Initializes a new <code>hb_font_t</code> from a <code>Face</code> object. Sets the default scale
+  to the face’s upem value, and sets the font shaping functions by
+  calling <code>hb_ot_font_set_funcs</code> on it.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">face</span>
+         <code>Face</code> object.
+ Wraps <code>hb_font_get_scale</code>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_scale"></a>
+    <strong>Font:get_scale ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_scale</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        two values for the x-scale and y-scale of the font.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:set_scale"></a>
+    <strong>Font:set_scale (x_scale, y_scale)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_set_scale</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x_scale</span>
+         desired x-scale of font.
+        </li>
+        <li><span class="parameter">y_scale</span>
+         desired y-scale of font.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Buffer"></a>Class Buffer</h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_buffer_t</code> type.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Buffer.new"></a>
+    <strong>Buffer.new ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_create</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:add_utf8"></a>
+    <strong>Buffer:add_utf8 (text[, item_offset=0[, item_length=-1]])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_add_utf8</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+         UTF8 encoded string.
+        </li>
+        <li><span class="parameter">item_offset</span>
+         0-indexed offset in <code>text</code>, from where to start adding.
+         (<em>default</em> 0)
+        </li>
+        <li><span class="parameter">item_length</span>
+         length to add from <code>item_offset</code>. <code>-1</code> adds till end of <code>text</code>.
+         (<em>default</em> -1)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:add_codepoints"></a>
+    <strong>Buffer:add_codepoints (text[, item_offset=0[, item_length=-1]])</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_add_codepoints</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">text</span>
+         table with codepoints as lua numbers.
+        </li>
+        <li><span class="parameter">item_offset</span>
+         0-indexed offset in <code>text</code>, from where to start adding.
+         (<em>default</em> 0)
+        </li>
+        <li><span class="parameter">item_length</span>
+         length to add from <code>item_offset</code>. <code>-1</code> adds till end of&nbsp;<code>text</code>.
+         (<em>default</em> -1)
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_direction"></a>
+    <strong>Buffer:set_direction (dir)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_direction</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dir</span>
+          one of <code>rtl</code>, <code>ltr</code>, <code>ttb</code> or <code>btt</code>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_direction"></a>
+    <strong>Buffer:get_direction ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_direction</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_script"></a>
+    <strong>Buffer:set_script (script)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_script</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">script</span>
+         <a href="http://www.microsoft.com/typography/otspec/scripttags.htm">four-letter script tag</a>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_script"></a>
+    <strong>Buffer:get_script ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_script</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_language"></a>
+    <strong>Buffer:set_language (lang)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_language</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">lang</span>
+         <a href="http://www.microsoft.com/typography/otspec/languagetags.htm">three-letter language tag</a>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_language"></a>
+    <strong>Buffer:get_language ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_language</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:reverse"></a>
+    <strong>Buffer:reverse ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_reverse</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_length"></a>
+    <strong>Buffer:get_length ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_length</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_cluster_level"></a>
+    <strong>Buffer:get_cluster_level ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_get_cluster_level</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        see <a href="#Cluster_Levels">Cluster Levels</a>
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:set_cluster_level"></a>
+    <strong>Buffer:set_cluster_level (level)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_set_cluster_level</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">level</span>
+         see <a href="#Cluster_Levels">Cluster Levels</a>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:guess_segment_properties"></a>
+    <strong>Buffer:guess_segment_properties ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_buffer_guess_segment_properties</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer:get_glyphs_and_positions"></a>
+    <strong>Buffer:get_glyphs_and_positions ()</strong>
+    </dt>
+    <dd>
+    Helper method to get shaped glyph data.
+  Calls <code>hb_buffer_get_glyph_infos</code> and <code>hb_buffer_get_glyph_positions</code>
+  and assembles the data into a Lua table.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+
+<p> table containing data for each glyph, in a nested table. Each nested
+  table contains the following:</p>
+
+<ul>
+    <li><code>x_advance</code>: horizontal advance.</li>
+    <li><code>y_advance</code>: vertical advance.</li>
+    <li><code>x_offset</code>: horizontal displacement.</li>
+    <li><code>y_offset</code>: vertical displacement.</li>
+    <li><code>cluster</code>: glyph cluster index within input.</li>
+    <li><code>codepoint</code>: glyph index inside the font <em>(this field name is a bit misleading, but that’s what Harfbuzz uses)</em>.</li>
+</ul>
+
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Feature"></a>Class Feature</h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_feature_t</code> type
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Feature.new"></a>
+    <strong>Feature.new (feature_string)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_feature_from_string</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">feature_string</span>
+         See <a href="https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings">feature string syntax reference</a>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Feature:__tostring"></a>
+    <strong>Feature:__tostring ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_feature_to_string</code>.
+  Enables nice output with <code>tostring(…)</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Cluster_Levels"></a>Cluster Levels</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT"></a>
+    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
+<i style="float:right;">Last updated 2016-10-16 08:38:15 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

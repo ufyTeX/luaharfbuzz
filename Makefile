@@ -17,7 +17,7 @@ INST_PREFIX = /usr/local
 INST_LIBDIR = $(INST_PREFIX)/lib/lua/5.2
 INST_LUADIR = $(INST_PREFIX)/share/lua/5.2
 
-DOCS_DIR := api
+DOCS_DIR := docs
 BUILD_DIR := build
 C_SRC_ROOT := src/luaharfbuzz
 SOURCES := luaharfbuzz.c blob.c face.c font.c buffer.c feature.c class_utils.c
