@@ -9,6 +9,9 @@
 -- @license MIT
 -- @module harfbuzz
 
+--- Wraps `hb_version`
+-- @function version
+
 --- Wraps `hb_shape`.
 --  @param font `Font` to use for shaping
 --
