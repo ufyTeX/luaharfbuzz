@@ -1,7 +1,14 @@
 PKGS = harfbuzz
 
-CFLAGS = -O2 -fpic -std=c99 `pkg-config --cflags $(PKGS)` `pkg-config --cflags lua`
-LDFLAGS = -O2 -fpic `pkg-config --libs $(PKGS)`
+# override CFLAGS+= -fpic -O0 -g `pkg-config --cflags $(PKGS)` 
+override CFLAGS+= -O2 -fpic -std=c99 `pkg-config --cflags $(PKGS)` 
+ifdef LUA_INCDIR
+	LUA_INC = -I $(LUA_INCDIR)
+else
+	LUA_INC=`pkg-config --cflags lua`
+endif
+
+LDFLAGS = -g  -O3 -Wall `pkg-config --libs $(PKGS)` 
 
 # Guide to building Lua Modules: http://lua-users.org/wiki/BuildingModules
 UNAME_S := $(shell uname -s)
@@ -29,7 +36,7 @@ luaharfbuzz.so: $(OBJECTS)
 	$(CC) $(LDFLAGS) $(LIBFLAGS) $(OBJECTS) -o $@
 
 $(BUILD_DIR)/%.o: $(C_SRC_ROOT)/%.c
-	$(CC) $(CFLAGS) -o $@ -c $<
+	$(CC) $(CFLAGS) $(LUA_INC) -o $@ -c $<
 
 dirs: ${BUILD_DIR}
 
