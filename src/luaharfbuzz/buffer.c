@@ -149,16 +149,29 @@ static int buffer_get_glyph_infos_and_positions(lua_State *L) {
   // Create Lua table and push glyph data onto it.
   lua_newtable(L); // parent table
 
-  for (unsigned int i = 0; i < len; i++) {
+  unsigned int i;
+
+  for (i = 0; i < len; i++) {
     lua_pushinteger(L, i+1); // 1-indexed key parent table
     lua_newtable(L);        // child table
 
-    lua_setfield_generic("codepoint", info[i].codepoint);
-    lua_setfield_generic("cluster", info[i].cluster);
-    lua_setfield_generic("x_advance", pos[i].x_advance);
-    lua_setfield_generic("y_advance", pos[i].y_advance);
-    lua_setfield_generic("x_offset", pos[i].x_offset);
-    lua_setfield_generic("y_offset", pos[i].y_offset);
+    lua_pushinteger(L, info[i].codepoint);
+    lua_setfield(L, -2, "codepoint");
+
+    lua_pushinteger(L, info[i].cluster);
+    lua_setfield(L, -2, "cluster");
+    
+    lua_pushnumber(L, pos[i].x_advance);
+    lua_setfield(L, -2, "x_advance");
+    
+    lua_pushnumber(L, pos[i].y_advance);
+    lua_setfield(L, -2, "y_advance");
+    
+    lua_pushnumber(L, pos[i].x_offset);
+    lua_setfield(L, -2, "x_offset");
+    
+    lua_pushnumber(L, pos[i].y_offset);
+    lua_setfield(L, -2, "y_offset");
 
     lua_settable(L,-3); // Add child table at index i+1 to parent table
   }
