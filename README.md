@@ -60,9 +60,6 @@ luarocks install luaharfbuzz
 
 [Luarocks]: https://luarocks.org
 
-#### Directly Using Makefile
-See [Building](#building)
-
 ## Documentation
 * [API Docs](http://deepakjois.github.io/luaharfbuzz/)
 * [Wiki](http://github.com/deepakjois/luaharfbuzz/wiki)
