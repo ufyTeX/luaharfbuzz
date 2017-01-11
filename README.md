@@ -52,7 +52,7 @@ Before building the package, LuaRocks populates the `HARFBUZZ_INCDIR` and `HARFB
 ## Installing _luaharfbuzz_
 
 #### Luarocks
-If [Luarocks] is installed, _luaharfbuzz_ can be installed like this:
+If [Luarocks] and Harfbuzz are installed, _luaharfbuzz_ can be installed like this:
 
 ```
 luarocks install luaharfbuzz
