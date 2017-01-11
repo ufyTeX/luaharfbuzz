@@ -6,7 +6,7 @@ int shape_full (lua_State *L) {
   luaL_checktype(L, 3, LUA_TTABLE);
 
   lua_len (L, 3);
-  unsigned int num_features = luaL_checkint(L, 4);
+  unsigned int num_features = luaL_checkinteger(L, 4);
   lua_pop(L, 1);
 
   Feature *features = (Feature *) malloc (num_features * sizeof(hb_feature_t));

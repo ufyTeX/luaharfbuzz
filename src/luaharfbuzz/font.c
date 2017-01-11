@@ -21,8 +21,8 @@ static int font_new(lua_State *L) {
 
 static int font_set_scale(lua_State *L) {
   Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
-  int x_scale = luaL_checkint(L, 2);
-  int y_scale = luaL_checkint(L, 3);
+  int x_scale = luaL_checkinteger(L, 2);
+  int y_scale = luaL_checkinteger(L, 3);
 
   hb_font_set_scale(*f, x_scale, y_scale);
   return 0;

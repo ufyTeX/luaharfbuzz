@@ -95,11 +95,11 @@ static int buffer_set_script(lua_State *L) {
 static int buffer_add_codepoints(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
   luaL_checktype(L, 2, LUA_TTABLE);
-  unsigned int item_offset = luaL_checkint(L,3);
-  int item_length = luaL_checkint(L,4);
+  unsigned int item_offset = luaL_checkinteger(L,3);
+  int item_length = luaL_checkinteger(L,4);
 
   lua_len (L, 2);
-  unsigned int n = luaL_checkint(L, -1);
+  unsigned int n = luaL_checkinteger(L, -1);
   lua_pop(L, 1);
 
   hb_codepoint_t *text = (hb_codepoint_t *) malloc(n * sizeof(hb_codepoint_t));
@@ -122,8 +122,8 @@ static int buffer_add_utf8(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   const char *text = luaL_checkstring(L, 2);
-  unsigned int item_offset = luaL_checkint(L,3);
-  int item_length = luaL_checkint(L,4);
+  unsigned int item_offset = luaL_checkinteger(L,3);
+  int item_length = luaL_checkinteger(L,4);
 
   hb_buffer_add_utf8(*b, text, -1, item_offset, item_length);
 
@@ -193,7 +193,7 @@ static int buffer_get_cluster_level(lua_State *L) {
 static int buffer_set_cluster_level(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
-  unsigned int l = luaL_checkint(L, 2);
+  unsigned int l = luaL_checkinteger(L, 2);
 
   hb_buffer_set_cluster_level(*b, l);
 

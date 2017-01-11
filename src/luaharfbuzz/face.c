@@ -3,7 +3,7 @@
 static int face_new_from_blob(lua_State *L) {
   Face *f;
   Blob * blob = luaL_checkudata(L, 1, "harfbuzz.Blob");
-  unsigned int font_index = (unsigned int) luaL_checkint(L, 2);
+  unsigned int font_index = (unsigned int) luaL_checkinteger(L, 2);
 
   f = (Face *)lua_newuserdata(L, sizeof(*f));
   luaL_getmetatable(L, "harfbuzz.Face");
