@@ -37,17 +37,17 @@ Install via [Homebrew](http://brew.sh/)
 ```
 brew install harfbuzz
 ```
+#### Ubuntu Linux
+
+```
+apt-get install libharfbuzz0b libharfbuzz-dev
+```
 
 #### Other Platforms
 _Send a pull request if you want to include specific instructions to install
 Harfbuzz on your preferred platform._
 
-Before building, the Makefile looks for Harfbuzz headers and libraries using `pkg-config`. If the following commands run without errors, then it should be possible to install _luaharfbuzz_ by following instructions given in the next section.
-
-```
-pkg-config --cflags harfbuzz lua
-pkg-config --libs harfbuzz
-```
+Before building the package, LuaRocks populates the `HARFBUZZ_INCDIR` and `HARFBUZZ_LIBDIR` to point to the correct locations. If you can populate these variables manually before running LuaRocks, you can install _luaharfbuzz_ on any system that supports Lua and Harfbuzz.
 
 ## Installing _luaharfbuzz_
 
