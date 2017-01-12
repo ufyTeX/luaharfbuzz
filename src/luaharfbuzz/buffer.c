@@ -238,6 +238,7 @@ static const struct luaL_Reg buffer_functions[] = {
 };
 
 int register_buffer(lua_State *L) {
-  return register_class(L, "harfbuzz.Buffer", buffer_methods, buffer_functions);
+  register_class(L, "harfbuzz.Buffer", buffer_methods, buffer_functions);
+  return 1;
 }
 

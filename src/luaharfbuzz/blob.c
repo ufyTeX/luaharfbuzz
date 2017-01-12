@@ -32,6 +32,7 @@ static const struct luaL_Reg blob_functions[] = {
 };
 
 int register_blob(lua_State *L) {
-  return register_class(L, "harfbuzz.Blob", blob_methods, blob_functions);
+  register_class(L, "harfbuzz.Blob", blob_methods, blob_functions);
+  return 1;
 }
 
