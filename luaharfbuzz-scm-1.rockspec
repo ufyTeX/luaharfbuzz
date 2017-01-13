@@ -23,7 +23,8 @@ build = {
       "src/luaharfbuzz/face.c",
       "src/luaharfbuzz/font.c",
       "src/luaharfbuzz/buffer.c",
-      "src/luaharfbuzz/feature.c"
+      "src/luaharfbuzz/feature.c",
+      "src/luaharfbuzz/class_utils.c"
       },
       libraries = {"harfbuzz"},
       incdirs = {"$(HARFBUZZ_INCDIR)/harfbuzz"},
