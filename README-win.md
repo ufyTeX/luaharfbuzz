@@ -20,7 +20,7 @@ The Harfbuzz headers and DLLs must be copied to the right locations, for Lua and
 * Copy  _harfbuzz-vs14.dll_ to _C:\Windows\System32_. This is where running programs can locate the Harfbuzz DLL.
 
 ## Installing Lua and LuaRocks
-It is highly recommended that you install Lua 5.2 and LuaRocks in a sandboxed environment on your machine. [Hererocks] makes it dead simple to do on Windows. Make sure you have installed Python first. On my system, I just did `chocolatey install python`.
+It is highly recommended that you install Lua 5.2 and LuaRocks in a sandboxed environment on your machine. [Hererocks] makes it dead simple to do on Windows. Make sure you have installed Python first. On my system, I just did `chocolatey install python`, but you can use an alternate method and skip running that command below.
 
 [Hererocks]:https://github.com/mpeterv/hererocks
 
