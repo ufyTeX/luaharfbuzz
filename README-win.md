@@ -15,7 +15,7 @@
 ## Copying Harfbuzz headers and DLL to the right locations
 The Harfbuzz headers and DLLs must be copied to the right locations, for Lua and LuaRocks to be able to find them during installation and running:
 
-* Copy all the Harfbuzz header (_src/*.h_) files to _C:\external\lib_. This is where LuaRocks will look for them by default.
+* Copy all the Harfbuzz header (_src/*.h_) files to _C:\external\include_. This is where LuaRocks will look for them by default.
 * Copy _harfbuzz.lib_ and _harfbuzz-vs14.dll_ to the folder _C:\external\lib_. This is where LuaRocks will look for them by default.
 * Copy  _harfbuzz-vs14.dll_ to _C:\Windows\System32_. This is where running programs can locate the Harfbuzz DLL.
 
