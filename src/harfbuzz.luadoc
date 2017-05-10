@@ -66,8 +66,7 @@
 --  to the face’s upem value, and sets the font shaping functions by
 --  calling `hb_ot_font_set_funcs` on it.
 --  @param face `Face` object.
---- Wraps `hb_font_get_scale`
---  @function Font:scale
+--  @function Font.new
 
 --- Wraps `hb_font_get_scale`.
 --  @return two values for the x-scale and y-scale of the font.
@@ -159,8 +158,11 @@
 --  Enables nice output with `tostring(…)`.
 --  @function Feature:__tostring
 
---- Cluster Levels
+--- Cluster Levels.
+-- See [Harfbuzz docs](http://behdad.github.io/harfbuzz/clusters.html) for more details
+-- about what each of these levels mean.
 --  @section
+
 
 --- Wraps `HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES`.
 --  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES
@@ -173,3 +175,19 @@
 
 --- Wraps `HB_BUFFER_CLUSTER_LEVEL_DEFAULT`.
 --  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT
+
+--- Special Script Codes.
+-- Special script codes from the [ISO 15924 standard](http://www.unicode.org/iso15924/iso15924-num.html)
+-- @section
+
+--- Wraps `HB_SCRIPT_COMMON`.
+-- @field HB_SCRIPT_COMMON
+
+--- Wraps `HB_SCRIPT_INHERITED`.
+-- @field HB_SCRIPT_INHERITED
+
+--- Wraps `HB_SCRIPT_UNKNOWN`.
+-- @field HB_SCRIPT_UNKNOWN
+
+--- Wraps `HB_SCRIPT_INVALID`.
+-- @field HB_SCRIPT_INVALID

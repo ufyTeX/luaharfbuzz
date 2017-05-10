@@ -30,12 +30,13 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
-<li><a href="#Class_Blob">Class Blob</a></li>
-<li><a href="#Class_Face">Class Face</a></li>
-<li><a href="#Class_Font">Class Font</a></li>
-<li><a href="#Class_Buffer">Class Buffer</a></li>
-<li><a href="#Class_Feature">Class Feature</a></li>
-<li><a href="#Cluster_Levels">Cluster Levels</a></li>
+<li><a href="#Class_Blob">Class Blob </a></li>
+<li><a href="#Class_Face">Class Face </a></li>
+<li><a href="#Class_Font">Class Font </a></li>
+<li><a href="#Class_Buffer">Class Buffer </a></li>
+<li><a href="#Class_Feature">Class Feature </a></li>
+<li><a href="#Cluster_Levels">Cluster Levels </a></li>
+<li><a href="#Special_Script_Codes">Special Script Codes </a></li>
 </ul>
 
 
@@ -81,7 +82,7 @@
 	<td class="summary">Wraps <code>hb_shape</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Blob">Class Blob</a></h2>
+<h2><a href="#Class_Blob">Class Blob </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Blob.new">Blob.new (data)</a></td>
@@ -92,7 +93,7 @@
 	<td class="summary">Wraps <code>hb_blob_get_length</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Face">Class Face</a></h2>
+<h2><a href="#Class_Face">Class Face </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Face.new_from_blob">Face.new_from_blob (blob[, font_index=0])</a></td>
@@ -107,10 +108,10 @@
 	<td class="summary">Wraps <code>hb_face_get_upem</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Font">Class Font</a></h2>
+<h2><a href="#Class_Font">Class Font </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Font:scale">Font:scale (face)</a></td>
+	<td class="name" nowrap><a href="#Font.new">Font.new (face)</a></td>
 	<td class="summary">Wraps <code>hb_font_create</code>, and sets up some defaults for scale and shaping functions.</td>
 	</tr>
 	<tr>
@@ -122,7 +123,7 @@
 	<td class="summary">Wraps <code>hb_font_set_scale</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Buffer">Class Buffer</a></h2>
+<h2><a href="#Class_Buffer">Class Buffer </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.new">Buffer.new ()</a></td>
@@ -185,7 +186,7 @@
 	<td class="summary">Helper method to get shaped glyph data.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Feature">Class Feature</a></h2>
+<h2><a href="#Class_Feature">Class Feature </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Feature.new">Feature.new (feature_string)</a></td>
@@ -196,7 +197,7 @@
 	<td class="summary">Wraps <code>hb_feature_to_string</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Cluster_Levels">Cluster Levels</a></h2>
+<h2><a href="#Cluster_Levels">Cluster Levels </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</a></td>
@@ -213,6 +214,25 @@
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT">Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Special_Script_Codes">Special Script Codes </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#HB_SCRIPT_COMMON">HB_SCRIPT_COMMON</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_COMMON</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#HB_SCRIPT_INHERITED">HB_SCRIPT_INHERITED</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_INHERITED</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#HB_SCRIPT_UNKNOWN">HB_SCRIPT_UNKNOWN</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_UNKNOWN</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#HB_SCRIPT_INVALID">HB_SCRIPT_INVALID</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_INVALID</code>.</td>
 	</tr>
 </table>
 
@@ -278,7 +298,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Blob"></a>Class Blob</h2>
+    <h2 class="section-header has-description"><a name="Class_Blob"></a>Class Blob </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_blob_t</code> type
@@ -320,7 +340,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Face"></a>Class Face</h2>
+    <h2 class="section-header has-description"><a name="Class_Face"></a>Class Face </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_face_t</code> type
@@ -392,15 +412,15 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Font"></a>Class Font</h2>
+    <h2 class="section-header has-description"><a name="Class_Font"></a>Class Font </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_font_t</code> type
           </div>
     <dl class="function">
     <dt>
-    <a name = "Font:scale"></a>
-    <strong>Font:scale (face)</strong>
+    <a name = "Font.new"></a>
+    <strong>Font.new (face)</strong>
     </dt>
     <dd>
     Wraps <code>hb_font_create</code>, and sets up some defaults for scale and shaping functions.
@@ -413,7 +433,6 @@
     <ul>
         <li><span class="parameter">face</span>
          <code>Face</code> object.
- Wraps <code>hb_font_get_scale</code>
         </li>
     </ul>
 
@@ -465,7 +484,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Buffer"></a>Class Buffer</h2>
+    <h2 class="section-header has-description"><a name="Class_Buffer"></a>Class Buffer </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_buffer_t</code> type.
@@ -758,7 +777,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Feature"></a>Class Feature</h2>
+    <h2 class="section-header has-description"><a name="Class_Feature"></a>Class Feature </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_feature_t</code> type
@@ -800,8 +819,12 @@
 
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Cluster_Levels"></a>Cluster Levels</h2>
+    <h2 class="section-header has-description"><a name="Cluster_Levels"></a>Cluster Levels </h2>
 
+          <div class="section-description">
+           See <a href="http://behdad.github.io/harfbuzz/clusters.html">Harfbuzz docs</a> for more details
+ about what each of these levels mean.
+          </div>
     <dl class="function">
     <dt>
     <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES"></a>
@@ -860,13 +883,104 @@
 
 </dd>
 </dl>
+    <h2 class="section-header has-description"><a name="Special_Script_Codes"></a>Special Script Codes </h2>
+
+          <div class="section-description">
+           Special script codes from the <a href="http://www.unicode.org/iso15924/iso15924-num.html">ISO 15924 standard</a>
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "HB_SCRIPT_COMMON"></a>
+    <strong>HB_SCRIPT_COMMON</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_COMMON</code>.
+
+
+    <ul>
+        <li><span class="parameter">HB_SCRIPT_COMMON</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "HB_SCRIPT_INHERITED"></a>
+    <strong>HB_SCRIPT_INHERITED</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_INHERITED</code>.
+
+
+    <ul>
+        <li><span class="parameter">HB_SCRIPT_INHERITED</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "HB_SCRIPT_UNKNOWN"></a>
+    <strong>HB_SCRIPT_UNKNOWN</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_UNKNOWN</code>.
+
+
+    <ul>
+        <li><span class="parameter">HB_SCRIPT_UNKNOWN</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "HB_SCRIPT_INVALID"></a>
+    <strong>HB_SCRIPT_INVALID</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_INVALID</code>.
+
+
+    <ul>
+        <li><span class="parameter">HB_SCRIPT_INVALID</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
-<i style="float:right;">Last updated 2016-10-16 08:43:09 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-05-10 11:06:30 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

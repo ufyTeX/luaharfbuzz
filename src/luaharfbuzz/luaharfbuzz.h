@@ -14,6 +14,10 @@ typedef hb_face_t* Face;
 typedef hb_font_t* Font;
 typedef hb_buffer_t* Buffer;
 typedef hb_feature_t Feature;
+typedef hb_tag_t Tag;
+typedef hb_script_t Script;
+typedef hb_direction_t Direction;
+typedef hb_language_t Language;
 
 // Functions to create classes and push them onto the stack
 int register_class(lua_State *L, const char *name, const luaL_Reg * methods, const luaL_Reg *functions);
@@ -22,5 +26,8 @@ int register_face(lua_State *L);
 int register_font(lua_State *L);
 int register_buffer(lua_State *L);
 int register_feature(lua_State *L);
-
-
+int register_tag(lua_State *L);
+int register_script(lua_State *L);
+int register_direction(lua_State *L);
+int register_language(lua_State *L);
+int register_unicode(lua_State *L);
