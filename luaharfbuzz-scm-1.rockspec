@@ -24,6 +24,11 @@ build = {
       "src/luaharfbuzz/font.c",
       "src/luaharfbuzz/buffer.c",
       "src/luaharfbuzz/feature.c",
+      "src/luaharfbuzz/tag.c",
+      "src/luaharfbuzz/unicode.c",
+      "src/luaharfbuzz/script.c",
+      "src/luaharfbuzz/direction.c",
+      "src/luaharfbuzz/language.c",
       "src/luaharfbuzz/class_utils.c"
       },
       libraries = {"harfbuzz"},

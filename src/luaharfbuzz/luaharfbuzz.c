@@ -66,6 +66,22 @@ int luaopen_luaharfbuzz (lua_State *L) {
 
   register_feature(L);
   lua_setfield(L, -2, "Feature");
+
+  register_tag(L);
+  lua_setfield(L, -2, "Tag");
+
+  register_script(L);
+  lua_setfield(L, -2, "Script");
+
+  register_direction(L);
+  lua_setfield(L, -2, "Direction");
+
+  register_language(L);
+  lua_setfield(L, -2, "Language");
+
+  register_unicode(L);
+  lua_setfield(L, -2, "unicode");
+
   luaL_setfuncs(L, lib_table,0);
 
   return 1;

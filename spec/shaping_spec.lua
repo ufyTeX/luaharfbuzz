@@ -41,7 +41,7 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
+    harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL })
     local glyphs = buf:get_glyph_infos_and_positions()
     assert.True(#glyphs > 0)
 
@@ -57,7 +57,7 @@ describe("harfbuzz module shaping functions", function()
     local face_korean = harfbuzz.Face.new('/Library/Fonts/AppleGothic.ttf')
     local font_korean = harfbuzz.Font.new(face_korean)
 
-    harfbuzz.shape(font_korean, buf, { language = "KOR", script = "hang", direction = "ltr" })
+    harfbuzz.shape(font_korean, buf, { language = harfbuzz.Language.new("KOR"), script = harfbuzz.Script.new("hang"), direction = harfbuzz.Direction.HB_DIRECTION_LTR })
     local glyphs = buf:get_glyph_infos_and_positions()
     assert.True(#glyphs > 0)
 
@@ -69,7 +69,7 @@ describe("harfbuzz module shaping functions", function()
     local buf = harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
 
-    harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl", features = "+kern,smcp" })
+    harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL, features = "+kern,smcp" })
     local glyphs = buf:get_glyph_infos_and_positions()
     assert.True(#glyphs > 0)
   end)
@@ -81,7 +81,7 @@ describe("harfbuzz module shaping functions", function()
     before_each(function()
       buf= harfbuzz.Buffer.new()
       buf:add_utf8(urdu_text)
-      options = { language = "urd", script = "Arab", direction = "rtl" }
+      options = { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL }
     end)
 
     it("can take a table containing a valid features", function()
@@ -123,7 +123,7 @@ describe("harfbuzz module shaping functions", function()
     it("shapes a string appropriately with the features turned on",function()
       buf= harfbuzz.Buffer.new()
       buf:add_utf8("123")
-      local opts = { language = "eng", script = "Latn", direction = "ltr" }
+      local opts = { language = harfbuzz.Language.new("eng"), script = harfbuzz.Script.new("Latn"), direction = harfbuzz.Direction.HB_DIRECTION_LTR }
       local amiri_face = harfbuzz.Face.new('fonts/amiri-regular.ttf')
       local amiri_font = harfbuzz.Font.new(amiri_face)
 

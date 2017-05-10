@@ -19,9 +19,9 @@
 --
 --  @param[opt] options table containing one or more supported options:
 --
---  * `direction`: one of `rtl`, `ltr`, `ttb` or `btt`.
---  * `script`: [four-letter script tag](http://www.microsoft.com/typography/otspec/scripttags.htm).
---  * `language`: [three-letter language tag](http://www.microsoft.com/typography/otspec/languagetags.htm).
+--  * `direction`: A `Direction` object representing the object.
+--  * `script`: A `Script` object representing the script.
+--  * `language`: A `Language` object representing the language.
 --  * `features`: features to enable, specified as either of the following.
 --    - comma-separated list of features. See [feature string syntax reference](https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings)
 --    - table of `Feature` objects
@@ -66,8 +66,7 @@
 --  to the face’s upem value, and sets the font shaping functions by
 --  calling `hb_ot_font_set_funcs` on it.
 --  @param face `Face` object.
---- Wraps `hb_font_get_scale`
---  @function Font:scale
+--  @function Font.new
 
 --- Wraps `hb_font_get_scale`.
 --  @return two values for the x-scale and y-scale of the font.
@@ -97,24 +96,27 @@
 --  @function Buffer:add_codepoints
 
 --- Wraps `hb_buffer_set_direction`.
---  @param dir  one of `rtl`, `ltr`, `ttb` or `btt`.
+--  @param dir  A `Direction` object.
 --  @function Buffer:set_direction
 
 --- Wraps `hb_buffer_get_direction`.
+-- @return A `Direction` object.
 --  @function Buffer:get_direction
 
 --- Wraps `hb_buffer_set_script`.
---  @param script [four-letter script tag](http://www.microsoft.com/typography/otspec/scripttags.htm).
+--  @param script  A `Script` object.
 --  @function Buffer:set_script
 
 --- Wraps `hb_buffer_get_script`.
+-- @return A `Script` object.
 --  @function Buffer:get_script
 
 --- Wraps `hb_buffer_set_language`.
---  @param lang [three-letter language tag](http://www.microsoft.com/typography/otspec/languagetags.htm).
+--  @param lang A `Language` object
 --  @function Buffer:set_language
 
 --- Wraps `hb_buffer_get_language`.
+-- @return A `Language` object
 --  @function Buffer:get_language
 
 --- Wraps `hb_buffer_reverse`.
@@ -148,18 +150,9 @@
 --  * `codepoint`: glyph index inside the font _(this field name is a bit misleading, but that’s what Harfbuzz uses)_.
 --  @function Buffer:get_glyphs_and_positions
 
---- Lua wrapper for `hb_feature_t` type
---  @type Feature
-
---- Wraps `hb_feature_from_string`
---  @param feature_string See [feature string syntax reference](https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings)
---  @function Feature.new
-
---- Wraps `hb_feature_to_string`.
---  Enables nice output with `tostring(…)`.
---  @function Feature:__tostring
-
---- Cluster Levels
+--- Cluster Levels.
+-- See [Harfbuzz docs](http://behdad.github.io/harfbuzz/clusters.html) for more details
+-- about what each of these levels mean.
 --  @section
 
 --- Wraps `HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES`.
@@ -173,3 +166,152 @@
 
 --- Wraps `HB_BUFFER_CLUSTER_LEVEL_DEFAULT`.
 --  @field Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT
+
+
+--- Lua wrapper for `hb_feature_t` type
+--  @type Feature
+
+--- Wraps `hb_feature_from_string`
+--  @param feature_string See [feature string syntax reference](https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings)
+--  @function Feature.new
+
+--- Wraps `hb_feature_to_string`.
+--  Enables nice output with `tostring(…)`.
+--  @function Feature:__tostring
+
+--- Lua wrapper for `hb_tag_t` type.
+--  @type Tag
+
+--- Wraps `hb_tag_from_string`.
+-- @param string to be converted to a `Tag` object.
+-- @return a `Tag` object.
+-- @function Tag.new
+
+--- Wraps `hb_tag_to_string`. Enable nice output with `tostring(…)`.
+-- @return Returns a string representation for the tag object.
+-- @function Tag:__to_string
+
+--- Enables equality comparisions with `==` between two tags.
+-- @return `true` or `false` depending on whether the two tags are equal.
+-- @function Tag:__eq
+
+
+--- Lua wrapper for `hb_script_t` type.
+--  @type Script
+
+--- Wraps `hb_script_from_string`.
+-- @param script 4-letter script code according to the [ISO 15924 standard](http://www.unicode.org/iso15924/iso15924-num.html).
+-- @return a `Script` object.
+-- @function Script.new
+
+--- Wraps `hb_script_from_iso15924_tag`
+-- @param tag a `Tag` object representing a [ISO 15924 script](http://www.unicode.org/iso15924/iso15924-num.html).
+-- @function Script.from_iso15924_tag
+
+--- Wraps `hb_script_to_iso15924_tag`.
+-- @return a `Tag` object representing the script.
+-- @function Script:to_iso15924_tag
+
+--- Enable nice output with `tostring(…)`
+-- @return Returns a 4-letter [ISO 15924 script code](http://www.unicode.org/iso15924/iso15924-num.html) for the script object.
+-- @function Script:__to_string
+
+--- Enables equality comparisions with `==` between two scripts.
+-- @return `true` or `false` depending on whether the two scripts are equal.
+-- @function Script:__eq
+
+--- Predefined Script Codes.
+-- Predefined directions that correspond to their original definitions in Harfbuzz.
+-- @section
+
+--- Wraps `HB_SCRIPT_COMMON`.
+-- @field Script.HB_SCRIPT_COMMON
+
+--- Wraps `HB_SCRIPT_INHERITED`.
+-- @field Script.HB_SCRIPT_INHERITED
+
+--- Wraps `HB_SCRIPT_UNKNOWN`.
+-- @field Script.HB_SCRIPT_UNKNOWN
+
+--- Wraps `HB_SCRIPT_INVALID`.
+-- @field Script.HB_SCRIPT_INVALID
+
+--- Lua wrapper for `hb_direction_t` type.
+-- @type Direction
+
+--- Wraps `hb_direction_from_string`.
+-- @param dir can be one of `ltr`, `rtl`, `ttb`, `btt` or `invalid`.
+-- @return a `Direction` object.
+-- @function Direction.new
+
+--- Wraps `hb_direction_to_string`. Enable nice output with `tostring(…)`.
+-- @return Returns a string representation for direction.
+-- @function Direction:__to_string
+
+--- Enables equality comparisions with `==` between two directions.
+-- @return `true` or `false` depending on whether the two tags are equal.
+-- @function Direction:__eq
+
+--- Wraps `HB_DIRECTION_IS_VALID`.
+-- @param direction a `Direction` object.
+-- @return a boolean value
+-- @function Direction.HB_DIRECTION_IS_VALID
+
+--- Wraps `HB_DIRECTION_IS_HORIZONTAL`.
+-- @param direction a `Direction` object.
+-- @return a boolean value
+-- @function Direction.HB_DIRECTION_IS_HORIZONTAL
+
+--- Wraps `HB_DIRECTION_IS_VERTICAL`.
+-- @param direction a `Direction` object.
+-- @return a boolean value
+-- @function Direction.HB_DIRECTION_IS_VERTICAL
+
+--- Wraps `HB_DIRECTION_IS_FORWARD`.
+-- @param direction a `Direction` object.
+-- @return a boolean value
+-- @function Direction.HB_DIRECTION_IS_FORWARD
+
+--- Wraps `HB_DIRECTION_IS_BACKWARD`.
+-- @param direction a `Direction` object.
+-- @return a boolean value
+-- @function Direction.HB_DIRECTION_IS_BACKWARD
+
+--- Predefined directions.
+-- Predefined directions that correspond to their original definitions in Harfbuzz.
+-- @section
+
+--- Wraps `HB_DIRECTION_LTR`.
+-- @field Direction.HB_DIRECTION_LTR
+
+--- Wraps `HB_DIRECTION_RTL`.
+-- @field Direction.HB_DIRECTION_RTL
+
+--- Wraps `HB_DIRECTION_TTB`.
+-- @field Direction.HB_DIRECTION_TTB
+
+--- Wraps `HB_DIRECTION_LTR`.
+-- @field Direction.HB_DIRECTION_BTT
+
+--- Lua wrapper for `hb_language_t` type.
+--  @type Language
+
+--- Wraps `hb_language_from_string`.
+-- @param lang [three-letter language tag](http://www.microsoft.com/typography/otspec/languagetags.htm) to be converted to a `Language` object.
+-- @return a `Language` object.
+-- @function Language.new
+
+--- Wraps `hb_language_to_string`. Enable nice output with `tostring(…)`.
+-- @return Returns a string representation for the language object.
+-- @function Language:__to_string
+
+--- Enables equality comparisions with `==` between two languages.
+-- @return `true` or `false` depending on whether the two languages are equal.
+-- @function Language:__eq
+
+--- Predefined languages.
+-- Predefined languages that correspond to their original definitions in Harfbuzz.
+-- @section
+
+--- Wraps `HB_LANGUAGE_INVALID`.
+-- @field Language.HB_LANGUAGE_INVALID

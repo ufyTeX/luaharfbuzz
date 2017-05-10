@@ -8,7 +8,7 @@ print("Harfbuzz API version", harfbuzz.version())
 print("Shapers:", serpent.line({ harfbuzz.shapers() }, {comment = false}))
 
 -- harfbuzz.Face
-local face = harfbuzz.Face.new('fonts/notonastaliq.ttf')
+local face = harfbuzz.Face.new('../fonts/notonastaliq.ttf')
 print('\nFace upem = '..face:get_upem())
 
 -- harfbuzz.Font
@@ -23,14 +23,14 @@ buf:add_utf8(text)
 
 -- harfbuzz.shape (Shapes text)
 print("\nShaping '"..text.."' set with Noto Nastaliq Urdu")
-harfbuzz.shape(font, buf, { language = "urd", script = "Arab", direction = "rtl" })
+harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL})
 
 local glyphs = buf:get_glyph_infos_and_positions()
 print("No. of glyphs", #glyphs)
 print(serpent.line(glyphs, {comment = false}))
 
-local opts = { language = "eng", script = "Latn", direction = "ltr" }
-local amiri_face = harfbuzz.Face.new('fonts/amiri-regular.ttf')
+local opts = { language = harfbuzz.Language.new("eng"), script = harfbuzz.Script.new("Latn"), direction = harfbuzz.Direction.HB_DIRECTION_LTR }
+local amiri_face = harfbuzz.Face.new('../fonts/amiri-regular.ttf')
 local amiri_font = harfbuzz.Font.new(amiri_face)
 
 -- shaping '123' w/o features

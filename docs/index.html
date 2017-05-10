@@ -30,12 +30,19 @@
 <h2>Contents</h2>
 <ul>
 <li><a href="#Functions">Functions</a></li>
-<li><a href="#Class_Blob">Class Blob</a></li>
-<li><a href="#Class_Face">Class Face</a></li>
-<li><a href="#Class_Font">Class Font</a></li>
-<li><a href="#Class_Buffer">Class Buffer</a></li>
-<li><a href="#Class_Feature">Class Feature</a></li>
-<li><a href="#Cluster_Levels">Cluster Levels</a></li>
+<li><a href="#Class_Blob">Class Blob </a></li>
+<li><a href="#Class_Face">Class Face </a></li>
+<li><a href="#Class_Font">Class Font </a></li>
+<li><a href="#Class_Buffer">Class Buffer </a></li>
+<li><a href="#Cluster_Levels">Cluster Levels </a></li>
+<li><a href="#Class_Feature">Class Feature </a></li>
+<li><a href="#Class_Tag">Class Tag </a></li>
+<li><a href="#Class_Script">Class Script </a></li>
+<li><a href="#Predefined_Script_Codes">Predefined Script Codes </a></li>
+<li><a href="#Class_Direction">Class Direction </a></li>
+<li><a href="#Predefined_directions">Predefined directions </a></li>
+<li><a href="#Class_Language">Class Language </a></li>
+<li><a href="#Predefined_languages">Predefined languages </a></li>
 </ul>
 
 
@@ -81,7 +88,7 @@
 	<td class="summary">Wraps <code>hb_shape</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Blob">Class Blob</a></h2>
+<h2><a href="#Class_Blob">Class Blob </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Blob.new">Blob.new (data)</a></td>
@@ -92,7 +99,7 @@
 	<td class="summary">Wraps <code>hb_blob_get_length</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Face">Class Face</a></h2>
+<h2><a href="#Class_Face">Class Face </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Face.new_from_blob">Face.new_from_blob (blob[, font_index=0])</a></td>
@@ -107,10 +114,10 @@
 	<td class="summary">Wraps <code>hb_face_get_upem</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Font">Class Font</a></h2>
+<h2><a href="#Class_Font">Class Font </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Font:scale">Font:scale (face)</a></td>
+	<td class="name" nowrap><a href="#Font.new">Font.new (face)</a></td>
 	<td class="summary">Wraps <code>hb_font_create</code>, and sets up some defaults for scale and shaping functions.</td>
 	</tr>
 	<tr>
@@ -122,7 +129,7 @@
 	<td class="summary">Wraps <code>hb_font_set_scale</code>.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Buffer">Class Buffer</a></h2>
+<h2><a href="#Class_Buffer">Class Buffer </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.new">Buffer.new ()</a></td>
@@ -185,18 +192,7 @@
 	<td class="summary">Helper method to get shaped glyph data.</td>
 	</tr>
 </table>
-<h2><a href="#Class_Feature">Class Feature</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#Feature.new">Feature.new (feature_string)</a></td>
-	<td class="summary">Wraps <code>hb_feature_from_string</code></td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Feature:__tostring">Feature:__tostring ()</a></td>
-	<td class="summary">Wraps <code>hb_feature_to_string</code>.</td>
-	</tr>
-</table>
-<h2><a href="#Cluster_Levels">Cluster Levels</a></h2>
+<h2><a href="#Cluster_Levels">Cluster Levels </a></h2>
 <table class="function_list">
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</a></td>
@@ -213,6 +209,150 @@
 	<tr>
 	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT">Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Feature">Class Feature </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Feature.new">Feature.new (feature_string)</a></td>
+	<td class="summary">Wraps <code>hb_feature_from_string</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Feature:__tostring">Feature:__tostring ()</a></td>
+	<td class="summary">Wraps <code>hb_feature_to_string</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Tag">Class Tag </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Tag.new">Tag.new (string)</a></td>
+	<td class="summary">Wraps <code>hb_tag_from_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tag:__to_string">Tag:__to_string ()</a></td>
+	<td class="summary">Wraps <code>hb_tag_to_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Tag:__eq">Tag:__eq ()</a></td>
+	<td class="summary">Enables equality comparisions with <code>==</code> between two tags.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Script">Class Script </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Script.new">Script.new (script)</a></td>
+	<td class="summary">Wraps <code>hb_script_from_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script.from_iso15924_tag">Script.from_iso15924_tag (tag)</a></td>
+	<td class="summary">Wraps <code>hb_script_from_iso15924_tag</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script:to_iso15924_tag">Script:to_iso15924_tag ()</a></td>
+	<td class="summary">Wraps <code>hb_script_to_iso15924_tag</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script:__to_string">Script:__to_string ()</a></td>
+	<td class="summary">Enable nice output with <code>tostring(…)</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script:__eq">Script:__eq ()</a></td>
+	<td class="summary">Enables equality comparisions with <code>==</code> between two scripts.</td>
+	</tr>
+</table>
+<h2><a href="#Predefined_Script_Codes">Predefined Script Codes </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Script.HB_SCRIPT_COMMON">Script.HB_SCRIPT_COMMON</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_COMMON</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script.HB_SCRIPT_INHERITED">Script.HB_SCRIPT_INHERITED</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_INHERITED</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script.HB_SCRIPT_UNKNOWN">Script.HB_SCRIPT_UNKNOWN</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_UNKNOWN</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Script.HB_SCRIPT_INVALID">Script.HB_SCRIPT_INVALID</a></td>
+	<td class="summary">Wraps <code>HB_SCRIPT_INVALID</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Direction">Class Direction </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Direction.new">Direction.new (dir)</a></td>
+	<td class="summary">Wraps <code>hb_direction_from_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction:__to_string">Direction:__to_string ()</a></td>
+	<td class="summary">Wraps <code>hb_direction_to_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction:__eq">Direction:__eq ()</a></td>
+	<td class="summary">Enables equality comparisions with <code>==</code> between two directions.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_VALID">Direction.HB_DIRECTION_IS_VALID (direction)</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_IS_VALID</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_HORIZONTAL">Direction.HB_DIRECTION_IS_HORIZONTAL (direction)</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_IS_HORIZONTAL</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_VERTICAL">Direction.HB_DIRECTION_IS_VERTICAL (direction)</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_IS_VERTICAL</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_FORWARD">Direction.HB_DIRECTION_IS_FORWARD (direction)</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_IS_FORWARD</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_BACKWARD">Direction.HB_DIRECTION_IS_BACKWARD (direction)</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_IS_BACKWARD</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Predefined_directions">Predefined directions </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_LTR">Direction.HB_DIRECTION_LTR</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_LTR</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_RTL">Direction.HB_DIRECTION_RTL</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_RTL</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_TTB">Direction.HB_DIRECTION_TTB</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_TTB</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_BTT">Direction.HB_DIRECTION_BTT</a></td>
+	<td class="summary">Wraps <code>HB_DIRECTION_LTR</code>.</td>
+	</tr>
+</table>
+<h2><a href="#Class_Language">Class Language </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Language.new">Language.new (lang)</a></td>
+	<td class="summary">Wraps <code>hb_language_from_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Language:__to_string">Language:__to_string ()</a></td>
+	<td class="summary">Wraps <code>hb_language_to_string</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Language:__eq">Language:__eq ()</a></td>
+	<td class="summary">Enables equality comparisions with <code>==</code> between two languages.</td>
+	</tr>
+</table>
+<h2><a href="#Predefined_languages">Predefined languages </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Language.HB_LANGUAGE_INVALID">Language.HB_LANGUAGE_INVALID</a></td>
+	<td class="summary">Wraps <code>HB_LANGUAGE_INVALID</code>.</td>
 	</tr>
 </table>
 
@@ -258,9 +398,9 @@
 <p> table containing one or more supported options:</p>
 
 <ul>
-    <li><code>direction</code>: one of <code>rtl</code>, <code>ltr</code>, <code>ttb</code> or <code>btt</code>.</li>
-    <li><code>script</code>: <a href="http://www.microsoft.com/typography/otspec/scripttags.htm">four-letter script tag</a>.</li>
-    <li><code>language</code>: <a href="http://www.microsoft.com/typography/otspec/languagetags.htm">three-letter language tag</a>.</li>
+    <li><code>direction</code>: A <code>Direction</code> object representing the object.</li>
+    <li><code>script</code>: A <code>Script</code> object representing the script.</li>
+    <li><code>language</code>: A <code>Language</code> object representing the language.</li>
     <li><code>features</code>: features to enable, specified as either of the following.
     <ul>
         <li>comma-separated list of features. See <a href="https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings">feature string syntax reference</a></li>
@@ -278,7 +418,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Blob"></a>Class Blob</h2>
+    <h2 class="section-header has-description"><a name="Class_Blob"></a>Class Blob </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_blob_t</code> type
@@ -320,7 +460,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Face"></a>Class Face</h2>
+    <h2 class="section-header has-description"><a name="Class_Face"></a>Class Face </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_face_t</code> type
@@ -392,15 +532,15 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Font"></a>Class Font</h2>
+    <h2 class="section-header has-description"><a name="Class_Font"></a>Class Font </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_font_t</code> type
           </div>
     <dl class="function">
     <dt>
-    <a name = "Font:scale"></a>
-    <strong>Font:scale (face)</strong>
+    <a name = "Font.new"></a>
+    <strong>Font.new (face)</strong>
     </dt>
     <dd>
     Wraps <code>hb_font_create</code>, and sets up some defaults for scale and shaping functions.
@@ -413,7 +553,6 @@
     <ul>
         <li><span class="parameter">face</span>
          <code>Face</code> object.
- Wraps <code>hb_font_get_scale</code>
         </li>
     </ul>
 
@@ -465,7 +604,7 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Buffer"></a>Class Buffer</h2>
+    <h2 class="section-header has-description"><a name="Class_Buffer"></a>Class Buffer </h2>
 
           <div class="section-description">
           Lua wrapper for <code>hb_buffer_t</code> type.
@@ -552,7 +691,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">dir</span>
-          one of <code>rtl</code>, <code>ltr</code>, <code>ttb</code> or <code>btt</code>.
+          A <code>Direction</code> object.
         </li>
     </ul>
 
@@ -570,6 +709,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        A <code>Direction</code> object.
+    </ol>
 
 
 
@@ -586,7 +730,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">script</span>
-         <a href="http://www.microsoft.com/typography/otspec/scripttags.htm">four-letter script tag</a>.
+          A <code>Script</code> object.
         </li>
     </ul>
 
@@ -604,6 +748,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        A <code>Script</code> object.
+    </ol>
 
 
 
@@ -620,7 +769,7 @@
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">lang</span>
-         <a href="http://www.microsoft.com/typography/otspec/languagetags.htm">three-letter language tag</a>.
+         A <code>Language</code> object
         </li>
     </ul>
 
@@ -638,6 +787,11 @@
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+        A <code>Language</code> object
+    </ol>
 
 
 
@@ -758,50 +912,12 @@
 
 </dd>
 </dl>
-    <h2 class="section-header has-description"><a name="Class_Feature"></a>Class Feature</h2>
+    <h2 class="section-header has-description"><a name="Cluster_Levels"></a>Cluster Levels </h2>
 
           <div class="section-description">
-          Lua wrapper for <code>hb_feature_t</code> type
+           See <a href="http://behdad.github.io/harfbuzz/clusters.html">Harfbuzz docs</a> for more details
+ about what each of these levels mean.
           </div>
-    <dl class="function">
-    <dt>
-    <a name = "Feature.new"></a>
-    <strong>Feature.new (feature_string)</strong>
-    </dt>
-    <dd>
-    Wraps <code>hb_feature_from_string</code>
-
-
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">feature_string</span>
-         See <a href="https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings">feature string syntax reference</a>
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Feature:__tostring"></a>
-    <strong>Feature:__tostring ()</strong>
-    </dt>
-    <dd>
-    Wraps <code>hb_feature_to_string</code>.
-  Enables nice output with <code>tostring(…)</code>.
-
-
-
-
-
-
-
-</dd>
-</dl>
-    <h2 class="section-header "><a name="Cluster_Levels"></a>Cluster Levels</h2>
-
     <dl class="function">
     <dt>
     <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES"></a>
@@ -860,13 +976,646 @@
 
 </dd>
 </dl>
+    <h2 class="section-header has-description"><a name="Class_Feature"></a>Class Feature </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_feature_t</code> type
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Feature.new"></a>
+    <strong>Feature.new (feature_string)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_feature_from_string</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">feature_string</span>
+         See <a href="https://github.com/deepakjois/luaharfbuzz/wiki/Feature-Strings">feature string syntax reference</a>
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Feature:__tostring"></a>
+    <strong>Feature:__tostring ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_feature_to_string</code>.
+  Enables nice output with <code>tostring(…)</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Tag"></a>Class Tag </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_tag_t</code> type.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Tag.new"></a>
+    <strong>Tag.new (string)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_tag_from_string</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">string</span>
+         to be converted to a <code>Tag</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Tag</code> object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Tag:__to_string"></a>
+    <strong>Tag:__to_string ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_tag_to_string</code>.  Enable nice output with <code>tostring(…)</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Returns a string representation for the tag object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Tag:__eq"></a>
+    <strong>Tag:__eq ()</strong>
+    </dt>
+    <dd>
+    Enables equality comparisions with <code>==</code> between two tags.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> or <code>false</code> depending on whether the two tags are equal.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Script"></a>Class Script </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_script_t</code> type.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Script.new"></a>
+    <strong>Script.new (script)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_script_from_string</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">script</span>
+         4-letter script code according to the <a href="http://www.unicode.org/iso15924/iso15924-num.html">ISO 15924 standard</a>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Script</code> object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script.from_iso15924_tag"></a>
+    <strong>Script.from_iso15924_tag (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_script_from_iso15924_tag</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         a <code>Tag</code> object representing a <a href="http://www.unicode.org/iso15924/iso15924-num.html">ISO 15924 script</a>.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script:to_iso15924_tag"></a>
+    <strong>Script:to_iso15924_tag ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_script_to_iso15924_tag</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Tag</code> object representing the script.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script:__to_string"></a>
+    <strong>Script:__to_string ()</strong>
+    </dt>
+    <dd>
+    Enable nice output with <code>tostring(…)</code>
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Returns a 4-letter <a href="http://www.unicode.org/iso15924/iso15924-num.html">ISO 15924 script code</a> for the script object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script:__eq"></a>
+    <strong>Script:__eq ()</strong>
+    </dt>
+    <dd>
+    Enables equality comparisions with <code>==</code> between two scripts.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> or <code>false</code> depending on whether the two scripts are equal.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Predefined_Script_Codes"></a>Predefined Script Codes </h2>
+
+          <div class="section-description">
+           Predefined directions that correspond to their original definitions in Harfbuzz.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Script.HB_SCRIPT_COMMON"></a>
+    <strong>Script.HB_SCRIPT_COMMON</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_COMMON</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script.HB_SCRIPT_INHERITED"></a>
+    <strong>Script.HB_SCRIPT_INHERITED</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_INHERITED</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script.HB_SCRIPT_UNKNOWN"></a>
+    <strong>Script.HB_SCRIPT_UNKNOWN</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_UNKNOWN</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Script.HB_SCRIPT_INVALID"></a>
+    <strong>Script.HB_SCRIPT_INVALID</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_SCRIPT_INVALID</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Direction"></a>Class Direction </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_direction_t</code> type.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Direction.new"></a>
+    <strong>Direction.new (dir)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_direction_from_string</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">dir</span>
+         can be one of <code>ltr</code>, <code>rtl</code>, <code>ttb</code>, <code>btt</code> or <code>invalid</code>.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Direction</code> object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction:__to_string"></a>
+    <strong>Direction:__to_string ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_direction_to_string</code>.  Enable nice output with <code>tostring(…)</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Returns a string representation for direction.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction:__eq"></a>
+    <strong>Direction:__eq ()</strong>
+    </dt>
+    <dd>
+    Enables equality comparisions with <code>==</code> between two directions.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> or <code>false</code> depending on whether the two tags are equal.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_IS_VALID"></a>
+    <strong>Direction.HB_DIRECTION_IS_VALID (direction)</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_IS_VALID</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">direction</span>
+         a <code>Direction</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a boolean value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_IS_HORIZONTAL"></a>
+    <strong>Direction.HB_DIRECTION_IS_HORIZONTAL (direction)</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_IS_HORIZONTAL</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">direction</span>
+         a <code>Direction</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a boolean value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_IS_VERTICAL"></a>
+    <strong>Direction.HB_DIRECTION_IS_VERTICAL (direction)</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_IS_VERTICAL</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">direction</span>
+         a <code>Direction</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a boolean value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_IS_FORWARD"></a>
+    <strong>Direction.HB_DIRECTION_IS_FORWARD (direction)</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_IS_FORWARD</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">direction</span>
+         a <code>Direction</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a boolean value
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_IS_BACKWARD"></a>
+    <strong>Direction.HB_DIRECTION_IS_BACKWARD (direction)</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_IS_BACKWARD</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">direction</span>
+         a <code>Direction</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a boolean value
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Predefined_directions"></a>Predefined directions </h2>
+
+          <div class="section-description">
+           Predefined directions that correspond to their original definitions in Harfbuzz.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Direction.HB_DIRECTION_LTR"></a>
+    <strong>Direction.HB_DIRECTION_LTR</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_LTR</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_RTL"></a>
+    <strong>Direction.HB_DIRECTION_RTL</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_RTL</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_TTB"></a>
+    <strong>Direction.HB_DIRECTION_TTB</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_TTB</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Direction.HB_DIRECTION_BTT"></a>
+    <strong>Direction.HB_DIRECTION_BTT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_DIRECTION_LTR</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_Language"></a>Class Language </h2>
+
+          <div class="section-description">
+          Lua wrapper for <code>hb_language_t</code> type.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Language.new"></a>
+    <strong>Language.new (lang)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_language_from_string</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">lang</span>
+         <a href="http://www.microsoft.com/typography/otspec/languagetags.htm">three-letter language tag</a> to be converted to a <code>Language</code> object.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        a <code>Language</code> object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Language:__to_string"></a>
+    <strong>Language:__to_string ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_language_to_string</code>.  Enable nice output with <code>tostring(…)</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        Returns a string representation for the language object.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Language:__eq"></a>
+    <strong>Language:__eq ()</strong>
+    </dt>
+    <dd>
+    Enables equality comparisions with <code>==</code> between two languages.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>true</code> or <code>false</code> depending on whether the two languages are equal.
+    </ol>
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Predefined_languages"></a>Predefined languages </h2>
+
+          <div class="section-description">
+           Predefined languages that correspond to their original definitions in Harfbuzz.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Language.HB_LANGUAGE_INVALID"></a>
+    <strong>Language.HB_LANGUAGE_INVALID</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_LANGUAGE_INVALID</code>.
+
+
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
-<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.5</a></i>
-<i style="float:right;">Last updated 2016-10-16 08:43:09 </i>
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
+<i style="float:right;">Last updated 2017-05-19 15:36:53 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

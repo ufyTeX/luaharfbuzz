@@ -16,6 +16,8 @@ hb_buffer_set_cluster_level
 hb_buffer_set_direction
 hb_buffer_set_language
 hb_buffer_set_script
+hb_direction_from_string
+hb_direction_to_string
 hb_face_create
 hb_face_destroy
 hb_face_get_upem
@@ -25,7 +27,16 @@ hb_font_create
 hb_font_destroy
 hb_font_get_scale
 hb_font_set_scale
+hb_language_from_string
+hb_language_to_string
+hb_script_from_iso15924_tag
+hb_script_from_string
+hb_script_to_iso15924_tag
 hb_shape
 hb_shape_full
 hb_shape_list_shapers
+hb_tag_from_string
+hb_tag_to_string
+hb_unicode_script
 hb_version
+
