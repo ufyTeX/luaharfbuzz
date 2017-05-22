@@ -315,3 +315,12 @@
 
 --- Wraps `HB_LANGUAGE_INVALID`.
 -- @field Language.HB_LANGUAGE_INVALID
+
+
+--- Unicode functions.
+-- @section
+
+--- Wraps `hb_unicode_script`
+-- @param char Unicode codepoint
+-- @return a `Script` object.
+-- @function unicode.script
