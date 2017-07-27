@@ -1,11 +1,11 @@
 package = "luaharfbuzz"
 version = "scm-1"
 source = {
-  url = "git://github.com/deepakjois/luaharfbuzz"
+  url = "git://github.com/ufytex/luaharfbuzz"
 }
 description = {
   summary = "Lua bindings for the Harfbuzz text shaping library",
-  homepage = "https://github.com/deepakjois/luaharfbuzz",
+  homepage = "https://github.com/ufytex/luaharfbuzz",
   license = "MIT",
   maintainer = "Deepak Jois <deepak.jois@gmail.com>"
 }
