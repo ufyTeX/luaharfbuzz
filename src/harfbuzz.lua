@@ -1,13 +1,5 @@
 local hb = require("luaharfbuzz")
 
-function hb.Face.new(file, font_index)
-  local i = font_index or 0
-
-  local blob = hb.Blob.new_from_file(file)
-
-  return hb.Face.new_from_blob(blob,i)
-end
-
 local buffer_metatable = getmetatable(hb.Buffer)
 
 function buffer_metatable.add_utf8(self, text, item_offset, item_length)
