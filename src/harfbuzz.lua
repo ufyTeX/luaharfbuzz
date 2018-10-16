@@ -1,19 +1,5 @@
 local hb = require("luaharfbuzz")
 
-local buffer_metatable = getmetatable(hb.Buffer)
-
-function buffer_metatable.add_utf8(self, text, item_offset, item_length)
-  item_offset = item_offset or 0
-  item_length = item_length or -1
-  return self:add_utf8_c(text,item_offset,item_length)
-end
-
-function buffer_metatable.add_codepoints(self, text, item_offset, item_length)
-  item_offset = item_offset or 0
-  item_length = item_length or -1
-  return self:add_codepoints_c(text,item_offset,item_length)
-end
-
 -- buffer cluster levels
 hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES  = 0
 hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS = 1

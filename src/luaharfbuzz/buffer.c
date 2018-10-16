@@ -85,9 +85,14 @@ static int buffer_set_script(lua_State *L) {
 
 static int buffer_add_codepoints(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+  unsigned int item_offset = 0;
+  int item_length = -1;
+
   luaL_checktype(L, 2, LUA_TTABLE);
-  unsigned int item_offset = luaL_checkinteger(L,3);
-  int item_length = luaL_checkinteger(L,4);
+  if (lua_gettop(L) > 2)
+    item_offset = luaL_checkinteger(L,3);
+  if (lua_gettop(L) > 3)
+    item_length = luaL_checkinteger(L,4);
 
   lua_len (L, 2);
   unsigned int n = luaL_checkinteger(L, -1);
@@ -111,10 +116,14 @@ static int buffer_add_codepoints(lua_State *L) {
 
 static int buffer_add_utf8(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+  unsigned int item_offset = 0;
+  int item_length = -1;
 
   const char *text = luaL_checkstring(L, 2);
-  unsigned int item_offset = luaL_checkinteger(L,3);
-  int item_length = luaL_checkinteger(L,4);
+  if (lua_gettop(L) > 2)
+    item_offset = luaL_checkinteger(L,3);
+  if (lua_gettop(L) > 3)
+    item_length = luaL_checkinteger(L,4);
 
   hb_buffer_add_utf8(*b, text, -1, item_offset, item_length);
 
@@ -206,8 +215,8 @@ static int buffer_set_cluster_level(lua_State *L) {
 
 static const struct luaL_Reg buffer_methods[] = {
   { "__gc", buffer_destroy },
-  { "add_utf8_c", buffer_add_utf8 },
-  { "add_codepoints_c", buffer_add_codepoints },
+  { "add_utf8", buffer_add_utf8 },
+  { "add_codepoints", buffer_add_codepoints },
   { "set_direction", buffer_set_direction },
   { "get_direction", buffer_get_direction },
   { "set_language", buffer_set_language },
