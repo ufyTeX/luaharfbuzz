@@ -35,6 +35,11 @@
 --  @param data lua string containing binary or character data.
 --  @function Blob.new
 
+--- Wraps `hb_blob_create_from_file`.
+--  Initializes a new `hb_blob_t`.
+--  @param filename lua string.
+--  @function Blob.new_from_file
+
 --- Wraps `hb_blob_get_length`.
 --  @function Blob:get_length
 

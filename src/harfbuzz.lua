@@ -2,11 +2,8 @@ local hb = require("luaharfbuzz")
 
 function hb.Face.new(file, font_index)
   local i = font_index or 0
-  local fontfile = io.open(file, "r")
-  local fontdata = fontfile:read("*all")
-  fontfile:close()
 
-  local blob = hb.Blob.new(fontdata)
+  local blob = hb.Blob.new_from_file(file)
 
   return hb.Face.new_from_blob(blob,i)
 end
