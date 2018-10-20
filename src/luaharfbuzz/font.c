@@ -39,6 +39,32 @@ static int font_get_scale(lua_State *L) {
   return 2;
 }
 
+static int font_get_glyph_extents(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  hb_codepoint_t glyph = luaL_checkinteger(L, 2);
+  hb_glyph_extents_t extents;
+
+  if (hb_font_get_glyph_extents(*f, glyph, &extents)) {
+    lua_newtable(L);
+
+    lua_pushnumber(L, extents.x_bearing);
+    lua_setfield(L, -2, "x_bearing");
+
+    lua_pushnumber(L, extents.y_bearing);
+    lua_setfield(L, -2, "y_bearing");
+
+    lua_pushnumber(L, extents.width);
+    lua_setfield(L, -2, "width");
+
+    lua_pushnumber(L, extents.height);
+    lua_setfield(L, -2, "height");
+  } else {
+    lua_pushnil(L);
+  }
+
+  return 1;
+}
+
 
 static int font_destroy(lua_State *L) {
   Font *f;
@@ -53,6 +79,7 @@ static const struct luaL_Reg font_methods[] = {
 	{"__gc", font_destroy },
   {"set_scale", font_set_scale },
   {"get_scale", font_get_scale },
+  {"get_glyph_extents", font_get_glyph_extents },
   { NULL, NULL },
 };
 

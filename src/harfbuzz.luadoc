@@ -82,6 +82,17 @@
 --  @param y_scale desired y-scale of font.
 --  @function Font:set_scale
 
+--- Wraps `hb_font_get_glyph_extents`.
+--  @param glyph index inside the font.
+--  @return extents table contains the following or `nil` if HarfBuzz fails to
+--  load glyph extents:
+--
+--  * `x_bearing`: left side of glyph from origin.
+--  * `y_bearing`: top side of glyph from origin.
+--  * `width`: distance from left to right side.
+--  * `height`: distance from top to bottom side.
+--  @function Font:get_glyph_extents
+
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer
 
