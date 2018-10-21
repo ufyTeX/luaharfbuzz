@@ -93,6 +93,11 @@
 --  * `height`: distance from top to bottom side.
 --  @function Font:get_glyph_extents
 
+--- Wraps `hb_font_get_glyph_name`.
+--  @param glyph index inside the font.
+--  @return name of the glyph or nil.
+--  @function Font:get_glyph_name
+
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer
 
