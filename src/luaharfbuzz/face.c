@@ -78,6 +78,29 @@ static int face_get_table_tags(lua_State *L) {
   return 1;
 }
 
+static int face_collect_unicodes(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  hb_set_t *codes = hb_set_create();
+
+  lua_newtable(L);
+
+  hb_face_collect_unicodes (*f, codes);
+  if (!hb_set_is_empty(codes)) {
+    unsigned int i = 0;
+    hb_codepoint_t c = HB_SET_VALUE_INVALID;
+
+    while (hb_set_next(codes, &c)) {
+      lua_pushnumber(L, ++i);
+      lua_pushnumber(L, c);
+      lua_rawset(L, -3);
+    }
+  }
+
+  hb_set_destroy(codes);
+
+  return 1;
+}
+
 static int face_get_upem(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
 
@@ -94,6 +117,7 @@ static int face_destroy(lua_State *L) {
 
 static const struct luaL_Reg face_methods[] = {
   { "__gc", face_destroy },
+  { "collect_unicodes", face_collect_unicodes },
   { "get_glyph_count", face_get_glyph_count },
   { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
