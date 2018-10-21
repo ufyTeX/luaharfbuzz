@@ -98,6 +98,16 @@
 --  @return name of the glyph or nil.
 --  @function Font:get_glyph_name
 
+--- Wraps `hb_font_get_glyph_h_advance`.
+--  @param glyph index inside the font.
+--  @return advance glyph advance of the glyph in horizontal direction.
+--  @function Font:get_glyph_h_advance
+
+--- Wraps `hb_font_get_glyph_v_advance`.
+--  @param glyph index inside the font.
+--  @return advance glyph advance of the glyph in vertical direction.
+--  @function Font:get_glyph_v_advance
+
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer
 
