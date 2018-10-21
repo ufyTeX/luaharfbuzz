@@ -84,6 +84,18 @@ describe("harfbuzz module", function()
       assert.are_equal(".notdef", font:get_glyph_name(0))
       assert.are_equal("null", font:get_glyph_name(1))
     end)
+
+    it("can get glyph advance using get_glyph_h_advance", function()
+      local font = harfbuzz.Font.new(face)
+      assert.are_equal(1843, font:get_glyph_h_advance(0))
+      assert.are_equal(0, font:get_glyph_h_advance(1))
+    end)
+
+    it("can get glyph advance using get_glyph_v_advance", function()
+      local font = harfbuzz.Font.new(face)
+      assert.are_equal(-2048, font:get_glyph_v_advance(0))
+      assert.are_equal(-2048, font:get_glyph_v_advance(1))
+    end)
   end)
 
   describe("harfbuzz.Feature", function()
