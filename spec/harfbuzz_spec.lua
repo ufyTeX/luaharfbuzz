@@ -114,6 +114,12 @@ describe("harfbuzz module", function()
       assert.are_equal(-2048, font:get_glyph_v_advance(0))
       assert.are_equal(-2048, font:get_glyph_v_advance(1))
     end)
+
+    it("can get nominal glyph for codepoint", function()
+      local font = harfbuzz.Font.new(face)
+      assert.are_equal(nil, font:get_nominal_glyph(0x0041))
+      assert.are_equal(858, font:get_nominal_glyph(0x0627))
+    end)
   end)
 
   describe("harfbuzz.Feature", function()
