@@ -119,6 +119,11 @@
 --  @return advance glyph advance of the glyph in vertical direction.
 --  @function Font:get_glyph_v_advance
 
+--- Wraps `hb_font_get_nominal_glyph`.
+--  @param codepoint.
+--  @return glyph index or `nil` if `codepoint` is not supported by the font.
+--  @function Font:get_nominal_glyph
+
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer
 
