@@ -65,6 +65,21 @@ static int font_get_glyph_extents(lua_State *L) {
   return 1;
 }
 
+static int font_get_glyph_name(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  hb_codepoint_t glyph = luaL_checkinteger(L, 2);
+
+#define NAME_LEN 128
+  char name[NAME_LEN];
+  if (hb_font_get_glyph_name(*f, glyph, name, NAME_LEN))
+    lua_pushstring(L, name);
+  else
+    lua_pushnil(L);
+#undef NAME_LEN
+
+  return 1;
+}
+
 
 static int font_destroy(lua_State *L) {
   Font *f;
@@ -80,6 +95,7 @@ static const struct luaL_Reg font_methods[] = {
   {"set_scale", font_set_scale },
   {"get_scale", font_get_scale },
   {"get_glyph_extents", font_get_glyph_extents },
+  {"get_glyph_name", font_get_glyph_name },
   { NULL, NULL },
 };
 
