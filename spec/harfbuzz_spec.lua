@@ -52,6 +52,13 @@ describe("harfbuzz module", function()
     it("can return glyph count", function()
       assert.are_equal(1133,face:get_glyph_count())
     end)
+
+    it("can return unicode characters supported by face", function()
+      local u = face:collect_unicodes()
+      assert.are_equal(267,#u)
+      assert.are_equal(0x0000,u[1])
+      assert.are_equal(0xFEFF,u[#u])
+    end)
   end)
 
   describe("harfbuzz.Font", function()

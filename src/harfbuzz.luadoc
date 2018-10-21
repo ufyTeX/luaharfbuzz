@@ -59,6 +59,10 @@
 --  @param[opt=0] font_index index of font to read.
 --  @function Face.new
 
+--- Wraps `hb_face_collect_unicodes`.
+--  @return table of codepoints supported by the face.
+--  @function Face:collect_unicodes
+
 --- Wraps `hb_face_get_glyph_count`.
 --  @function Face:get_glyph_count
 
