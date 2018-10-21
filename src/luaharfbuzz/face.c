@@ -32,6 +32,13 @@ static int face_new_from_blob(lua_State *L) {
   return 1;
 }
 
+static int face_get_glyph_count(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  lua_pushinteger(L, hb_face_get_glyph_count(*f));
+  return 1;
+}
+
 static void set_tags(lua_State *L, hb_tag_t *tags, unsigned int count) {
   unsigned int i;
 
@@ -87,6 +94,7 @@ static int face_destroy(lua_State *L) {
 
 static const struct luaL_Reg face_methods[] = {
   { "__gc", face_destroy },
+  { "get_glyph_count", face_get_glyph_count },
   { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
   { NULL, NULL }

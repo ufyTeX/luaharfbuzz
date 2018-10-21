@@ -48,6 +48,10 @@ describe("harfbuzz module", function()
       assert.are_equal("GDEF",tostring(t[1]))
       assert.are_equal("post",tostring(t[#t]))
     end)
+
+    it("can return glyph count", function()
+      assert.are_equal(1133,face:get_glyph_count())
+    end)
   end)
 
   describe("harfbuzz.Font", function()

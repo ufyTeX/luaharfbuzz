@@ -59,6 +59,9 @@
 --  @param[opt=0] font_index index of font to read.
 --  @function Face.new
 
+--- Wraps `hb_face_get_glyph_count`.
+--  @function Face:get_glyph_count
+
 --- Wraps `hb_face_get_table_tags`.
 --  @return table of `Tag`s representing face table tags.
 --  @function Face:get_table_tags
