@@ -3,21 +3,18 @@
 static int buffer_new(lua_State *L) {
   Buffer *b;
 
-
   b = (Buffer *)lua_newuserdata(L, sizeof(*b));
   luaL_getmetatable(L, "harfbuzz.Buffer");
   lua_setmetatable(L, -2);
 
   *b = hb_buffer_create();
-
-   return 1;
+  return 1;
 }
 
 static int buffer_guess_segment_properties(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   hb_buffer_guess_segment_properties(*b);
-
   return 0;
 }
 
@@ -29,15 +26,14 @@ static int buffer_get_direction(lua_State *L) {
   lua_setmetatable(L, -2);
 
   *dp = hb_buffer_get_direction(*b);
-
   return 1;
 }
 
 static int buffer_set_direction(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
   Direction* dir = (Direction *)luaL_checkudata(L, 2, "harfbuzz.Direction");
-  hb_buffer_set_direction(*b, *dir);
 
+  hb_buffer_set_direction(*b, *dir);
   return 0;
 }
 
@@ -49,7 +45,6 @@ static int buffer_get_language(lua_State *L) {
   lua_setmetatable(L, -2);
 
   *lp = hb_buffer_get_language(*b);
-
   return 1;
 }
 
@@ -58,7 +53,6 @@ static int buffer_set_language(lua_State *L) {
   Language *lang = (Language *)luaL_checkudata(L, 2, "harfbuzz.Language");
 
   hb_buffer_set_language(*b, *lang);
-
   return 0;
 }
 
@@ -70,7 +64,6 @@ static int buffer_get_script(lua_State *L) {
   lua_setmetatable(L, -2);
 
   *sp = hb_buffer_get_script(*b);
-
   return 1;
 }
 
@@ -79,7 +72,6 @@ static int buffer_set_script(lua_State *L) {
   Script *script = (Script *)luaL_checkudata(L, 2, "harfbuzz.Script");
 
   hb_buffer_set_script(*b, *script);
-
   return 0;
 }
 
@@ -90,9 +82,9 @@ static int buffer_add_codepoints(lua_State *L) {
 
   luaL_checktype(L, 2, LUA_TTABLE);
   if (lua_gettop(L) > 2)
-    item_offset = luaL_checkinteger(L,3);
+    item_offset = luaL_checkinteger(L, 3);
   if (lua_gettop(L) > 3)
-    item_length = luaL_checkinteger(L,4);
+    item_length = luaL_checkinteger(L, 4);
 
   lua_len (L, 2);
   unsigned int n = luaL_checkinteger(L, -1);
@@ -121,9 +113,9 @@ static int buffer_add_utf8(lua_State *L) {
 
   const char *text = luaL_checkstring(L, 2);
   if (lua_gettop(L) > 2)
-    item_offset = luaL_checkinteger(L,3);
+    item_offset = luaL_checkinteger(L, 3);
   if (lua_gettop(L) > 3)
-    item_length = luaL_checkinteger(L,4);
+    item_length = luaL_checkinteger(L, 4);
 
   hb_buffer_add_utf8(*b, text, -1, item_offset, item_length);
 
@@ -134,7 +126,6 @@ static int buffer_destroy(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   hb_buffer_destroy(*b);
-
   return 0;
 }
 
@@ -145,11 +136,10 @@ static int buffer_get_glyph_infos_and_positions(lua_State *L) {
   unsigned int len = hb_buffer_get_length(*buf);
   hb_glyph_info_t *info = hb_buffer_get_glyph_infos(*buf, NULL);
   hb_glyph_position_t *pos = hb_buffer_get_glyph_positions(*buf, NULL);
+  unsigned int i;
 
   // Create Lua table and push glyph data onto it.
   lua_newtable(L); // parent table
-
-  unsigned int i;
 
   for (i = 0; i < len; i++) {
     lua_pushinteger(L, i+1); // 1-indexed key parent table
@@ -173,7 +163,7 @@ static int buffer_get_glyph_infos_and_positions(lua_State *L) {
     lua_pushnumber(L, pos[i].y_offset);
     lua_setfield(L, -2, "y_offset");
 
-    lua_settable(L,-3); // Add child table at index i+1 to parent table
+    lua_settable(L, -3); // Add child table at index i+1 to parent table
   }
 
   return 1;
@@ -183,7 +173,6 @@ static int buffer_reverse(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   hb_buffer_reverse(*b);
-
   return 0;
 }
 
@@ -191,7 +180,6 @@ static int buffer_get_length(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   lua_pushinteger(L, hb_buffer_get_length(*b));
-
   return 1;
 }
 
@@ -199,7 +187,6 @@ static int buffer_get_cluster_level(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   lua_pushinteger(L, hb_buffer_get_cluster_level(*b));
-
   return 1;
 }
 
@@ -209,7 +196,6 @@ static int buffer_set_cluster_level(lua_State *L) {
   unsigned int l = luaL_checkinteger(L, 2);
 
   hb_buffer_set_cluster_level(*b, l);
-
   return 0;
 }
 
@@ -240,4 +226,3 @@ static const struct luaL_Reg buffer_functions[] = {
 int register_buffer(lua_State *L) {
   return register_class(L, "harfbuzz.Buffer", buffer_methods, buffer_functions);
 }
-

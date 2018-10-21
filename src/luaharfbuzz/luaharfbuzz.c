@@ -82,7 +82,7 @@ int luaopen_luaharfbuzz (lua_State *L) {
   register_unicode(L);
   lua_setfield(L, -2, "unicode");
 
-  luaL_setfuncs(L, lib_table,0);
+  luaL_setfuncs(L, lib_table, 0);
 
   return 1;
 }
