@@ -59,6 +59,10 @@
 --  @param[opt=0] font_index index of font to read.
 --  @function Face.new
 
+--- Wraps `hb_face_get_table_tags`.
+--  @return table of `Tag`s representing face table tags.
+--  @function Face:get_table_tags
+
 --- Wraps `hb_face_get_upem`.
 --  @function Face:get_upem
 
