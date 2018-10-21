@@ -32,6 +32,45 @@ static int face_new_from_blob(lua_State *L) {
   return 1;
 }
 
+static void set_tags(lua_State *L, hb_tag_t *tags, unsigned int count) {
+  unsigned int i;
+
+  for (i = 0; i < count; i++) {
+    lua_pushnumber(L, i + 1);
+
+    Tag *tp = (Tag *)lua_newuserdata(L, sizeof(*tp));
+    luaL_getmetatable(L, "harfbuzz.Tag");
+    lua_setmetatable(L, -2);
+    *tp = tags[i];
+
+    lua_rawset(L, -3);
+  }
+}
+
+static int face_get_table_tags(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+#define TABLE_SIZE 128
+  unsigned int table_size = TABLE_SIZE, count;
+  hb_tag_t tags[TABLE_SIZE];
+
+  lua_newtable(L);
+
+  count = hb_face_get_table_tags(*f, 0, &table_size, tags);
+  if (count) {
+    if (count <= table_size) {
+      set_tags(L, tags, count);
+    } else {
+      hb_tag_t* tags = (hb_tag_t *) malloc(count * sizeof(hb_tag_t));
+      hb_face_get_table_tags (*f, 0, &count, tags);
+      set_tags(L, tags, count);
+      free(tags);
+    }
+  }
+#undef TABLE_SIZE
+
+  return 1;
+}
+
 static int face_get_upem(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
 
@@ -48,6 +87,7 @@ static int face_destroy(lua_State *L) {
 
 static const struct luaL_Reg face_methods[] = {
   { "__gc", face_destroy },
+  { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
   { NULL, NULL }
 };
