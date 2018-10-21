@@ -32,7 +32,7 @@ static int font_get_scale(lua_State *L) {
   Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
   int x_scale, y_scale;
 
-  hb_font_get_scale(*f,&x_scale, &y_scale);
+  hb_font_get_scale(*f, &x_scale, &y_scale);
 
   lua_pushinteger(L, x_scale);
   lua_pushinteger(L, y_scale);
@@ -85,7 +85,6 @@ static int font_get_glyph_h_advance(lua_State *L) {
   hb_codepoint_t glyph = luaL_checkinteger(L, 2);
 
   lua_pushinteger(L, hb_font_get_glyph_h_advance(*f, glyph));
-
   return 1;
 }
 
@@ -94,29 +93,26 @@ static int font_get_glyph_v_advance(lua_State *L) {
   hb_codepoint_t glyph = luaL_checkinteger(L, 2);
 
   lua_pushinteger(L, hb_font_get_glyph_v_advance(*f, glyph));
-
   return 1;
 }
 
 
 static int font_destroy(lua_State *L) {
-  Font *f;
-  f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
 
   hb_font_destroy(*f);
-
   return 0;
 }
 
 static const struct luaL_Reg font_methods[] = {
-	{"__gc", font_destroy },
-  {"set_scale", font_set_scale },
-  {"get_scale", font_get_scale },
-  {"get_glyph_extents", font_get_glyph_extents },
-  {"get_glyph_name", font_get_glyph_name },
-  {"get_glyph_h_advance", font_get_glyph_h_advance },
-  {"get_glyph_v_advance", font_get_glyph_v_advance },
-  { NULL, NULL },
+  { "__gc", font_destroy },
+  { "set_scale", font_set_scale },
+  { "get_scale", font_get_scale },
+  { "get_glyph_extents", font_get_glyph_extents },
+  { "get_glyph_name", font_get_glyph_name },
+  { "get_glyph_h_advance", font_get_glyph_h_advance },
+  { "get_glyph_v_advance", font_get_glyph_v_advance },
+  { NULL, NULL }
 };
 
 static const struct luaL_Reg font_functions[] = {
@@ -127,4 +123,3 @@ static const struct luaL_Reg font_functions[] = {
 int register_font(lua_State *L) {
   return register_class(L, "harfbuzz.Font", font_methods, font_functions);
 }
-

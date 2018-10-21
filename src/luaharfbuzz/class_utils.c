@@ -7,7 +7,7 @@ int register_class(lua_State *L, const char *name, const luaL_Reg *methods, cons
   lua_setfield(L, -2, "__index");
 
   luaL_setfuncs(L, methods, 0);
-  lua_pop(L,1);
+  lua_pop(L, 1);
 
   lua_newtable(L);
   luaL_setfuncs(L, functions, 0);

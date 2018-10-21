@@ -7,7 +7,7 @@ static int script(lua_State *L) {
   luaL_getmetatable(L, "harfbuzz.Script");
   lua_setmetatable(L, -2);
 
-  *sp  = hb_unicode_script(hb_unicode_funcs_get_default(), c);
+  *sp = hb_unicode_script(hb_unicode_funcs_get_default(), c);
   return 1;
 }
 

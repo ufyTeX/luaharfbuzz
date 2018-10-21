@@ -2,22 +2,21 @@
 #include "luaharfbuzz.h"
 
 static int direction_new(lua_State *L) {
-  const char *direction_string = luaL_checkstring(L, 1);
+  Direction *d;
+  const char *dir = luaL_checkstring(L, 1);
 
-  Direction *dp = (Direction *)lua_newuserdata(L, sizeof(*dp));
+  d = (Direction *)lua_newuserdata(L, sizeof(*d));
   luaL_getmetatable(L, "harfbuzz.Direction");
   lua_setmetatable(L, -2);
 
-  *dp = hb_direction_from_string(direction_string, -1);
-
+  *d = hb_direction_from_string(dir, -1);
   return 1;
 }
 
 static int direction_to_string(lua_State *L) {
   Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
-  const char *dir = hb_direction_to_string(*d);
 
-  lua_pushstring(L, dir);
+  lua_pushstring(L, hb_direction_to_string(*d));
   return 1;
 }
 
@@ -25,49 +24,49 @@ static int direction_equals(lua_State *L) {
   Direction* lhs = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
   Direction* rhs = (Direction *)luaL_checkudata(L, 2, "harfbuzz.Direction");
 
-  if (*lhs == *rhs) {
-    lua_pushboolean(L, 1);
-  } else {
-    lua_pushboolean(L, 0);
-  }
-
+  lua_pushboolean(L, *lhs == *rhs);
   return 1;
 }
 
 static int direction_is_valid(lua_State *L) {
-    Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
-    lua_pushboolean(L, HB_DIRECTION_IS_VALID(*d));
-    return 1;
+  Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
+
+  lua_pushboolean(L, HB_DIRECTION_IS_VALID(*d));
+  return 1;
 }
 
 static int direction_is_horizontal(lua_State *L) {
-    Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
-    lua_pushboolean(L, HB_DIRECTION_IS_HORIZONTAL(*d));
-    return 1;
+  Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
+
+  lua_pushboolean(L, HB_DIRECTION_IS_HORIZONTAL(*d));
+  return 1;
 }
 
 static int direction_is_vertical(lua_State *L) {
-    Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
-    lua_pushboolean(L, HB_DIRECTION_IS_VERTICAL(*d));
-    return 1;
+  Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
+
+  lua_pushboolean(L, HB_DIRECTION_IS_VERTICAL(*d));
+  return 1;
 }
 
 static int direction_is_forward(lua_State *L) {
-    Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
-    lua_pushboolean(L, HB_DIRECTION_IS_FORWARD(*d));
-    return 1;
+  Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
+
+  lua_pushboolean(L, HB_DIRECTION_IS_FORWARD(*d));
+  return 1;
 }
 
 static int direction_is_backward(lua_State *L) {
-    Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
-    lua_pushboolean(L, HB_DIRECTION_IS_BACKWARD(*d));
-    return 1;
+  Direction* d = (Direction *)luaL_checkudata(L, 1, "harfbuzz.Direction");
+
+  lua_pushboolean(L, HB_DIRECTION_IS_BACKWARD(*d));
+  return 1;
 }
 
 static const struct luaL_Reg direction_methods[] = {
   { "__tostring", direction_to_string },
   { "__eq", direction_equals },
-  { NULL, NULL },
+  { NULL, NULL }
 };
 
 static const struct luaL_Reg direction_functions[] = {
