@@ -93,6 +93,20 @@
 --  @param y_scale desired y-scale of font.
 --  @function Font:set_scale
 
+--- Wraps `hb_font_get_h_extents`.
+--  @return font extents table for horizontal direction, contains the following
+--  or `nil` if HarfBuzz fails to load font extents:
+--
+--  * `ascender`: typographic ascender.
+--  * `descender`: typographic descender.
+--  * `line_gap`: line spacing gap.
+--  @function Font:get_h_extents
+
+--- Wraps `hb_font_get_v_extents`.
+--  @return font extents table for vertical direction, similar to
+--  `Font:get_h_extents`, or `nil` if HarfBuzz fails to load font extents:
+--  @function Font:get_v_extents
+
 --- Wraps `hb_font_get_glyph_extents`.
 --  @param glyph index inside the font.
 --  @return extents table contains the following or `nil` if HarfBuzz fails to
