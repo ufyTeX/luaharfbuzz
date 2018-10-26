@@ -42,7 +42,12 @@ hb.shape = function(font, buf, options)
   -- Parse features
   if type(options.features) == "string" then
     for fs in string.gmatch(options.features, '([^,]+)') do
-      table.insert(features, hb.Feature.new(fs))
+      local feature = hb.Feature.new(fs)
+      if feature then
+        table.insert(features, hb.Feature.new(fs))
+      else
+        error(string.format("Invalid feature string: '%s'", fs))
+      end
     end
   elseif type(options.features) == "table" then
     features = options.features

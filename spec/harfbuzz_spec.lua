@@ -139,8 +139,8 @@ describe("harfbuzz module", function()
     end)
 
     it("throws an error when trying to initialise a new Feature with an invalid string", function()
-       assert.has_error(function() harfbuzz.Feature.new('') end)
-       assert.has_error(function() harfbuzz.Feature.new('#kern') end, "Invalid feature string")
+       assert.are_equal(nil, harfbuzz.Feature.new(''))
+       assert.are_equal(nil, harfbuzz.Feature.new('#kern'))
     end)
 
     it("has a valid tostring value", function()

@@ -99,7 +99,7 @@ describe("harfbuzz module shaping functions", function()
       options.features = "#kern"
       assert.has_error(function()
         harfbuzz.shape(font, buf, options)
-      end, "Invalid feature string")
+      end, "Invalid feature string: '#kern'")
     end)
 
     it("throws an error if feature option is not a table or string", function()

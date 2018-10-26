@@ -5,15 +5,14 @@ static int feature_new(lua_State *L) {
   Feature f;
   const char *feature = luaL_checkstring(L, 1);
 
-  if (!hb_feature_from_string(feature, -1, &f)) {
-    lua_pushstring(L, "Invalid feature string");
-    lua_error(L);
+  if (hb_feature_from_string(feature, -1, &f)) {
+    Feature *fp = (Feature *)lua_newuserdata(L, sizeof(*fp));
+    luaL_getmetatable(L, "harfbuzz.Feature");
+    lua_setmetatable(L, -2);
+    *fp = f;
+  } else {
+    lua_pushnil(L);
   }
-
-  Feature *fp = (Feature *)lua_newuserdata(L, sizeof(*fp));
-  luaL_getmetatable(L, "harfbuzz.Feature");
-  lua_setmetatable(L, -2);
-  *fp = f;
 
   return 1;
 }
