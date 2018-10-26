@@ -19,11 +19,11 @@ int shape_full (lua_State *L) {
   }
 
   // Shape text
-  hb_shape_full(*font, *buf, features, num_features, NULL);
+  lua_pushboolean(L, hb_shape_full(*font, *buf, features, num_features, NULL));
 
   free(features);
 
-  return 0;
+  return 1;
 }
 
 int version (lua_State *L) {
