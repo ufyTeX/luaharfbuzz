@@ -129,13 +129,14 @@ static int buffer_destroy(lua_State *L) {
   return 0;
 }
 
-static int buffer_get_glyph_infos_and_positions(lua_State *L) {
+static int buffer_get_glyphs(lua_State *L) {
   Buffer *buf = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
   // Get glyph info and positions out of buffer
   unsigned int len = hb_buffer_get_length(*buf);
   hb_glyph_info_t *info = hb_buffer_get_glyph_infos(*buf, NULL);
   hb_glyph_position_t *pos = hb_buffer_get_glyph_positions(*buf, NULL);
+  hb_glyph_flags_t flags;
   unsigned int i;
 
   // Create Lua table and push glyph data onto it.
@@ -162,6 +163,12 @@ static int buffer_get_glyph_infos_and_positions(lua_State *L) {
 
     lua_pushnumber(L, pos[i].y_offset);
     lua_setfield(L, -2, "y_offset");
+
+    flags = hb_glyph_info_get_glyph_flags(&(info[i]));
+    if (flags & HB_GLYPH_FLAG_DEFINED) {
+      lua_pushnumber(L, flags);
+      lua_setfield(L, -2, "flags");
+    }
 
     lua_settable(L, -3); // Add child table at index i+1 to parent table
   }
@@ -209,7 +216,7 @@ static const struct luaL_Reg buffer_methods[] = {
   { "get_language", buffer_get_language },
   { "set_script", buffer_set_script },
   { "get_script", buffer_get_script },
-  { "get_glyph_infos_and_positions", buffer_get_glyph_infos_and_positions },
+  { "get_glyphs", buffer_get_glyphs },
   { "guess_segment_properties", buffer_guess_segment_properties },
   { "reverse", buffer_reverse },
   { "get_length", buffer_get_length },

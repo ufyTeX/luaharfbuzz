@@ -2,7 +2,7 @@
 
 SHAPER_OPTS="--font-funcs=ot  --shapers=ot"
 CLUSTER_OPTS="--utf8-clusters"
-FORMAT_OPTS="--no-glyph-names --output-format=json"
+FORMAT_OPTS="--show-flags --no-glyph-names --output-format=json"
 STANDARD_OPTS="$SHAPER_OPTS $CLUSTER_OPTS $FORMAT_OPTS"
 
 hb-shape $STANDARD_OPTS fonts/notonastaliq.ttf "یہ" > fixtures/notonastaliq_U06CC_U06C1.json

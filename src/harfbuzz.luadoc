@@ -198,8 +198,8 @@
 --  @function Buffer:guess_segment_properties
 
 --- Helper method to get shaped glyph data.
---  Calls `hb_buffer_get_glyph_infos` and `hb_buffer_get_glyph_positions`
---  and assembles the data into a Lua table.
+--  Calls `hb_buffer_get_glyph_infos`, `hb_buffer_get_glyph_positions` and
+-- `hb_glyph_info_get_glyph_flags`, and assembles the data into a Lua table.
 --  @return table containing data for each glyph, in a nested table. Each nested
 --  table contains the following:
 --
@@ -209,7 +209,8 @@
 --  * `y_offset`: vertical displacement.
 --  * `cluster`: glyph cluster index within input.
 --  * `codepoint`: glyph index inside the font _(this field name is a bit misleading, but that’s what Harfbuzz uses)_.
---  @function Buffer:get_glyphs_and_positions
+--  * `flags`: glyph flags
+--  @function Buffer:get_glyphs
 
 --- Cluster Levels.
 -- See [Harfbuzz docs](http://behdad.github.io/harfbuzz/clusters.html) for more details

@@ -25,6 +25,9 @@ hb.Direction.HB_DIRECTION_BTT = hb.Direction.new("btt")
 -- special languages
 hb.Language.HB_LANGUAGE_INVALID = hb.Language.new()
 
+-- For backward compatibility
+hb.Buffer.get_glyph_infos_and_positions = hb.Buffer.get_glyphs
+
 hb.shape = function(font, buf, options)
   options = options or { }
 

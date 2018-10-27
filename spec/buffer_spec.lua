@@ -131,9 +131,9 @@ describe("harfbuzz.Buffer", function()
     local buf= harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)
     harfbuzz.shape(font, buf, options)
-    local orig_glyphs = buf:get_glyph_infos_and_positions()
+    local orig_glyphs = buf:get_glyphs()
     buf:reverse()
-    local reversed_glyphs = buf:get_glyph_infos_and_positions()
+    local reversed_glyphs = buf:get_glyphs()
 
     assert.are_equal(#orig_glyphs, #reversed_glyphs)
 
