@@ -16,6 +16,7 @@ local compare_glyphs_against_fixture = function(glyphs, fixture)
     assert.are_equal(h.ay, g.y_advance)
     assert.are_equal(h.dx, g.x_offset)
     assert.are_equal(h.dy, g.y_offset)
+    assert.are_equal(h.fl, g.flags)
   end
 end
 
@@ -30,7 +31,7 @@ describe("harfbuzz module shaping functions", function()
     buf:add_utf8(urdu_text)
 
     harfbuzz.shape(font, buf)
-    local glyphs = buf:get_glyph_infos_and_positions()
+    local glyphs = buf:get_glyphs()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
@@ -42,7 +43,7 @@ describe("harfbuzz module shaping functions", function()
     buf:add_utf8(urdu_text)
 
     harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL })
-    local glyphs = buf:get_glyph_infos_and_positions()
+    local glyphs = buf:get_glyphs()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
@@ -58,7 +59,7 @@ describe("harfbuzz module shaping functions", function()
     local font_korean = harfbuzz.Font.new(face_korean)
 
     harfbuzz.shape(font_korean, buf, { language = harfbuzz.Language.new("KOR"), script = harfbuzz.Script.new("hang"), direction = harfbuzz.Direction.HB_DIRECTION_LTR })
-    local glyphs = buf:get_glyph_infos_and_positions()
+    local glyphs = buf:get_glyphs()
     assert.True(#glyphs > 0)
 
     -- Compare against output of hb-shape
@@ -70,7 +71,7 @@ describe("harfbuzz module shaping functions", function()
     buf:add_utf8(urdu_text)
 
     harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL, features = "+kern,smcp" })
-    local glyphs = buf:get_glyph_infos_and_positions()
+    local glyphs = buf:get_glyphs()
     assert.True(#glyphs > 0)
   end)
 
@@ -91,7 +92,7 @@ describe("harfbuzz module shaping functions", function()
       }
 
       harfbuzz.shape(font, buf, options)
-      local glyphs = buf:get_glyph_infos_and_positions()
+      local glyphs = buf:get_glyphs()
       assert.True(#glyphs > 0)
     end)
 
@@ -132,7 +133,7 @@ describe("harfbuzz module shaping functions", function()
       buf:add_utf8("123")
 
       harfbuzz.shape(amiri_font, buf, opts)
-      local glyphs = buf:get_glyph_infos_and_positions()
+      local glyphs = buf:get_glyphs()
       compare_glyphs_against_fixture(glyphs, "amiri-regular_123.json")
 
       -- Check shaping with '+numr'
@@ -140,7 +141,7 @@ describe("harfbuzz module shaping functions", function()
       buf:add_utf8("123")
       opts.features = "+numr"
       harfbuzz.shape(amiri_font, buf, opts)
-      glyphs = buf:get_glyph_infos_and_positions()
+      glyphs = buf:get_glyphs()
       compare_glyphs_against_fixture(glyphs, "amiri-regular_123_numr.json")
     end)
   end)
