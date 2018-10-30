@@ -15,12 +15,6 @@ hb.Script.INHERITED = hb.Script.new("Zinh")
 hb.Script.UNKNOWN   = hb.Script.new("Zzzz")
 hb.Script.INVALID   = hb.Script.from_iso15924_tag(hb.Tag.HB_TAG_NONE)
 
--- For backward compatibility
-hb.Script.HB_SCRIPT_COMMON    = hb.Script.COMMON
-hb.Script.HB_SCRIPT_INHERITED = hb.Script.INHERITED
-hb.Script.HB_SCRIPT_UNKNOWN   = hb.Script.UNKNOWN
-hb.Script.HB_SCRIPT_INVALID   = hb.Script.INVALID
-
 -- directions
 hb.Direction.INVALID = hb.Direction.new("invalid")
 hb.Direction.LTR = hb.Direction.new("ltr")
@@ -28,24 +22,8 @@ hb.Direction.RTL = hb.Direction.new("rtl")
 hb.Direction.TTB = hb.Direction.new("ttb")
 hb.Direction.BTT = hb.Direction.new("btt")
 
--- For backward compatibility
-hb.Direction.HB_DIRECTION_INVALID = hb.Direction.INVALID
-hb.Direction.HB_DIRECTION_LTR = hb.Direction.LTR
-hb.Direction.HB_DIRECTION_RTL = hb.Direction.RTL
-hb.Direction.HB_DIRECTION_TTB = hb.Direction.TTB
-hb.Direction.HB_DIRECTION_BTT = hb.Direction.BTT
-
-hb.Direction.HB_DIRECTION_IS_VALID = hb.Direction.is_valid
-hb.Direction.HB_DIRECTION_IS_HORIZONTAL = hb.Direction.is_horizontal
-hb.Direction.HB_DIRECTION_IS_VERTICAL = hb.Direction.is_vertical
-hb.Direction.HB_DIRECTION_IS_FORWARD = hb.Direction.is_forward
-hb.Direction.HB_DIRECTION_IS_BACKWARD = hb.Direction.is_backward
-
 -- special languages
 hb.Language.HB_LANGUAGE_INVALID = hb.Language.new()
-
--- For backward compatibility
-hb.Buffer.get_glyph_infos_and_positions = hb.Buffer.get_glyphs
 
 hb.shape = function(font, buf, options)
   options = options or { }
@@ -79,5 +57,25 @@ hb.shape = function(font, buf, options)
 
   return hb.shape_full(font,buf,features)
 end
+
+-- For backward compatibility
+hb.Script.HB_SCRIPT_COMMON    = hb.Script.COMMON
+hb.Script.HB_SCRIPT_INHERITED = hb.Script.INHERITED
+hb.Script.HB_SCRIPT_UNKNOWN   = hb.Script.UNKNOWN
+hb.Script.HB_SCRIPT_INVALID   = hb.Script.INVALID
+
+hb.Direction.HB_DIRECTION_INVALID = hb.Direction.INVALID
+hb.Direction.HB_DIRECTION_LTR = hb.Direction.LTR
+hb.Direction.HB_DIRECTION_RTL = hb.Direction.RTL
+hb.Direction.HB_DIRECTION_TTB = hb.Direction.TTB
+hb.Direction.HB_DIRECTION_BTT = hb.Direction.BTT
+
+hb.Direction.HB_DIRECTION_IS_VALID = hb.Direction.is_valid
+hb.Direction.HB_DIRECTION_IS_HORIZONTAL = hb.Direction.is_horizontal
+hb.Direction.HB_DIRECTION_IS_VERTICAL = hb.Direction.is_vertical
+hb.Direction.HB_DIRECTION_IS_FORWARD = hb.Direction.is_forward
+hb.Direction.HB_DIRECTION_IS_BACKWARD = hb.Direction.is_backward
+
+hb.Buffer.get_glyph_infos_and_positions = hb.Buffer.get_glyphs
 
 return hb
