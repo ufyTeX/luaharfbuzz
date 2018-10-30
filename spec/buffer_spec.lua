@@ -62,22 +62,22 @@ describe("harfbuzz.Buffer", function()
   it("can get and set the direction of a buffer", function()
     local b = harfbuzz.Buffer.new()
     b:add_utf8("abc")
-    local dir = harfbuzz.Direction.HB_DIRECTION_RTL
+    local dir = harfbuzz.Direction.RTL
     b:set_direction(dir)
     assert.are_equal(dir, b:get_direction())
   end)
 
-  it("sets direction to HB_DIRECTION_INVALID if direction is invalid", function()
+  it("sets direction to INVALID if direction is invalid", function()
     local b = harfbuzz.Buffer.new()
     b:set_direction(harfbuzz.Direction.new("invalid"))
-    assert.are_equal(harfbuzz.Direction.HB_DIRECTION_INVALID, b:get_direction())
+    assert.are_equal(harfbuzz.Direction.INVALID, b:get_direction())
   end)
 
   it("can get the direction correctly", function()
     local b = harfbuzz.Buffer.new()
     b:add_utf8("یہ")
     b:guess_segment_properties()
-    assert.are_equal(harfbuzz.Direction.HB_DIRECTION_RTL, b:get_direction())
+    assert.are_equal(harfbuzz.Direction.RTL, b:get_direction())
   end)
 
   it("can get and set the language of a buffer", function()
@@ -126,7 +126,7 @@ describe("harfbuzz.Buffer", function()
     local face = harfbuzz.Face.new('fonts/notonastaliq.ttf')
     local font = harfbuzz.Font.new(face)
     local urdu_text = "یہ" -- U+06CC U+06C1
-    local options = { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL }
+    local options = { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.RTL }
 
     local buf= harfbuzz.Buffer.new()
     buf:add_utf8(urdu_text)

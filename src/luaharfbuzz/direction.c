@@ -71,11 +71,11 @@ static const struct luaL_Reg direction_methods[] = {
 
 static const struct luaL_Reg direction_functions[] = {
   { "new", direction_new },
-  { "HB_DIRECTION_IS_VALID", direction_is_valid },
-  { "HB_DIRECTION_IS_HORIZONTAL", direction_is_horizontal },
-  { "HB_DIRECTION_IS_VERTICAL", direction_is_vertical },
-  { "HB_DIRECTION_IS_FORWARD", direction_is_forward },
-  { "HB_DIRECTION_IS_BACKWARD", direction_is_backward },
+  { "is_valid", direction_is_valid },
+  { "is_horizontal", direction_is_horizontal },
+  { "is_vertical", direction_is_vertical },
+  { "is_forward", direction_is_forward },
+  { "is_backward", direction_is_backward },
   { NULL,  NULL }
 };
 

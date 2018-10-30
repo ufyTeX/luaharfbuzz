@@ -23,13 +23,13 @@ buf:add_utf8(text)
 
 -- harfbuzz.shape (Shapes text)
 print("\nShaping '"..text.."' set with Noto Nastaliq Urdu")
-harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.HB_DIRECTION_RTL})
+harfbuzz.shape(font, buf, { language = harfbuzz.Language.new("urd"), script = harfbuzz.Script.new("Arab"), direction = harfbuzz.Direction.RTL})
 
 local glyphs = buf:get_glyphs()
 print("No. of glyphs", #glyphs)
 print(serpent.line(glyphs, {comment = false}))
 
-local opts = { language = harfbuzz.Language.new("eng"), script = harfbuzz.Script.new("Latn"), direction = harfbuzz.Direction.HB_DIRECTION_LTR }
+local opts = { language = harfbuzz.Language.new("eng"), script = harfbuzz.Script.new("Latn"), direction = harfbuzz.Direction.LTR }
 local amiri_face = harfbuzz.Face.new('../fonts/amiri-regular.ttf')
 local amiri_font = harfbuzz.Font.new(amiri_face)
 
