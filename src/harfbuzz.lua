@@ -7,13 +7,13 @@ hb.Buffer.CLUSTER_LEVEL_CHARACTERS          = 2
 hb.Buffer.CLUSTER_LEVEL_DEFAULT             = hb.Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES
 
 -- special tags
-hb.Tag.HB_TAG_NONE = hb.Tag.new()
+hb.Tag.NONE = hb.Tag.new()
 
 -- special script codes (ISO 15924)
 hb.Script.COMMON    = hb.Script.new("Zyyy")
 hb.Script.INHERITED = hb.Script.new("Zinh")
 hb.Script.UNKNOWN   = hb.Script.new("Zzzz")
-hb.Script.INVALID   = hb.Script.from_iso15924_tag(hb.Tag.HB_TAG_NONE)
+hb.Script.INVALID   = hb.Script.from_iso15924_tag(hb.Tag.NONE)
 
 -- directions
 hb.Direction.INVALID = hb.Direction.new("invalid")
@@ -63,6 +63,8 @@ hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES  = hb.Buffer.CLUSTER_LEVEL_
 hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS = hb.Buffer.CLUSTER_LEVEL_MONOTONE_CHARACTERS
 hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS          = hb.Buffer.CLUSTER_LEVEL_CHARACTERS
 hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT             = hb.Buffer.CLUSTER_LEVEL_DEFAULT
+
+hb.Tag.HB_TAG_NONE = hb.Tag.NONE
 
 hb.Script.HB_SCRIPT_COMMON    = hb.Script.COMMON
 hb.Script.HB_SCRIPT_INHERITED = hb.Script.INHERITED
