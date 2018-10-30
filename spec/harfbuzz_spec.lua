@@ -287,11 +287,11 @@ describe("harfbuzz module", function()
       harfbuzz.Language.new('urd')
     end)
 
-    it("can be initialised to HB_LANGUAGE_INVALID with nil or empty argument", function()
+    it("can be initialised to INVALID with nil or empty argument", function()
       local t = harfbuzz.Language.new()
-      assert.are_equal(harfbuzz.Language.HB_LANGUAGE_INVALID, t)
+      assert.are_equal(harfbuzz.Language.INVALID, t)
       t = harfbuzz.Language.new(nil)
-      assert.are_equal(harfbuzz.Language.HB_LANGUAGE_INVALID, t)
+      assert.are_equal(harfbuzz.Language.INVALID, t)
     end)
 
     it("has a valid tostring value", function()
@@ -309,10 +309,10 @@ describe("harfbuzz module", function()
       assert.are_not_equal(t1, t3)
     end)
 
-    it("has a preset value for HB_LANGUAGE_INVALID", function()
-      local n = harfbuzz.Language.HB_LANGUAGE_INVALID
+    it("has a preset value for INVALID", function()
+      local n = harfbuzz.Language.INVALID
       assert.is_not_nil(n)
-      assert.are_equal(harfbuzz.Language.HB_LANGUAGE_INVALID, harfbuzz.Language.new())
+      assert.are_equal(harfbuzz.Language.INVALID, harfbuzz.Language.new())
     end)
   end)
 

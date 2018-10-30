@@ -23,7 +23,7 @@ hb.Direction.TTB = hb.Direction.new("ttb")
 hb.Direction.BTT = hb.Direction.new("btt")
 
 -- special languages
-hb.Language.HB_LANGUAGE_INVALID = hb.Language.new()
+hb.Language.INVALID = hb.Language.new()
 
 hb.shape = function(font, buf, options)
   options = options or { }
@@ -63,6 +63,8 @@ hb.Script.HB_SCRIPT_COMMON    = hb.Script.COMMON
 hb.Script.HB_SCRIPT_INHERITED = hb.Script.INHERITED
 hb.Script.HB_SCRIPT_UNKNOWN   = hb.Script.UNKNOWN
 hb.Script.HB_SCRIPT_INVALID   = hb.Script.INVALID
+
+hb.Language.HB_LANGUAGE_INVALID = hb.Language.INVALID
 
 hb.Direction.HB_DIRECTION_INVALID = hb.Direction.INVALID
 hb.Direction.HB_DIRECTION_LTR = hb.Direction.LTR
