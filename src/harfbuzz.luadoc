@@ -317,43 +317,43 @@
 --- Wraps `HB_DIRECTION_IS_VALID`.
 -- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.HB_DIRECTION_IS_VALID
+-- @function Direction.is_valid
 
 --- Wraps `HB_DIRECTION_IS_HORIZONTAL`.
 -- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.HB_DIRECTION_IS_HORIZONTAL
+-- @function Direction.is_horizontal
 
 --- Wraps `HB_DIRECTION_IS_VERTICAL`.
 -- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.HB_DIRECTION_IS_VERTICAL
+-- @function Direction.is_vertical
 
 --- Wraps `HB_DIRECTION_IS_FORWARD`.
 -- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.HB_DIRECTION_IS_FORWARD
+-- @function Direction.is_forward
 
 --- Wraps `HB_DIRECTION_IS_BACKWARD`.
 -- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.HB_DIRECTION_IS_BACKWARD
+-- @function Direction.is_backward
 
 --- Predefined directions.
 -- Predefined directions that correspond to their original definitions in Harfbuzz.
 -- @section
 
 --- Wraps `HB_DIRECTION_LTR`.
--- @field Direction.HB_DIRECTION_LTR
+-- @field Direction.LTR
 
 --- Wraps `HB_DIRECTION_RTL`.
--- @field Direction.HB_DIRECTION_RTL
+-- @field Direction.RTL
 
 --- Wraps `HB_DIRECTION_TTB`.
--- @field Direction.HB_DIRECTION_TTB
+-- @field Direction.TTB
 
 --- Wraps `HB_DIRECTION_LTR`.
--- @field Direction.HB_DIRECTION_BTT
+-- @field Direction.BTT
 
 --- Lua wrapper for `hb_language_t` type.
 --  @type Language

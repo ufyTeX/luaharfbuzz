@@ -16,11 +16,24 @@ hb.Script.HB_SCRIPT_UNKNOWN   = hb.Script.new("Zzzz")
 hb.Script.HB_SCRIPT_INVALID   = hb.Script.from_iso15924_tag(hb.Tag.HB_TAG_NONE)
 
 -- directions
-hb.Direction.HB_DIRECTION_INVALID = hb.Direction.new("invalid")
-hb.Direction.HB_DIRECTION_LTR = hb.Direction.new("ltr")
-hb.Direction.HB_DIRECTION_RTL = hb.Direction.new("rtl")
-hb.Direction.HB_DIRECTION_TTB = hb.Direction.new("ttb")
-hb.Direction.HB_DIRECTION_BTT = hb.Direction.new("btt")
+hb.Direction.INVALID = hb.Direction.new("invalid")
+hb.Direction.LTR = hb.Direction.new("ltr")
+hb.Direction.RTL = hb.Direction.new("rtl")
+hb.Direction.TTB = hb.Direction.new("ttb")
+hb.Direction.BTT = hb.Direction.new("btt")
+
+-- For backward compatibility
+hb.Direction.HB_DIRECTION_INVALID = hb.Direction.INVALID
+hb.Direction.HB_DIRECTION_LTR = hb.Direction.LTR
+hb.Direction.HB_DIRECTION_RTL = hb.Direction.RTL
+hb.Direction.HB_DIRECTION_TTB = hb.Direction.TTB
+hb.Direction.HB_DIRECTION_BTT = hb.Direction.BTT
+
+hb.Direction.HB_DIRECTION_IS_VALID = hb.Direction.is_valid
+hb.Direction.HB_DIRECTION_IS_HORIZONTAL = hb.Direction.is_horizontal
+hb.Direction.HB_DIRECTION_IS_VERTICAL = hb.Direction.is_vertical
+hb.Direction.HB_DIRECTION_IS_FORWARD = hb.Direction.is_forward
+hb.Direction.HB_DIRECTION_IS_BACKWARD = hb.Direction.is_backward
 
 -- special languages
 hb.Language.HB_LANGUAGE_INVALID = hb.Language.new()
