@@ -159,13 +159,13 @@ describe("harfbuzz.Buffer", function()
 
   it("can get the cluster level of the buffer", function()
     local b = harfbuzz.Buffer.new()
-    assert.are_equal(harfbuzz.Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT, b:get_cluster_level())
+    assert.are_equal(harfbuzz.Buffer.CLUSTER_LEVEL_DEFAULT, b:get_cluster_level())
   end)
 
   it("can set the cluster level of the buffer", function()
     local b = harfbuzz.Buffer.new()
-    b:set_cluster_level(harfbuzz.Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS)
-    assert.are_equal(harfbuzz.Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS, b:get_cluster_level())
+    b:set_cluster_level(harfbuzz.Buffer.CLUSTER_LEVEL_CHARACTERS)
+    assert.are_equal(harfbuzz.Buffer.CLUSTER_LEVEL_CHARACTERS, b:get_cluster_level())
   end)
 end)
 
