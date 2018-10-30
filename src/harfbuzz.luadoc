@@ -376,7 +376,7 @@
 -- @section
 
 --- Wraps `HB_LANGUAGE_INVALID`.
--- @field Language.HB_LANGUAGE_INVALID
+-- @field Language.INVALID
 
 
 --- Unicode functions.
