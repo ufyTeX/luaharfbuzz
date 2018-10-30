@@ -108,10 +108,10 @@ describe("harfbuzz.Buffer", function()
     assert.are_equal("Latn", tostring(b:get_script()))
   end)
 
-  it("returns script as HB_SCRIPT_UNKNOWN if script is invalid", function()
+  it("returns script as UNKNOWN if script is invalid", function()
     local b = harfbuzz.Buffer.new()
     b:set_script(harfbuzz.Script.new("xxx"))
-    assert.are_equal(harfbuzz.Script.HB_SCRIPT_UNKNOWN, b:get_script())
+    assert.are_equal(harfbuzz.Script.UNKNOWN, b:get_script())
   end)
 
   it("can get the script correctly", function()
