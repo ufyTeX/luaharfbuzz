@@ -155,11 +155,11 @@ describe("harfbuzz module", function()
       harfbuzz.Tag.new('Zyyy')
     end)
 
-    it("can be initialised to HB_TAG_NONE with nil or empty argument", function()
+    it("can be initialised to NONE with nil or empty argument", function()
       local t = harfbuzz.Tag.new()
-      assert.are_equal(harfbuzz.Tag.HB_TAG_NONE, t)
+      assert.are_equal(harfbuzz.Tag.NONE, t)
       t = harfbuzz.Tag.new(nil)
-      assert.are_equal(harfbuzz.Tag.HB_TAG_NONE, t)
+      assert.are_equal(harfbuzz.Tag.NONE, t)
     end)
 
     it("has a valid tostring value", function()
@@ -177,11 +177,11 @@ describe("harfbuzz module", function()
       assert.are_not_equal(t1, t3)
     end)
 
-    it("has a preset value for HB_TAG_NONE", function()
-      local n = harfbuzz.Tag.HB_TAG_NONE
+    it("has a preset value for NONE", function()
+      local n = harfbuzz.Tag.NONE
       assert.is_not_nil(n)
       assert.are_equal("", tostring(n))
-      assert.are_equal(harfbuzz.Tag.HB_TAG_NONE, harfbuzz.Tag.new(""))
+      assert.are_equal(harfbuzz.Tag.NONE, harfbuzz.Tag.new(""))
     end)
   end)
 
