@@ -10,10 +10,16 @@ hb.Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT             = hb.Buffer.HB_BUFFER_CLUS
 hb.Tag.HB_TAG_NONE = hb.Tag.new()
 
 -- special script codes (ISO 15924)
-hb.Script.HB_SCRIPT_COMMON    = hb.Script.new("Zyyy")
-hb.Script.HB_SCRIPT_INHERITED = hb.Script.new("Zinh")
-hb.Script.HB_SCRIPT_UNKNOWN   = hb.Script.new("Zzzz")
-hb.Script.HB_SCRIPT_INVALID   = hb.Script.from_iso15924_tag(hb.Tag.HB_TAG_NONE)
+hb.Script.COMMON    = hb.Script.new("Zyyy")
+hb.Script.INHERITED = hb.Script.new("Zinh")
+hb.Script.UNKNOWN   = hb.Script.new("Zzzz")
+hb.Script.INVALID   = hb.Script.from_iso15924_tag(hb.Tag.HB_TAG_NONE)
+
+-- For backward compatibility
+hb.Script.HB_SCRIPT_COMMON    = hb.Script.COMMON
+hb.Script.HB_SCRIPT_INHERITED = hb.Script.INHERITED
+hb.Script.HB_SCRIPT_UNKNOWN   = hb.Script.UNKNOWN
+hb.Script.HB_SCRIPT_INVALID   = hb.Script.INVALID
 
 -- directions
 hb.Direction.INVALID = hb.Direction.new("invalid")

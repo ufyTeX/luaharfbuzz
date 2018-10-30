@@ -287,16 +287,16 @@
 -- @section
 
 --- Wraps `HB_SCRIPT_COMMON`.
--- @field Script.HB_SCRIPT_COMMON
+-- @field Script.COMMON
 
 --- Wraps `HB_SCRIPT_INHERITED`.
--- @field Script.HB_SCRIPT_INHERITED
+-- @field Script.INHERITED
 
 --- Wraps `HB_SCRIPT_UNKNOWN`.
--- @field Script.HB_SCRIPT_UNKNOWN
+-- @field Script.UNKNOWN
 
 --- Wraps `HB_SCRIPT_INVALID`.
--- @field Script.HB_SCRIPT_INVALID
+-- @field Script.INVALID
 
 --- Lua wrapper for `hb_direction_t` type.
 -- @type Direction
