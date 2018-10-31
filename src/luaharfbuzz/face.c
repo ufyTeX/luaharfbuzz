@@ -39,6 +39,36 @@ static int face_get_glyph_count(lua_State *L) {
   return 1;
 }
 
+static int face_get_name(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  hb_ot_name_id_t name_id = (hb_ot_name_id_t) luaL_checkinteger(L, 2);
+  hb_language_t lang = HB_LANGUAGE_INVALID;
+#define TEXT_SIZE 128
+  int text_size = TEXT_SIZE, len;
+  char name[TEXT_SIZE];
+
+  if (lua_gettop(L) > 2)
+    lang = *((Language*)luaL_checkudata(L, 3, "harfbuzz.Language"));
+
+  len = hb_ot_name_get_utf8(*f, name_id, lang, &text_size, name);
+  if (len) {
+    if (len < TEXT_SIZE) {
+      lua_pushstring(L, name);
+    } else {
+      char *name = malloc(len + 1);
+      text_size = len + 1;
+      hb_ot_name_get_utf8(*f, name_id, lang, &text_size, name);
+      lua_pushstring(L, name);
+      free(name);
+    }
+  } else {
+    lua_pushnil(L);
+  }
+#undef TEXT_SIZE
+
+  return 1;
+}
+
 static void set_tags(lua_State *L, hb_tag_t *tags, unsigned int count) {
   unsigned int i;
 
@@ -119,6 +149,7 @@ static const struct luaL_Reg face_methods[] = {
   { "__gc", face_destroy },
   { "collect_unicodes", face_collect_unicodes },
   { "get_glyph_count", face_get_glyph_count },
+  { "get_name", face_get_name },
   { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
   { NULL, NULL }

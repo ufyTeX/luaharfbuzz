@@ -35,4 +35,5 @@ int register_tag(lua_State *L);
 int register_script(lua_State *L);
 int register_direction(lua_State *L);
 int register_language(lua_State *L);
+int register_ot(lua_State *L);
 int register_unicode(lua_State *L);

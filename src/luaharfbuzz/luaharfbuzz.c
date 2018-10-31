@@ -79,6 +79,9 @@ int luaopen_luaharfbuzz (lua_State *L) {
   register_language(L);
   lua_setfield(L, -2, "Language");
 
+  register_ot(L);
+  lua_setfield(L, -2, "ot");
+
   register_unicode(L);
   lua_setfield(L, -2, "unicode");
 
