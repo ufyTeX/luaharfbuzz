@@ -67,5 +67,5 @@ static const struct luaL_Reg script_functions[] = {
 };
 
 int register_script(lua_State *L) {
-  return register_class(L, "harfbuzz.Script", script_methods, script_functions);
+  return register_class(L, "harfbuzz.Script", script_methods, script_functions, NULL);
 }

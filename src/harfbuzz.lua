@@ -1,11 +1,5 @@
 local hb = require("luaharfbuzz")
 
--- buffer cluster levels
-hb.Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES  = 0
-hb.Buffer.CLUSTER_LEVEL_MONOTONE_CHARACTERS = 1
-hb.Buffer.CLUSTER_LEVEL_CHARACTERS          = 2
-hb.Buffer.CLUSTER_LEVEL_DEFAULT             = hb.Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES
-
 -- special tags
 hb.Tag.NONE = hb.Tag.new()
 

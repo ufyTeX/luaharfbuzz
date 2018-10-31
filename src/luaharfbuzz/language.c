@@ -44,5 +44,5 @@ static const struct luaL_Reg language_functions[] = {
 };
 
 int register_language(lua_State *L) {
-  return  register_class(L, "harfbuzz.Language", language_methods, language_functions);
+  return  register_class(L, "harfbuzz.Language", language_methods, language_functions, NULL);
 }

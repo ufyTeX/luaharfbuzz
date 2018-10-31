@@ -19,8 +19,13 @@ typedef hb_script_t Script;
 typedef hb_direction_t Direction;
 typedef hb_language_t Language;
 
+typedef struct luahb_constant_t {
+  const char *name;
+  int value;
+} luahb_constant_t;
+
 // Functions to create classes and push them onto the stack
-int register_class(lua_State *L, const char *name, const luaL_Reg * methods, const luaL_Reg *functions);
+int register_class(lua_State *L, const char *name, const luaL_Reg * methods, const luaL_Reg *functions, const luahb_constant_t* constants);
 int register_blob(lua_State *L);
 int register_face(lua_State *L);
 int register_font(lua_State *L);
