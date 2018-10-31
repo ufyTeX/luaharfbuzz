@@ -386,3 +386,86 @@
 -- @param char Unicode codepoint
 -- @return a `Script` object.
 -- @function unicode.script
+
+
+--- Predefined Name IDs.
+-- Predefined OpenType 'name' table name identifier.
+-- @section
+
+--- Wraps `HB_OT_NAME_ID_COPYRIGHT`
+-- @field ot.NAME_ID_COPYRIGHT
+
+--- Wraps `HB_OT_NAME_ID_FONT_FAMILY`
+-- @field ot.NAME_ID_FONT_FAMILY
+
+--- Wraps `HB_OT_NAME_ID_FONT_SUBFAMILY`
+-- @field ot.NAME_ID_FONT_SUBFAMILY
+
+--- Wraps `HB_OT_NAME_ID_UNIQUE_ID`
+-- @field ot.NAME_ID_UNIQUE_ID
+
+--- Wraps `HB_OT_NAME_ID_FULL_NAME`
+-- @field ot.NAME_ID_FULL_NAME
+
+--- Wraps `HB_OT_NAME_ID_VERSION_STRING`
+-- @field ot.NAME_ID_VERSION_STRING
+
+--- Wraps `HB_OT_NAME_ID_POSTSCRIPT_NAME`
+-- @field ot.NAME_ID_POSTSCRIPT_NAME
+
+--- Wraps `HB_OT_NAME_ID_TRADEMARK`
+-- @field ot.NAME_ID_TRADEMARK
+
+--- Wraps `HB_OT_NAME_ID_MANUFACTURER`
+-- @field ot.NAME_ID_MANUFACTURER
+
+--- Wraps `HB_OT_NAME_ID_DESIGNER`
+-- @field ot.NAME_ID_DESIGNER
+
+--- Wraps `HB_OT_NAME_ID_DESCRIPTION`
+-- @field ot.NAME_ID_DESCRIPTION
+
+--- Wraps `HB_OT_NAME_ID_VENDOR_URL`
+-- @field ot.NAME_ID_VENDOR_URL
+
+--- Wraps `HB_OT_NAME_ID_DESIGNER_URL`
+-- @field ot.NAME_ID_DESIGNER_URL
+
+--- Wraps `HB_OT_NAME_ID_LICENSE`
+-- @field ot.NAME_ID_LICENSE
+
+--- Wraps `HB_OT_NAME_ID_LICENSE_URL`
+-- @field ot.NAME_ID_LICENSE_URL
+
+--- Wraps `HB_OT_NAME_ID_TYPOGRAPHIC_FAMILY`
+-- @field ot.NAME_ID_TYPOGRAPHIC_FAMILY
+
+--- Wraps `HB_OT_NAME_ID_TYPOGRAPHIC_SUBFAMILY`
+-- @field ot.NAME_ID_TYPOGRAPHIC_SUBFAMILY
+
+--- Wraps `HB_OT_NAME_ID_MAC_FULL_NAME`
+-- @field ot.NAME_ID_MAC_FULL_NAME
+
+--- Wraps `HB_OT_NAME_ID_SAMPLE_TEXT`
+-- @field ot.NAME_ID_SAMPLE_TEXT
+
+--- Wraps `HB_OT_NAME_ID_CID_FINDFONT_NAME`
+-- @field ot.NAME_ID_CID_FINDFONT_NAME
+
+--- Wraps `HB_OT_NAME_ID_WWS_FAMILY`
+-- @field ot.NAME_ID_WWS_FAMILY
+
+--- Wraps `HB_OT_NAME_ID_WWS_SUBFAMILY`
+-- @field ot.NAME_ID_WWS_SUBFAMILY
+
+--- Wraps `HB_OT_NAME_ID_LIGHT_BACKGROUND`
+-- @field ot.NAME_ID_LIGHT_BACKGROUND
+
+--- Wraps `HB_OT_NAME_ID_DARK_BACKGROUND`
+-- @field ot.NAME_ID_DARK_BACKGROUND
+
+--- Wraps `HB_OT_NAME_ID_VARIATIONS_PS_PREFIX`
+-- @field ot.NAME_ID_VARIATIONS_PS_PREFIX
+
+--- Wraps `HB_OT_NAME_ID_INVALID`
+-- @field ot.NAME_ID_INVALID

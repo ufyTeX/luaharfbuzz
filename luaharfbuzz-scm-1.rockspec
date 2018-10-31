@@ -25,6 +25,7 @@ build = {
       "src/luaharfbuzz/buffer.c",
       "src/luaharfbuzz/feature.c",
       "src/luaharfbuzz/tag.c",
+      "src/luaharfbuzz/ot.c",
       "src/luaharfbuzz/unicode.c",
       "src/luaharfbuzz/script.c",
       "src/luaharfbuzz/direction.c",
