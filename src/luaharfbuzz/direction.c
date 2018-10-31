@@ -80,5 +80,5 @@ static const struct luaL_Reg direction_functions[] = {
 };
 
 int register_direction(lua_State *L) {
-  return register_class(L, "harfbuzz.Direction", direction_methods, direction_functions);
+  return register_class(L, "harfbuzz.Direction", direction_methods, direction_functions, NULL);
 }

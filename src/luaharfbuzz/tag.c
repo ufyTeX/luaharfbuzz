@@ -46,5 +46,5 @@ static const struct luaL_Reg tag_functions[] = {
 };
 
 int register_tag(lua_State *L) {
-  return  register_class(L, "harfbuzz.Tag", tag_methods, tag_functions);
+  return  register_class(L, "harfbuzz.Tag", tag_methods, tag_functions, NULL);
 }

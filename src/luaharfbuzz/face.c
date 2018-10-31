@@ -131,5 +131,5 @@ static const struct luaL_Reg face_functions[] = {
 };
 
 int register_face(lua_State *L) {
-  return register_class(L, "harfbuzz.Face", face_methods, face_functions);
+  return register_class(L, "harfbuzz.Face", face_methods, face_functions, NULL);
 }

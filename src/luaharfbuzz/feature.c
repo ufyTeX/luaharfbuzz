@@ -37,5 +37,5 @@ static const struct luaL_Reg feature_functions[] = {
 };
 
 int register_feature(lua_State *L) {
-  return register_class(L, "harfbuzz.Feature", feature_methods, feature_functions);
+  return register_class(L, "harfbuzz.Feature", feature_methods, feature_functions, NULL);
 }

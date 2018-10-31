@@ -230,6 +230,14 @@ static const struct luaL_Reg buffer_functions[] = {
   { NULL,  NULL }
 };
 
+static const struct luahb_constant_t buffer_constants[] = {
+  { "CLUSTER_LEVEL_MONOTONE_GRAPHEMES", HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES },
+  { "CLUSTER_LEVEL_MONOTONE_CHARACTERS", HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS },
+  { "CLUSTER_LEVEL_CHARACTERS", HB_BUFFER_CLUSTER_LEVEL_CHARACTERS },
+  { "CLUSTER_LEVEL_DEFAULT", HB_BUFFER_CLUSTER_LEVEL_DEFAULT },
+  { NULL, 0 }
+};
+
 int register_buffer(lua_State *L) {
-  return register_class(L, "harfbuzz.Buffer", buffer_methods, buffer_functions);
+  return register_class(L, "harfbuzz.Buffer", buffer_methods, buffer_functions, buffer_constants);
 }
