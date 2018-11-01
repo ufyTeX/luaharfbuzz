@@ -42,6 +42,11 @@ describe("harfbuzz module", function()
       assert.are_equal(2048,face:get_upem())
     end)
 
+    it("can return SFNT table", function()
+      local b = face:get_table(harfbuzz.Tag.new("OS/2"))
+      assert.are_equal(96,b:get_length())
+    end)
+
     it("can return table tags", function()
       local t = face:get_table_tags()
       assert.are_equal(14,#t)

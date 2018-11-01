@@ -69,6 +69,20 @@ static int face_get_name(lua_State *L) {
   return 1;
 }
 
+static int face_get_table(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *t = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  Blob *b;
+
+  b = (Blob *)lua_newuserdata(L, sizeof(*b));
+  luaL_getmetatable(L, "harfbuzz.Blob");
+  lua_setmetatable(L, -2);
+
+  *b = hb_face_reference_table(*f, *t);
+
+  return 1;
+}
+
 static void set_tags(lua_State *L, hb_tag_t *tags, unsigned int count) {
   unsigned int i;
 
@@ -150,6 +164,7 @@ static const struct luaL_Reg face_methods[] = {
   { "collect_unicodes", face_collect_unicodes },
   { "get_glyph_count", face_get_glyph_count },
   { "get_name", face_get_name },
+  { "get_table", face_get_table },
   { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
   { NULL, NULL }
