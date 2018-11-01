@@ -32,8 +32,20 @@ static int blob_get_length(lua_State *L) {
   return 1;
 }
 
+static int blob_get_data(lua_State *L) {
+  Blob *b = (Blob *)luaL_checkudata(L, 1, "harfbuzz.Blob");
+  unsigned int l;
+  const char *d;
+
+  d = hb_blob_get_data(*b, &l);
+  lua_pushlstring(L, d, l);
+
+  return 1;
+}
+
 static const struct luaL_Reg blob_methods[] = {
   { "get_length", blob_get_length },
+  { "get_data", blob_get_data },
   { NULL, NULL }
 };
 

@@ -43,6 +43,9 @@
 --- Wraps `hb_blob_get_length`.
 --  @function Blob:get_length
 
+--- Wraps `hb_blob_get_data`.
+--  @function Blob:get_data
+
 --- Lua wrapper for `hb_face_t` type
 --  @type Face
 
