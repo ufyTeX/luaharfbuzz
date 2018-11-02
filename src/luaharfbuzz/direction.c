@@ -66,16 +66,16 @@ static int direction_is_backward(lua_State *L) {
 static const struct luaL_Reg direction_methods[] = {
   { "__tostring", direction_to_string },
   { "__eq", direction_equals },
-  { NULL, NULL }
-};
-
-static const struct luaL_Reg direction_functions[] = {
-  { "new", direction_new },
   { "is_valid", direction_is_valid },
   { "is_horizontal", direction_is_horizontal },
   { "is_vertical", direction_is_vertical },
   { "is_forward", direction_is_forward },
   { "is_backward", direction_is_backward },
+  { NULL, NULL }
+};
+
+static const struct luaL_Reg direction_functions[] = {
+  { "new", direction_new },
   { NULL,  NULL }
 };
 
