@@ -323,29 +323,24 @@
 -- @function Direction:__eq
 
 --- Wraps `HB_DIRECTION_IS_VALID`.
--- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.is_valid
+-- @function Direction:is_valid
 
 --- Wraps `HB_DIRECTION_IS_HORIZONTAL`.
--- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.is_horizontal
+-- @function Direction:is_horizontal
 
 --- Wraps `HB_DIRECTION_IS_VERTICAL`.
--- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.is_vertical
+-- @function Direction:is_vertical
 
 --- Wraps `HB_DIRECTION_IS_FORWARD`.
--- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.is_forward
+-- @function Direction:is_forward
 
 --- Wraps `HB_DIRECTION_IS_BACKWARD`.
--- @param direction a `Direction` object.
 -- @return a boolean value
--- @function Direction.is_backward
+-- @function Direction:is_backward
 
 --- Predefined directions.
 -- Predefined directions that correspond to their original definitions in Harfbuzz.
