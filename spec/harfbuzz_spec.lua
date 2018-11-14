@@ -352,6 +352,7 @@ describe("harfbuzz module", function()
       local n = harfbuzz.Language.INVALID
       assert.is_not_nil(n)
       assert.are_equal(harfbuzz.Language.INVALID, harfbuzz.Language.new())
+      assert.are_equal("", tostring(n))
     end)
   end)
 

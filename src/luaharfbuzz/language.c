@@ -18,8 +18,9 @@ static int language_new(lua_State *L) {
 
 static int language_to_string(lua_State *L) {
   Language* l = (Language *)luaL_checkudata(L, 1, "harfbuzz.Language");
+  const char *s = hb_language_to_string(*l);
 
-  lua_pushstring(L, hb_language_to_string(*l));
+  lua_pushstring(L, s ? s : "");
   return 1;
 }
 
