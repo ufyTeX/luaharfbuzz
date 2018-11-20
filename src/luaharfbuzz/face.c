@@ -163,6 +163,115 @@ static int face_get_upem(lua_State *L) {
   return 1;
 }
 
+static int face_ot_color_has_palettes(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  lua_pushboolean(L, hb_ot_color_has_palettes(*f));
+  return 1;
+}
+
+static int face_ot_color_palette_get_count(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  lua_pushinteger(L, hb_ot_color_palette_get_count(*f));
+  return 1;
+}
+
+static int face_ot_color_palette_get_colors(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  unsigned int index = 0;
+
+  if (lua_gettop(L) > 1)
+    index = (unsigned int) luaL_checkinteger(L, 2) - 1;
+
+#define COUNT 128
+  unsigned int count = COUNT;
+  hb_color_t colors[COUNT];
+
+  if (hb_ot_color_palette_get_colors(*f, index, 0, NULL, NULL)) {
+    unsigned int i = 0, offset = 0;
+    lua_newtable(L); // parent table
+    do {
+      count = COUNT;
+      hb_ot_color_palette_get_colors(*f, index, offset, &count, colors);
+      for (i = 0; i < count; i++) {
+        hb_color_t color = colors[i];
+
+        lua_pushnumber(L, i+1); // 1-indexed key parent table
+        lua_newtable(L);        // child table
+
+        lua_pushinteger(L, hb_color_get_red(color));
+        lua_setfield(L, -2, "red");
+
+        lua_pushinteger(L, hb_color_get_green(color));
+        lua_setfield(L, -2, "green");
+
+        lua_pushinteger(L, hb_color_get_blue(color));
+        lua_setfield(L, -2, "blue");
+
+        lua_pushinteger(L, hb_color_get_alpha(color));
+        lua_setfield(L, -2, "alpha");
+
+        lua_settable(L, -3); // Add child table at index i+1 to parent table
+      }
+      offset += count;
+    } while (count == COUNT);
+  } else {
+    lua_pushnil(L);
+  }
+#undef COUNT
+
+  return 1;
+}
+
+static int face_ot_color_has_layers(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  lua_pushboolean(L, hb_ot_color_has_layers(*f));
+  return 1;
+}
+
+static int face_ot_color_glyph_get_layers(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  hb_codepoint_t gid = (hb_codepoint_t) luaL_checkinteger(L, 2);
+
+#define COUNT 128
+  unsigned int count = COUNT;
+  hb_ot_color_layer_t layers[COUNT];
+
+  if (hb_ot_color_glyph_get_layers(*f, gid, 0, NULL, NULL)) {
+    unsigned int i = 0, offset = 0;
+    lua_newtable(L); // parent table
+    do {
+      count = COUNT;
+      hb_ot_color_glyph_get_layers(*f, gid, offset, &count, layers);
+      for (i = 0; i < count; i++) {
+        hb_ot_color_layer_t layer = layers[i];
+        unsigned int color_index = layer.color_index;
+        if (color_index != 0xFFFF)
+          color_index++; // make it 1-indexed
+
+        lua_pushnumber(L, i+1);  // 1-indexed key parent table
+        lua_newtable(L);         // child table
+
+        lua_pushinteger(L, layer.glyph);
+        lua_setfield(L, -2, "glyph");
+
+        lua_pushinteger(L, color_index);
+        lua_setfield(L, -2, "color_index");
+
+        lua_settable(L, -3); // Add child table at index i+1 to parent table
+      }
+      offset += count;
+    } while (count == COUNT);
+  } else {
+    lua_pushnil(L);
+  }
+#undef COUNT
+
+  return 1;
+}
+
 static int face_destroy(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
 
@@ -178,6 +287,11 @@ static const struct luaL_Reg face_methods[] = {
   { "get_table", face_get_table },
   { "get_table_tags", face_get_table_tags },
   { "get_upem", face_get_upem },
+  { "ot_color_has_palettes", face_ot_color_has_palettes },
+  { "ot_color_palette_get_count", face_ot_color_palette_get_count },
+  { "ot_color_palette_get_colors", face_ot_color_palette_get_colors },
+  { "ot_color_has_layers", face_ot_color_has_layers },
+  { "ot_color_glyph_get_layers", face_ot_color_glyph_get_layers },
   { NULL, NULL }
 };
 

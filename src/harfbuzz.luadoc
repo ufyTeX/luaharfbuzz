@@ -81,6 +81,21 @@
 --- Wraps `hb_face_get_upem`.
 --  @function Face:get_upem
 
+--- Wraps `hb_ot_color_has_palettes`.
+--  @function Face:ot_color_has_palettes
+
+--- Wraps `hb_ot_color_palette_get_count`.
+--  @function Face:ot_color_palette_get_count
+
+--- Wraps `hb_ot_color_palette_get_colors`.
+--  @function Face:ot_color_palette_get_colors
+
+--- Wraps `hb_ot_color_has_layers`.
+--  @function Face:ot_color_has_layers
+
+--- Wraps `hb_ot_color_glyph_get_layers`.
+--  @function Face:ot_color_glyph_get_layers
+
 
 --- Lua wrapper for `hb_font_t` type
 --  @type Font
