@@ -98,6 +98,47 @@ describe("harfbuzz module", function()
       assert.are_equal("صِفْ خَلْقَ خَوْدٍ كَمِثْلِ ٱلشَّمْسِ إِذْ بَزَغَتْ يَحْظَىٰ ٱلضَّجِيعُ بِهَا نَجْلَاءَ مِعْطَارِ.",f:get_name(harfbuzz.ot.NAME_ID_SAMPLE_TEXT, ar))
       assert.are_equal("صِفْ خَلْقَ خَوْدٍ كَمِثْلِ ٱلشَّمْسِ إِذْ بَزَغَتْ يَحْظَىٰ ٱلضَّجِيعُ بِهَا نَجْلَاءَ مِعْطَارِ.",f:get_name(harfbuzz.ot.NAME_ID_SAMPLE_TEXT, en))
     end)
+
+    it("can check color palettes", function()
+      local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
+      assert.are_equal(false,face:ot_color_has_palettes())
+      assert.are_equal(true,f:ot_color_has_palettes())
+    end)
+
+    it("can return number of color palettes", function()
+      local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
+      assert.are_equal(0,face:ot_color_palette_get_count())
+      assert.are_equal(1,f:ot_color_palette_get_count())
+    end)
+
+    it("can return palette colors", function()
+      local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
+      assert.are_equal(nil,face:ot_color_palette_get_colors())
+      local colors = {
+        { alpha = 255, blue = 51,  green = 51,  red = 204, },
+        { alpha = 255, blue = 80,  green = 165, red = 0,   },
+        { alpha = 255, blue = 51,  green = 153, red = 238, },
+        { alpha = 255, blue = 153, green = 102, red = 51,  },
+      }
+      assert.are_same(colors,f:ot_color_palette_get_colors())
+    end)
+
+    it("can check color layers", function()
+      local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
+      assert.are_equal(false,face:ot_color_has_layers())
+      assert.are_equal(true,f:ot_color_has_layers())
+    end)
+
+    it("can return glyph color layers", function()
+      local f = harfbuzz.Face.new('fonts/amiriquran-colored.ttf')
+      assert.are_equal(nil,face:ot_color_glyph_get_layers(100))
+      assert.are_equal(nil,f:ot_color_glyph_get_layers(2))
+      local layers = {
+        { color_index = 65535, glyph = 1341 },
+        { color_index = 1,     glyph = 1370 },
+      }
+      assert.are_same(layers,f:ot_color_glyph_get_layers(100))
+    end)
   end)
 
   describe("harfbuzz.Font", function()
