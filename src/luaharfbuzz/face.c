@@ -1,5 +1,9 @@
 #include "luaharfbuzz.h"
 
+/* Size of static arrays we use to avoid heap allocating memory when reading
+ * data from HarfBuzz. */
+#define STATIC_ARRAY_SIZE 128
+
 static int face_new(lua_State *L) {
   Face *f;
   hb_blob_t *blob;
@@ -54,16 +58,15 @@ static int face_get_name(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
   hb_ot_name_id_t name_id = (hb_ot_name_id_t) luaL_checkinteger(L, 2);
   hb_language_t lang = HB_LANGUAGE_INVALID;
-#define TEXT_SIZE 128
-  int text_size = TEXT_SIZE, len;
-  char name[TEXT_SIZE];
+  char name[STATIC_ARRAY_SIZE];
+  int text_size = STATIC_ARRAY_SIZE, len;
 
   if (lua_gettop(L) > 2)
     lang = *((Language*)luaL_checkudata(L, 3, "harfbuzz.Language"));
 
   len = hb_ot_name_get_utf8(*f, name_id, lang, &text_size, name);
   if (len) {
-    if (len < TEXT_SIZE) {
+    if (len < STATIC_ARRAY_SIZE) {
       lua_pushstring(L, name);
     } else {
       char *name = malloc(len + 1);
@@ -75,7 +78,6 @@ static int face_get_name(lua_State *L) {
   } else {
     lua_pushnil(L);
   }
-#undef TEXT_SIZE
 
   return 1;
 }
@@ -94,41 +96,32 @@ static int face_get_table(lua_State *L) {
   return 1;
 }
 
-static void set_tags(lua_State *L, hb_tag_t *tags, unsigned int count) {
-  unsigned int i;
-
-  for (i = 0; i < count; i++) {
-    lua_pushnumber(L, i + 1);
-
-    Tag *tp = (Tag *)lua_newuserdata(L, sizeof(*tp));
-    luaL_getmetatable(L, "harfbuzz.Tag");
-    lua_setmetatable(L, -2);
-    *tp = tags[i];
-
-    lua_rawset(L, -3);
-  }
-}
-
 static int face_get_table_tags(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
-#define TABLE_SIZE 128
-  unsigned int table_size = TABLE_SIZE, count;
-  hb_tag_t tags[TABLE_SIZE];
+  hb_tag_t tags[STATIC_ARRAY_SIZE];
+  unsigned int count = STATIC_ARRAY_SIZE;
 
-  lua_newtable(L);
+  if (hb_face_get_table_tags(*f, 0, NULL, NULL)) {
+    unsigned int i = 0, offset = 0;
+    lua_newtable(L);
+    do {
+      count = STATIC_ARRAY_SIZE;
+      hb_face_get_table_tags(*f, offset, &count, tags);
+      for (i = 0; i < count; i++) {
+        lua_pushnumber(L, i + 1);
 
-  count = hb_face_get_table_tags(*f, 0, &table_size, tags);
-  if (count) {
-    if (count <= table_size) {
-      set_tags(L, tags, count);
-    } else {
-      hb_tag_t* tags = (hb_tag_t *) malloc(count * sizeof(hb_tag_t));
-      hb_face_get_table_tags (*f, 0, &count, tags);
-      set_tags(L, tags, count);
-      free(tags);
-    }
+        Tag *tp = (Tag *)lua_newuserdata(L, sizeof(*tp));
+        luaL_getmetatable(L, "harfbuzz.Tag");
+        lua_setmetatable(L, -2);
+        *tp = tags[i];
+
+        lua_rawset(L, -3);
+      }
+      offset += count;
+    } while (count == STATIC_ARRAY_SIZE);
+  } else {
+    lua_pushnil(L);
   }
-#undef TABLE_SIZE
 
   return 1;
 }
@@ -184,15 +177,14 @@ static int face_ot_color_palette_get_colors(lua_State *L) {
   if (lua_gettop(L) > 1)
     index = (unsigned int) luaL_checkinteger(L, 2) - 1;
 
-#define COUNT 128
-  unsigned int count = COUNT;
-  hb_color_t colors[COUNT];
+  hb_color_t colors[STATIC_ARRAY_SIZE];
+  unsigned int count = STATIC_ARRAY_SIZE;
 
   if (hb_ot_color_palette_get_colors(*f, index, 0, NULL, NULL)) {
     unsigned int i = 0, offset = 0;
     lua_newtable(L); // parent table
     do {
-      count = COUNT;
+      count = STATIC_ARRAY_SIZE;
       hb_ot_color_palette_get_colors(*f, index, offset, &count, colors);
       for (i = 0; i < count; i++) {
         hb_color_t color = colors[i];
@@ -215,11 +207,10 @@ static int face_ot_color_palette_get_colors(lua_State *L) {
         lua_settable(L, -3); // Add child table at index i+1 to parent table
       }
       offset += count;
-    } while (count == COUNT);
+    } while (count == STATIC_ARRAY_SIZE);
   } else {
     lua_pushnil(L);
   }
-#undef COUNT
 
   return 1;
 }
@@ -234,16 +225,14 @@ static int face_ot_color_has_layers(lua_State *L) {
 static int face_ot_color_glyph_get_layers(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
   hb_codepoint_t gid = (hb_codepoint_t) luaL_checkinteger(L, 2);
-
-#define COUNT 128
-  unsigned int count = COUNT;
-  hb_ot_color_layer_t layers[COUNT];
+  hb_ot_color_layer_t layers[STATIC_ARRAY_SIZE];
+  unsigned int count = STATIC_ARRAY_SIZE;
 
   if (hb_ot_color_glyph_get_layers(*f, gid, 0, NULL, NULL)) {
     unsigned int i = 0, offset = 0;
     lua_newtable(L); // parent table
     do {
-      count = COUNT;
+      count = STATIC_ARRAY_SIZE;
       hb_ot_color_glyph_get_layers(*f, gid, offset, &count, layers);
       for (i = 0; i < count; i++) {
         hb_ot_color_layer_t layer = layers[i];
@@ -263,11 +252,10 @@ static int face_ot_color_glyph_get_layers(lua_State *L) {
         lua_settable(L, -3); // Add child table at index i+1 to parent table
       }
       offset += count;
-    } while (count == COUNT);
+    } while (count == STATIC_ARRAY_SIZE);
   } else {
     lua_pushnil(L);
   }
-#undef COUNT
 
   return 1;
 }
