@@ -161,6 +161,24 @@ static int font_destroy(lua_State *L) {
   return 0;
 }
 
+static int font_ot_color_glyph_get_png(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  hb_codepoint_t gid = (hb_codepoint_t) luaL_checkinteger(L, 2);
+  hb_blob_t* blob = hb_ot_color_glyph_reference_png(*f, gid);
+
+  if (hb_blob_get_length(blob) != 0) {
+    Blob *b = (Blob *)lua_newuserdata(L, sizeof(*b));
+    luaL_getmetatable(L, "harfbuzz.Blob");
+    lua_setmetatable(L, -2);
+
+    *b = hb_ot_color_glyph_reference_png(*f, gid);
+  } else {
+    lua_pushnil(L);
+  }
+
+  return 1;
+}
+
 static const struct luaL_Reg font_methods[] = {
   { "__gc", font_destroy },
   { "set_scale", font_set_scale },
@@ -172,6 +190,7 @@ static const struct luaL_Reg font_methods[] = {
   { "get_glyph_h_advance", font_get_glyph_h_advance },
   { "get_glyph_v_advance", font_get_glyph_v_advance },
   { "get_nominal_glyph", font_get_nominal_glyph },
+  { "ot_color_glyph_get_png", font_ot_color_glyph_get_png },
   { NULL, NULL }
 };
 

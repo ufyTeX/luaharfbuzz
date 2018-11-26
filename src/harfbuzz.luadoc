@@ -96,6 +96,9 @@
 --- Wraps `hb_ot_color_glyph_get_layers`.
 --  @function Face:ot_color_glyph_get_layers
 
+--- Wraps `hb_ot_color_has_png`.
+--  @function Face:ot_color_has_png
+
 
 --- Lua wrapper for `hb_font_t` type
 --  @type Font
@@ -160,6 +163,9 @@
 --  @param codepoint.
 --  @return glyph index or `nil` if `codepoint` is not supported by the font.
 --  @function Font:get_nominal_glyph
+
+--- Wraps `hb_ot_color_glyph_get_png`.
+--  @function Font:ot_color_glyph_get_png
 
 --- Lua wrapper for `hb_buffer_t` type.
 --  @type Buffer

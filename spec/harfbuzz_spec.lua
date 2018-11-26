@@ -139,6 +139,12 @@ describe("harfbuzz module", function()
       }
       assert.are_same(layers,f:ot_color_glyph_get_layers(100))
     end)
+
+    it("can check color layers", function()
+      local f = harfbuzz.Face.new('fonts/notocoloremoji-subset.ttf')
+      assert.are_equal(false,face:ot_color_has_png())
+      assert.are_equal(true,f:ot_color_has_png())
+    end)
   end)
 
   describe("harfbuzz.Font", function()
@@ -209,6 +215,17 @@ describe("harfbuzz module", function()
       local font = harfbuzz.Font.new(face)
       assert.are_equal(nil, font:get_nominal_glyph(0x0041))
       assert.are_equal(858, font:get_nominal_glyph(0x0627))
+    end)
+
+    it("can return glyph color png", function()
+      local font = harfbuzz.Font.new(face)
+      local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/notocoloremoji-subset.ttf'))
+
+      assert.are_equal(nil,font:ot_color_glyph_get_png(100))
+      assert.are_equal(nil,f:ot_color_glyph_get_png(0))
+      assert.are_same(2233,f:ot_color_glyph_get_png(1):get_length())
+      assert.are_same(2857,f:ot_color_glyph_get_png(2):get_length())
+      assert.are_same("\137PNG",f:ot_color_glyph_get_png(2):get_data():sub(1, 4))
     end)
   end)
 
