@@ -260,6 +260,13 @@ static int face_ot_color_glyph_get_layers(lua_State *L) {
   return 1;
 }
 
+static int face_ot_color_has_png(lua_State *L) {
+  Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+
+  lua_pushboolean(L, hb_ot_color_has_png(*f));
+  return 1;
+}
+
 static int face_destroy(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
 
@@ -280,6 +287,7 @@ static const struct luaL_Reg face_methods[] = {
   { "ot_color_palette_get_colors", face_ot_color_palette_get_colors },
   { "ot_color_has_layers", face_ot_color_has_layers },
   { "ot_color_glyph_get_layers", face_ot_color_glyph_get_layers },
+  { "ot_color_has_png", face_ot_color_has_png },
   { NULL, NULL }
 };
 
