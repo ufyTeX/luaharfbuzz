@@ -77,14 +77,12 @@ static int buffer_set_script(lua_State *L) {
 
 static int buffer_add_codepoints(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
-  unsigned int item_offset = 0;
-  int item_length = -1;
+  unsigned int item_offset;
+  int item_length;
 
   luaL_checktype(L, 2, LUA_TTABLE);
-  if (lua_gettop(L) > 2)
-    item_offset = luaL_checkinteger(L, 3);
-  if (lua_gettop(L) > 3)
-    item_length = luaL_checkinteger(L, 4);
+  item_offset = luaL_optinteger(L, 3, 0);
+  item_length = luaL_optinteger(L, 4, -1);
 
   lua_len (L, 2);
   unsigned int n = luaL_checkinteger(L, -1);
@@ -108,14 +106,13 @@ static int buffer_add_codepoints(lua_State *L) {
 
 static int buffer_add_utf8(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
-  unsigned int item_offset = 0;
-  int item_length = -1;
+  const char *text;
+  unsigned int item_offset;
+  int item_length;
 
-  const char *text = luaL_checkstring(L, 2);
-  if (lua_gettop(L) > 2)
-    item_offset = luaL_checkinteger(L, 3);
-  if (lua_gettop(L) > 3)
-    item_length = luaL_checkinteger(L, 4);
+  text = luaL_checkstring(L, 2);
+  item_offset = luaL_optinteger(L, 3, 0);
+  item_length = luaL_optinteger(L, 4, -1);
 
   hb_buffer_add_utf8(*b, text, -1, item_offset, item_length);
 

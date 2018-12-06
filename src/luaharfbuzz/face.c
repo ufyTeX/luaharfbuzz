@@ -8,11 +8,8 @@ static int face_new(lua_State *L) {
   Face *f;
   hb_blob_t *blob;
   hb_face_t *face;
-  unsigned int face_index = 0;
   const char *file_name = luaL_checkstring(L, 1);
-
-  if (lua_gettop(L) > 1)
-    face_index = (unsigned int) luaL_checkinteger(L, 2);
+  unsigned int face_index = (unsigned int) luaL_optinteger(L, 2, 0);
 
   blob = hb_blob_create_from_file(file_name);
   face = hb_face_create(blob, face_index);
@@ -30,12 +27,9 @@ static int face_new(lua_State *L) {
 
 static int face_new_from_blob(lua_State *L) {
   Face *f;
-  Blob *blob = luaL_checkudata(L, 1, "harfbuzz.Blob");
   hb_face_t *face;
-  unsigned int face_index = 0;
-
-  if (lua_gettop(L) > 1)
-    face_index = (unsigned int) luaL_checkinteger(L, 2);
+  Blob *blob = luaL_checkudata(L, 1, "harfbuzz.Blob");
+  unsigned int face_index = (unsigned int) luaL_optinteger(L, 2, 0);
 
   face = hb_face_create(*blob, face_index);
 
@@ -175,10 +169,7 @@ static int face_ot_color_palette_get_count(lua_State *L) {
 
 static int face_ot_color_palette_get_colors(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
-  unsigned int index = 0;
-
-  if (lua_gettop(L) > 1)
-    index = (unsigned int) luaL_checkinteger(L, 2) - 1;
+  unsigned int index = (unsigned int) luaL_optinteger(L, 2, 1) - 1;
 
   hb_color_t colors[STATIC_ARRAY_SIZE];
   unsigned int count = STATIC_ARRAY_SIZE;
