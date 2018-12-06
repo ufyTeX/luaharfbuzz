@@ -7,6 +7,7 @@
 static int face_new(lua_State *L) {
   Face *f;
   hb_blob_t *blob;
+  hb_face_t *face;
   unsigned int face_index = 0;
   const char *file_name = luaL_checkstring(L, 1);
 
@@ -14,15 +15,15 @@ static int face_new(lua_State *L) {
     face_index = (unsigned int) luaL_checkinteger(L, 2);
 
   blob = hb_blob_create_from_file(file_name);
+  face = hb_face_create(blob, face_index);
 
-  if (face_index && face_index >= hb_face_count(blob)) {
+  if (face == hb_face_get_empty()) {
     lua_pushnil(L);
   } else {
     f = (Face *)lua_newuserdata(L, sizeof(*f));
+    *f = face;
     luaL_getmetatable(L, "harfbuzz.Face");
     lua_setmetatable(L, -2);
-
-    *f = hb_face_create(blob, face_index);
   }
   return 1;
 }
@@ -30,19 +31,21 @@ static int face_new(lua_State *L) {
 static int face_new_from_blob(lua_State *L) {
   Face *f;
   Blob *blob = luaL_checkudata(L, 1, "harfbuzz.Blob");
+  hb_face_t *face;
   unsigned int face_index = 0;
 
   if (lua_gettop(L) > 1)
     face_index = (unsigned int) luaL_checkinteger(L, 2);
 
-  if (face_index && face_index >= hb_face_count(*blob)) {
+  face = hb_face_create(*blob, face_index);
+
+  if (face == hb_face_get_empty()) {
     lua_pushnil(L);
   } else {
     f = (Face *)lua_newuserdata(L, sizeof(*f));
+    *f = face;
     luaL_getmetatable(L, "harfbuzz.Face");
     lua_setmetatable(L, -2);
-
-    *f = hb_face_create(*blob, face_index);
   }
   return 1;
 }
