@@ -1,25 +1,36 @@
 #include "luaharfbuzz.h"
 
 int shape_full (lua_State *L) {
+  int i = 0;
   Font *font = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
   Buffer *buf = (Buffer *)luaL_checkudata(L, 2, "harfbuzz.Buffer");
   luaL_checktype(L, 3, LUA_TTABLE);
+  luaL_checktype(L, 4, LUA_TTABLE);
 
-  lua_len (L, 3);
-  unsigned int num_features = luaL_checkinteger(L, 4);
-  lua_pop(L, 1);
-
+  unsigned int num_features = lua_rawlen(L, 3);
   Feature *features = (Feature *) malloc (num_features * sizeof(hb_feature_t));
 
-  lua_pushnil(L); int i = 0;
+  lua_pushnil(L);
   while (lua_next(L, 3) != 0) {
     Feature* f = (Feature *)luaL_checkudata(L, -1, "harfbuzz.Feature");
     features[i++] = *f;
     lua_pop(L, 1);
   }
 
+  const char **shapers = NULL;
+  size_t num_shapers = lua_rawlen(L, 4);
+  if (num_shapers) {
+    i = 0;
+    shapers = (const char**) calloc (num_shapers + 1, sizeof(char*));
+    lua_pushnil(L);
+    while (lua_next(L, 4) != 0) {
+      shapers[i++] = luaL_checkstring(L, -1);
+      lua_pop(L, 1);
+    }
+  }
+
   // Shape text
-  lua_pushboolean(L, hb_shape_full(*font, *buf, features, num_features, NULL));
+  lua_pushboolean(L, hb_shape_full(*font, *buf, features, num_features, shapers));
 
   free(features);
 
