@@ -33,6 +33,7 @@ int shape_full (lua_State *L) {
   lua_pushboolean(L, hb_shape_full(*font, *buf, features, num_features, shapers));
 
   free(features);
+  free(shapers);
 
   return 1;
 }
