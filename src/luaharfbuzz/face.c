@@ -14,7 +14,7 @@ static int face_new(lua_State *L) {
   blob = hb_blob_create_from_file(file_name);
   face = hb_face_create(blob, face_index);
 
-  if (face == hb_face_get_empty()) {
+  if (blob == hb_blob_get_empty() || face == hb_face_get_empty()) {
     lua_pushnil(L);
   } else {
     f = (Face *)lua_newuserdata(L, sizeof(*f));
@@ -33,7 +33,7 @@ static int face_new_from_blob(lua_State *L) {
 
   face = hb_face_create(*blob, face_index);
 
-  if (face == hb_face_get_empty()) {
+  if (*blob == hb_blob_get_empty() || face == hb_face_get_empty()) {
     lua_pushnil(L);
   } else {
     f = (Face *)lua_newuserdata(L, sizeof(*f));
