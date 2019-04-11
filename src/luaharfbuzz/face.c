@@ -123,6 +123,144 @@ static int face_get_table_tags(lua_State *L) {
   return 1;
 }
 
+static int face_get_script_tags(lua_State *L) {
+  Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *table = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+
+  hb_tag_t tags[STATIC_ARRAY_SIZE];
+  unsigned int count = STATIC_ARRAY_SIZE;
+
+  if (hb_ot_layout_table_get_script_tags(*face, *table, 0, NULL, NULL)) {
+    unsigned int i = 0, offset = 0;
+    lua_newtable(L);
+    do {
+      count = STATIC_ARRAY_SIZE;
+      hb_ot_layout_table_get_script_tags(*face, *table, offset, &count, tags);
+      for (i = 0; i < count; i++) {
+        lua_pushnumber(L, i + 1);
+
+        Tag *tp = (Tag *)lua_newuserdata(L, sizeof(*tp));
+        luaL_getmetatable(L, "harfbuzz.Tag");
+        lua_setmetatable(L, -2);
+        *tp = tags[i];
+
+        lua_rawset(L, -3);
+      }
+      offset += count;
+    } while (count == STATIC_ARRAY_SIZE);
+  } else {
+    lua_pushnil(L);
+  }
+
+  return 1;
+}
+
+static int face_get_language_tags(lua_State *L) {
+  Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *table = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  unsigned int script_index = (unsigned int) luaL_checkinteger(L, 3);
+
+  hb_tag_t tags[STATIC_ARRAY_SIZE];
+  unsigned int count = STATIC_ARRAY_SIZE;
+
+  if (hb_ot_layout_script_get_language_tags(*face, *table, script_index, 0, NULL, NULL)) {
+    unsigned int i = 0, offset = 0;
+    lua_newtable(L);
+    do {
+      count = STATIC_ARRAY_SIZE;
+      hb_ot_layout_script_get_language_tags(*face, *table, script_index, offset, &count, tags);
+      for (i = 0; i < count; i++) {
+        lua_pushnumber(L, i + 1);
+
+        Tag *tp = (Tag *)lua_newuserdata(L, sizeof(*tp));
+        luaL_getmetatable(L, "harfbuzz.Tag");
+        lua_setmetatable(L, -2);
+        *tp = tags[i];
+
+        lua_rawset(L, -3);
+      }
+      offset += count;
+    } while (count == STATIC_ARRAY_SIZE);
+  } else {
+    lua_pushnil(L);
+  }
+
+  return 1;
+}
+
+static int face_get_feature_tags(lua_State *L) {
+  Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *table = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  unsigned int script_index = (unsigned int) luaL_checkinteger(L, 3);
+  unsigned int language_index = (unsigned int) luaL_checkinteger(L, 4);
+
+  hb_tag_t tags[STATIC_ARRAY_SIZE];
+  unsigned int count = STATIC_ARRAY_SIZE;
+
+  if (hb_ot_layout_language_get_feature_tags(*face, *table, script_index, language_index, 0, NULL, NULL)) {
+    unsigned int i = 0, offset = 0;
+    lua_newtable(L);
+    do {
+      count = STATIC_ARRAY_SIZE;
+      hb_ot_layout_language_get_feature_tags(*face, *table, script_index, language_index, offset, &count, tags);
+      for (i = 0; i < count; i++) {
+        lua_pushnumber(L, i + 1);
+
+        Tag *tp = (Tag *)lua_newuserdata(L, sizeof(*tp));
+        luaL_getmetatable(L, "harfbuzz.Tag");
+        lua_setmetatable(L, -2);
+        *tp = tags[i];
+
+        lua_rawset(L, -3);
+      }
+      offset += count;
+    } while (count == STATIC_ARRAY_SIZE);
+  } else {
+    lua_pushnil(L);
+  }
+
+  return 1;
+}
+
+static int face_find_script(lua_State *L) {
+  Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *table = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  Tag *script = (Tag *)luaL_checkudata(L, 3, "harfbuzz.Tag");
+  unsigned int index = 0;
+
+  int found = hb_ot_layout_table_find_script(*face, *table, *script, &index);
+  lua_pushboolean(L, found);
+  lua_pushinteger(L, index);
+  return 2;
+}
+
+static int face_find_language(lua_State *L) {
+  Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *table = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  unsigned int script_index = (unsigned int) luaL_checkinteger(L, 3);
+  Tag *language = (Tag *)luaL_checkudata(L, 4, "harfbuzz.Tag");
+  unsigned int index = 0;
+
+  int found = hb_ot_layout_script_find_language(*face, *table, script_index, *language, &index);
+  lua_pushboolean(L, found);
+  lua_pushinteger(L, index);
+  return 2;
+}
+
+static int face_find_feature(lua_State *L) {
+  Face *face = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
+  Tag *table = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  unsigned int script_index = (unsigned int) luaL_checkinteger(L, 3);
+  unsigned int language_index = (unsigned int) luaL_checkinteger(L, 3);
+  Tag *feature = (Tag *)luaL_checkudata(L, 5, "harfbuzz.Tag");
+  unsigned int index = 0;
+
+  int found = hb_ot_layout_language_find_feature(*face, *table, script_index, language_index, *feature, &index);
+  lua_pushboolean(L, found);
+  lua_pushinteger(L, index);
+  return 2;
+}
+
 static int face_collect_unicodes(lua_State *L) {
   Face *f = (Face *)luaL_checkudata(L, 1, "harfbuzz.Face");
   hb_set_t *codes = hb_set_create();
@@ -275,7 +413,13 @@ static const struct luaL_Reg face_methods[] = {
   { "get_name", face_get_name },
   { "get_table", face_get_table },
   { "get_table_tags", face_get_table_tags },
+  { "get_script_tags", face_get_script_tags },
+  { "get_language_tags", face_get_language_tags },
+  { "get_feature_tags", face_get_feature_tags },
   { "get_upem", face_get_upem },
+  { "find_script", face_find_script },
+  { "find_language", face_find_language },
+  { "find_feature", face_find_feature },
   { "ot_color_has_palettes", face_ot_color_has_palettes },
   { "ot_color_palette_get_count", face_ot_color_palette_get_count },
   { "ot_color_palette_get_colors", face_ot_color_palette_get_colors },

@@ -78,6 +78,24 @@
 --  @return table of `Tag`s representing face table tags.
 --  @function Face:get_table_tags
 
+--- Wraps `hb_ot_layout_table_get_script_tags`.
+--  @function Face:get_script_tags
+
+--- Wraps `hb_ot_layout_script_get_language_tags`.
+--  @function Face:get_language_tags
+
+--- Wraps `hb_ot_layout_language_get_feature_tags`.
+--  @function Face:get_feature_tags
+
+--- Wraps `hb_ot_layout_table_find_script`.
+--  @function Face:find_script
+
+--- Wraps `hb_ot_layout_script_find_language`.
+--  @function Face:find_language
+
+--- Wraps `hb_ot_layout_language_find_feature`.
+--  @function Face:find_feature
+
 --- Wraps `hb_face_get_upem`.
 --  @function Face:get_upem
 
@@ -498,3 +516,15 @@
 
 --- Wraps `HB_OT_NAME_ID_INVALID`
 -- @field ot.NAME_ID_INVALID
+
+--- Wraps `HB_OT_LAYOUT_NO_SCRIPT_INDEX`
+-- @field ot.LAYOUT_NO_SCRIPT_INDEX
+
+--- Wraps `HB_OT_LAYOUT_NO_FEATURE_INDEX`
+-- @field ot.LAYOUT_NO_FEATURE_INDEX
+
+--- Wraps `HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX`
+-- @field ot.LAYOUT_DEFAULT_LANGUAGE_INDEX
+
+--- Wraps `HB_OT_LAYOUT_NO_VARIATIONS_INDEX`
+-- @field ot.LAYOUT_NO_VARIATIONS_INDEX
