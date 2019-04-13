@@ -44,6 +44,7 @@
 <li><a href="#Class_Language">Class Language </a></li>
 <li><a href="#Predefined_languages">Predefined languages </a></li>
 <li><a href="#Unicode_functions">Unicode functions </a></li>
+<li><a href="#Predefined_Name_IDs">Predefined Name IDs </a></li>
 </ul>
 
 
@@ -96,8 +97,16 @@
 	<td class="summary">Wraps <code>hb_blob_create</code>.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#Blob.new_from_file">Blob.new_from_file (filename)</a></td>
+	<td class="summary">Wraps <code>hb_blob_create_from_file</code>.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#Blob:get_length">Blob:get_length ()</a></td>
 	<td class="summary">Wraps <code>hb_blob_get_length</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Blob:get_data">Blob:get_data ()</a></td>
+	<td class="summary">Wraps <code>hb_blob_get_data</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Class_Face">Class Face </a></h2>
@@ -111,8 +120,72 @@
 	<td class="summary">Create a new <code>Face</code> from a file.</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#Face:collect_unicodes">Face:collect_unicodes ()</a></td>
+	<td class="summary">Wraps <code>hb_face_collect_unicodes</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:get_glyph_count">Face:get_glyph_count ()</a></td>
+	<td class="summary">Wraps <code>hb_face_get_glyph_count</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:get_table">Face:get_table (tag)</a></td>
+	<td class="summary">Wraps <code>hb_face_reference_table</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:get_table_tags">Face:get_table_tags ()</a></td>
+	<td class="summary">Wraps <code>hb_face_get_table_tags</code>.</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#Face:get_upem">Face:get_upem ()</a></td>
 	<td class="summary">Wraps <code>hb_face_get_upem</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_has_palettes">Face:ot_color_has_palettes ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_has_palettes</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_palette_get_count">Face:ot_color_palette_get_count ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_palette_get_count</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_palette_get_colors">Face:ot_color_palette_get_colors ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_palette_get_colors</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_has_layers">Face:ot_color_has_layers ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_has_layers</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_glyph_get_layers">Face:ot_color_glyph_get_layers ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_glyph_get_layers</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_color_has_png">Face:ot_color_has_png ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_has_png</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_get_script_tags">Face:ot_layout_get_script_tags ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_layout_table_get_script_tags</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_get_language_tags">Face:ot_layout_get_language_tags ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_layout_script_get_language_tags</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_get_feature_tags">Face:ot_layout_get_feature_tags ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_layout_language_get_feature_tags</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_find_script">Face:ot_layout_find_script ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_layout_table_find_script</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_find_language">Face:ot_layout_find_language ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_layout_script_find_language</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Face:ot_layout_find_feature">Face:ot_layout_find_feature ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_layout_language_find_feature</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Class_Font">Class Font </a></h2>
@@ -128,6 +201,38 @@
 	<tr>
 	<td class="name" nowrap><a href="#Font:set_scale">Font:set_scale (x_scale, y_scale)</a></td>
 	<td class="summary">Wraps <code>hb_font_set_scale</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_h_extents">Font:get_h_extents ()</a></td>
+	<td class="summary">Wraps <code>hb_font_get_h_extents</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_v_extents">Font:get_v_extents ()</a></td>
+	<td class="summary">Wraps <code>hb_font_get_v_extents</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_glyph_extents">Font:get_glyph_extents (glyph)</a></td>
+	<td class="summary">Wraps <code>hb_font_get_glyph_extents</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_glyph_name">Font:get_glyph_name (glyph)</a></td>
+	<td class="summary">Wraps <code>hb_font_get_glyph_name</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_glyph_h_advance">Font:get_glyph_h_advance (glyph)</a></td>
+	<td class="summary">Wraps <code>hb_font_get_glyph_h_advance</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_glyph_v_advance">Font:get_glyph_v_advance (glyph)</a></td>
+	<td class="summary">Wraps <code>hb_font_get_glyph_v_advance</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:get_nominal_glyph">Font:get_nominal_glyph (codepoint.)</a></td>
+	<td class="summary">Wraps <code>hb_font_get_nominal_glyph</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Font:ot_color_glyph_get_png">Font:ot_color_glyph_get_png ()</a></td>
+	<td class="summary">Wraps <code>hb_ot_color_glyph_get_png</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Class_Buffer">Class Buffer </a></h2>
@@ -189,27 +294,35 @@
 	<td class="summary">Wraps <code>hb_buffer_guess_segment_properties</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer:get_glyphs_and_positions">Buffer:get_glyphs_and_positions ()</a></td>
+	<td class="name" nowrap><a href="#Buffer:get_glyphs">Buffer:get_glyphs ()</a></td>
 	<td class="summary">Helper method to get shaped glyph data.</td>
 	</tr>
 </table>
 <h2><a href="#Cluster_Levels">Cluster Levels </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</a></td>
+	<td class="name" nowrap><a href="#Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES">Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS">Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</a></td>
+	<td class="name" nowrap><a href="#Buffer.CLUSTER_LEVEL_MONOTONE_CHARACTERS">Buffer.CLUSTER_LEVEL_MONOTONE_CHARACTERS</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS">Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</a></td>
+	<td class="name" nowrap><a href="#Buffer.CLUSTER_LEVEL_CHARACTERS">Buffer.CLUSTER_LEVEL_CHARACTERS</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT">Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</a></td>
+	<td class="name" nowrap><a href="#Buffer.CLUSTER_LEVEL_DEFAULT">Buffer.CLUSTER_LEVEL_DEFAULT</a></td>
 	<td class="summary">Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK">Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK</a></td>
+	<td class="summary">Wraps <code>HB_GLYPH_FLAG_UNSAFE_TO_BREAK</code>.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Buffer.GLYPH_FLAG_DEFINED">Buffer.GLYPH_FLAG_DEFINED</a></td>
+	<td class="summary">Wraps <code>HB_GLYPH_FLAG_DEFINED</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Class_Feature">Class Feature </a></h2>
@@ -264,19 +377,19 @@
 <h2><a href="#Predefined_Script_Codes">Predefined Script Codes </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Script.HB_SCRIPT_COMMON">Script.HB_SCRIPT_COMMON</a></td>
+	<td class="name" nowrap><a href="#Script.COMMON">Script.COMMON</a></td>
 	<td class="summary">Wraps <code>HB_SCRIPT_COMMON</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Script.HB_SCRIPT_INHERITED">Script.HB_SCRIPT_INHERITED</a></td>
+	<td class="name" nowrap><a href="#Script.INHERITED">Script.INHERITED</a></td>
 	<td class="summary">Wraps <code>HB_SCRIPT_INHERITED</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Script.HB_SCRIPT_UNKNOWN">Script.HB_SCRIPT_UNKNOWN</a></td>
+	<td class="name" nowrap><a href="#Script.UNKNOWN">Script.UNKNOWN</a></td>
 	<td class="summary">Wraps <code>HB_SCRIPT_UNKNOWN</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Script.HB_SCRIPT_INVALID">Script.HB_SCRIPT_INVALID</a></td>
+	<td class="name" nowrap><a href="#Script.INVALID">Script.INVALID</a></td>
 	<td class="summary">Wraps <code>HB_SCRIPT_INVALID</code>.</td>
 	</tr>
 </table>
@@ -295,42 +408,42 @@
 	<td class="summary">Enables equality comparisions with <code>==</code> between two directions.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_VALID">Direction.HB_DIRECTION_IS_VALID (direction)</a></td>
+	<td class="name" nowrap><a href="#Direction:is_valid">Direction:is_valid ()</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_IS_VALID</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_HORIZONTAL">Direction.HB_DIRECTION_IS_HORIZONTAL (direction)</a></td>
+	<td class="name" nowrap><a href="#Direction:is_horizontal">Direction:is_horizontal ()</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_IS_HORIZONTAL</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_VERTICAL">Direction.HB_DIRECTION_IS_VERTICAL (direction)</a></td>
+	<td class="name" nowrap><a href="#Direction:is_vertical">Direction:is_vertical ()</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_IS_VERTICAL</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_FORWARD">Direction.HB_DIRECTION_IS_FORWARD (direction)</a></td>
+	<td class="name" nowrap><a href="#Direction:is_forward">Direction:is_forward ()</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_IS_FORWARD</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_IS_BACKWARD">Direction.HB_DIRECTION_IS_BACKWARD (direction)</a></td>
+	<td class="name" nowrap><a href="#Direction:is_backward">Direction:is_backward ()</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_IS_BACKWARD</code>.</td>
 	</tr>
 </table>
 <h2><a href="#Predefined_directions">Predefined directions </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_LTR">Direction.HB_DIRECTION_LTR</a></td>
+	<td class="name" nowrap><a href="#Direction.LTR">Direction.LTR</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_LTR</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_RTL">Direction.HB_DIRECTION_RTL</a></td>
+	<td class="name" nowrap><a href="#Direction.RTL">Direction.RTL</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_RTL</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_TTB">Direction.HB_DIRECTION_TTB</a></td>
+	<td class="name" nowrap><a href="#Direction.TTB">Direction.TTB</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_TTB</code>.</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Direction.HB_DIRECTION_BTT">Direction.HB_DIRECTION_BTT</a></td>
+	<td class="name" nowrap><a href="#Direction.BTT">Direction.BTT</a></td>
 	<td class="summary">Wraps <code>HB_DIRECTION_LTR</code>.</td>
 	</tr>
 </table>
@@ -352,7 +465,7 @@
 <h2><a href="#Predefined_languages">Predefined languages </a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Language.HB_LANGUAGE_INVALID">Language.HB_LANGUAGE_INVALID</a></td>
+	<td class="name" nowrap><a href="#Language.INVALID">Language.INVALID</a></td>
 	<td class="summary">Wraps <code>HB_LANGUAGE_INVALID</code>.</td>
 	</tr>
 </table>
@@ -361,6 +474,129 @@
 	<tr>
 	<td class="name" nowrap><a href="#unicode.script">unicode.script (char)</a></td>
 	<td class="summary">Wraps <code>hb_unicode_script</code></td>
+	</tr>
+</table>
+<h2><a href="#Predefined_Name_IDs">Predefined Name IDs </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_COPYRIGHT">ot.NAME_ID_COPYRIGHT</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_COPYRIGHT</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_FONT_FAMILY">ot.NAME_ID_FONT_FAMILY</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_FONT_FAMILY</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_FONT_SUBFAMILY">ot.NAME_ID_FONT_SUBFAMILY</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_FONT_SUBFAMILY</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_UNIQUE_ID">ot.NAME_ID_UNIQUE_ID</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_UNIQUE_ID</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_FULL_NAME">ot.NAME_ID_FULL_NAME</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_FULL_NAME</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_VERSION_STRING">ot.NAME_ID_VERSION_STRING</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_VERSION_STRING</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_POSTSCRIPT_NAME">ot.NAME_ID_POSTSCRIPT_NAME</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_POSTSCRIPT_NAME</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_TRADEMARK">ot.NAME_ID_TRADEMARK</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_TRADEMARK</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_MANUFACTURER">ot.NAME_ID_MANUFACTURER</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_MANUFACTURER</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_DESIGNER">ot.NAME_ID_DESIGNER</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_DESIGNER</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_DESCRIPTION">ot.NAME_ID_DESCRIPTION</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_DESCRIPTION</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_VENDOR_URL">ot.NAME_ID_VENDOR_URL</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_VENDOR_URL</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_DESIGNER_URL">ot.NAME_ID_DESIGNER_URL</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_DESIGNER_URL</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_LICENSE">ot.NAME_ID_LICENSE</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_LICENSE</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_LICENSE_URL">ot.NAME_ID_LICENSE_URL</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_LICENSE_URL</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_TYPOGRAPHIC_FAMILY">ot.NAME_ID_TYPOGRAPHIC_FAMILY</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_TYPOGRAPHIC_FAMILY</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_TYPOGRAPHIC_SUBFAMILY">ot.NAME_ID_TYPOGRAPHIC_SUBFAMILY</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_TYPOGRAPHIC_SUBFAMILY</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_MAC_FULL_NAME">ot.NAME_ID_MAC_FULL_NAME</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_MAC_FULL_NAME</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_SAMPLE_TEXT">ot.NAME_ID_SAMPLE_TEXT</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_SAMPLE_TEXT</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_CID_FINDFONT_NAME">ot.NAME_ID_CID_FINDFONT_NAME</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_CID_FINDFONT_NAME</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_WWS_FAMILY">ot.NAME_ID_WWS_FAMILY</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_WWS_FAMILY</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_WWS_SUBFAMILY">ot.NAME_ID_WWS_SUBFAMILY</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_WWS_SUBFAMILY</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_LIGHT_BACKGROUND">ot.NAME_ID_LIGHT_BACKGROUND</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_LIGHT_BACKGROUND</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_DARK_BACKGROUND">ot.NAME_ID_DARK_BACKGROUND</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_DARK_BACKGROUND</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_VARIATIONS_PS_PREFIX">ot.NAME_ID_VARIATIONS_PS_PREFIX</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_VARIATIONS_PS_PREFIX</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.NAME_ID_INVALID">ot.NAME_ID_INVALID</a></td>
+	<td class="summary">Wraps <code>HB_OT_NAME_ID_INVALID</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.LAYOUT_NO_SCRIPT_INDEX">ot.LAYOUT_NO_SCRIPT_INDEX</a></td>
+	<td class="summary">Wraps <code>HB_OT_LAYOUT_NO_SCRIPT_INDEX</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.LAYOUT_NO_FEATURE_INDEX">ot.LAYOUT_NO_FEATURE_INDEX</a></td>
+	<td class="summary">Wraps <code>HB_OT_LAYOUT_NO_FEATURE_INDEX</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.LAYOUT_DEFAULT_LANGUAGE_INDEX">ot.LAYOUT_DEFAULT_LANGUAGE_INDEX</a></td>
+	<td class="summary">Wraps <code>HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ot.LAYOUT_NO_VARIATIONS_INDEX">ot.LAYOUT_NO_VARIATIONS_INDEX</a></td>
+	<td class="summary">Wraps <code>HB_OT_LAYOUT_NO_VARIATIONS_INDEX</code></td>
 	</tr>
 </table>
 
@@ -454,11 +690,46 @@
 
 </dd>
     <dt>
+    <a name = "Blob.new_from_file"></a>
+    <strong>Blob.new_from_file (filename)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_blob_create_from_file</code>.
+  Initializes a new <code>hb_blob_t</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">filename</span>
+         lua string.
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
     <a name = "Blob:get_length"></a>
     <strong>Blob:get_length ()</strong>
     </dt>
     <dd>
     Wraps <code>hb_blob_get_length</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Blob:get_data"></a>
+    <strong>Blob:get_data ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_blob_get_data</code>.
 
 
 
@@ -526,11 +797,256 @@
 
 </dd>
     <dt>
+    <a name = "Face:collect_unicodes"></a>
+    <strong>Face:collect_unicodes ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_collect_unicodes</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table of codepoints supported by the face.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:get_glyph_count"></a>
+    <strong>Face:get_glyph_count ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_get_glyph_count</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:get_table"></a>
+    <strong>Face:get_table (tag)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_reference_table</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">tag</span>
+         <code>Tag</code> object of the table.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        <code>Blob</code> object for the face table of <code>tag</code>.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:get_table_tags"></a>
+    <strong>Face:get_table_tags ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_face_get_table_tags</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        table of <code>Tag</code>s representing face table tags.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
     <a name = "Face:get_upem"></a>
     <strong>Face:get_upem ()</strong>
     </dt>
     <dd>
     Wraps <code>hb_face_get_upem</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_has_palettes"></a>
+    <strong>Face:ot_color_has_palettes ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_has_palettes</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_palette_get_count"></a>
+    <strong>Face:ot_color_palette_get_count ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_palette_get_count</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_palette_get_colors"></a>
+    <strong>Face:ot_color_palette_get_colors ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_palette_get_colors</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_has_layers"></a>
+    <strong>Face:ot_color_has_layers ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_has_layers</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_glyph_get_layers"></a>
+    <strong>Face:ot_color_glyph_get_layers ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_glyph_get_layers</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_color_has_png"></a>
+    <strong>Face:ot_color_has_png ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_has_png</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_layout_get_script_tags"></a>
+    <strong>Face:ot_layout_get_script_tags ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_layout_table_get_script_tags</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_layout_get_language_tags"></a>
+    <strong>Face:ot_layout_get_language_tags ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_layout_script_get_language_tags</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_layout_get_feature_tags"></a>
+    <strong>Face:ot_layout_get_feature_tags ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_layout_language_get_feature_tags</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_layout_find_script"></a>
+    <strong>Face:ot_layout_find_script ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_layout_table_find_script</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_layout_find_language"></a>
+    <strong>Face:ot_layout_find_language ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_layout_script_find_language</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Face:ot_layout_find_feature"></a>
+    <strong>Face:ot_layout_find_feature ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_layout_language_find_feature</code>.
 
 
 
@@ -605,6 +1121,205 @@
          desired y-scale of font.
         </li>
     </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_h_extents"></a>
+    <strong>Font:get_h_extents ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_h_extents</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+
+<p> font extents table for horizontal direction, contains the following
+  or <code>nil</code> if HarfBuzz fails to load font extents:</p>
+
+<ul>
+    <li><code>ascender</code>: typographic ascender.</li>
+    <li><code>descender</code>: typographic descender.</li>
+    <li><code>line_gap</code>: line spacing gap.</li>
+</ul>
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_v_extents"></a>
+    <strong>Font:get_v_extents ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_v_extents</code>.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+        font extents table for vertical direction, similar to
+  <code>Font:get_h_extents</code>, or <code>nil</code> if HarfBuzz fails to load font extents:
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_glyph_extents"></a>
+    <strong>Font:get_glyph_extents (glyph)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_glyph_extents</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         index inside the font.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+
+<p> extents table contains the following or <code>nil</code> if HarfBuzz fails to
+  load glyph extents:</p>
+
+<ul>
+    <li><code>x_bearing</code>: left side of glyph from origin.</li>
+    <li><code>y_bearing</code>: top side of glyph from origin.</li>
+    <li><code>width</code>: distance from left to right side.</li>
+    <li><code>height</code>: distance from top to bottom side.</li>
+</ul>
+
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_glyph_name"></a>
+    <strong>Font:get_glyph_name (glyph)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_glyph_name</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         index inside the font.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        name of the glyph or nil.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_glyph_h_advance"></a>
+    <strong>Font:get_glyph_h_advance (glyph)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_glyph_h_advance</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         index inside the font.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        advance glyph advance of the glyph in horizontal direction.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_glyph_v_advance"></a>
+    <strong>Font:get_glyph_v_advance (glyph)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_glyph_v_advance</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">glyph</span>
+         index inside the font.
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        advance glyph advance of the glyph in vertical direction.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:get_nominal_glyph"></a>
+    <strong>Font:get_nominal_glyph (codepoint.)</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_font_get_nominal_glyph</code>.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">codepoint.</span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+        glyph index or <code>nil</code> if <code>codepoint</code> is not supported by the font.
+    </ol>
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Font:ot_color_glyph_get_png"></a>
+    <strong>Font:ot_color_glyph_get_png ()</strong>
+    </dt>
+    <dd>
+    Wraps <code>hb_ot_color_glyph_get_png</code>.
+
+
 
 
 
@@ -887,13 +1602,13 @@
 
 </dd>
     <dt>
-    <a name = "Buffer:get_glyphs_and_positions"></a>
-    <strong>Buffer:get_glyphs_and_positions ()</strong>
+    <a name = "Buffer:get_glyphs"></a>
+    <strong>Buffer:get_glyphs ()</strong>
     </dt>
     <dd>
     Helper method to get shaped glyph data.
-  Calls <code>hb_buffer_get_glyph_infos</code> and <code>hb_buffer_get_glyph_positions</code>
-  and assembles the data into a Lua table.
+  Calls <code>hb_buffer_get_glyph_infos</code>, <code>hb_buffer_get_glyph_positions</code> and
+ <code>hb_glyph_info_get_glyph_flags</code>, and assembles the data into a Lua table.
 
 
 
@@ -911,6 +1626,7 @@
     <li><code>y_offset</code>: vertical displacement.</li>
     <li><code>cluster</code>: glyph cluster index within input.</li>
     <li><code>codepoint</code>: glyph index inside the font <em>(this field name is a bit misleading, but that’s what Harfbuzz uses)</em>.</li>
+    <li><code>flags</code>: glyph flags</li>
 </ul>
 
     </ol>
@@ -928,8 +1644,8 @@
           </div>
     <dl class="function">
     <dt>
-    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES"></a>
-    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</strong>
+    <a name = "Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES"></a>
+    <strong>Buffer.CLUSTER_LEVEL_MONOTONE_GRAPHEMES</strong>
     </dt>
     <dd>
     Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_GRAPHEMES</code>.
@@ -942,8 +1658,8 @@
 
 </dd>
     <dt>
-    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS"></a>
-    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</strong>
+    <a name = "Buffer.CLUSTER_LEVEL_MONOTONE_CHARACTERS"></a>
+    <strong>Buffer.CLUSTER_LEVEL_MONOTONE_CHARACTERS</strong>
     </dt>
     <dd>
     Wraps <code>HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS</code>.
@@ -956,8 +1672,8 @@
 
 </dd>
     <dt>
-    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS"></a>
-    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</strong>
+    <a name = "Buffer.CLUSTER_LEVEL_CHARACTERS"></a>
+    <strong>Buffer.CLUSTER_LEVEL_CHARACTERS</strong>
     </dt>
     <dd>
     Wraps <code>HB_BUFFER_CLUSTER_LEVEL_CHARACTERS</code>.
@@ -970,11 +1686,39 @@
 
 </dd>
     <dt>
-    <a name = "Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT"></a>
-    <strong>Buffer.HB_BUFFER_CLUSTER_LEVEL_DEFAULT</strong>
+    <a name = "Buffer.CLUSTER_LEVEL_DEFAULT"></a>
+    <strong>Buffer.CLUSTER_LEVEL_DEFAULT</strong>
     </dt>
     <dd>
     Wraps <code>HB_BUFFER_CLUSTER_LEVEL_DEFAULT</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK"></a>
+    <strong>Buffer.GLYPH_FLAG_UNSAFE_TO_BREAK</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_GLYPH_FLAG_UNSAFE_TO_BREAK</code>.
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Buffer.GLYPH_FLAG_DEFINED"></a>
+    <strong>Buffer.GLYPH_FLAG_DEFINED</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_GLYPH_FLAG_DEFINED</code>.
 
 
 
@@ -1212,8 +1956,8 @@
           </div>
     <dl class="function">
     <dt>
-    <a name = "Script.HB_SCRIPT_COMMON"></a>
-    <strong>Script.HB_SCRIPT_COMMON</strong>
+    <a name = "Script.COMMON"></a>
+    <strong>Script.COMMON</strong>
     </dt>
     <dd>
     Wraps <code>HB_SCRIPT_COMMON</code>.
@@ -1226,8 +1970,8 @@
 
 </dd>
     <dt>
-    <a name = "Script.HB_SCRIPT_INHERITED"></a>
-    <strong>Script.HB_SCRIPT_INHERITED</strong>
+    <a name = "Script.INHERITED"></a>
+    <strong>Script.INHERITED</strong>
     </dt>
     <dd>
     Wraps <code>HB_SCRIPT_INHERITED</code>.
@@ -1240,8 +1984,8 @@
 
 </dd>
     <dt>
-    <a name = "Script.HB_SCRIPT_UNKNOWN"></a>
-    <strong>Script.HB_SCRIPT_UNKNOWN</strong>
+    <a name = "Script.UNKNOWN"></a>
+    <strong>Script.UNKNOWN</strong>
     </dt>
     <dd>
     Wraps <code>HB_SCRIPT_UNKNOWN</code>.
@@ -1254,8 +1998,8 @@
 
 </dd>
     <dt>
-    <a name = "Script.HB_SCRIPT_INVALID"></a>
-    <strong>Script.HB_SCRIPT_INVALID</strong>
+    <a name = "Script.INVALID"></a>
+    <strong>Script.INVALID</strong>
     </dt>
     <dd>
     Wraps <code>HB_SCRIPT_INVALID</code>.
@@ -1338,19 +2082,13 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_IS_VALID"></a>
-    <strong>Direction.HB_DIRECTION_IS_VALID (direction)</strong>
+    <a name = "Direction:is_valid"></a>
+    <strong>Direction:is_valid ()</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_IS_VALID</code>.
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">direction</span>
-         a <code>Direction</code> object.
-        </li>
-    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1363,19 +2101,13 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_IS_HORIZONTAL"></a>
-    <strong>Direction.HB_DIRECTION_IS_HORIZONTAL (direction)</strong>
+    <a name = "Direction:is_horizontal"></a>
+    <strong>Direction:is_horizontal ()</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_IS_HORIZONTAL</code>.
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">direction</span>
-         a <code>Direction</code> object.
-        </li>
-    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1388,19 +2120,13 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_IS_VERTICAL"></a>
-    <strong>Direction.HB_DIRECTION_IS_VERTICAL (direction)</strong>
+    <a name = "Direction:is_vertical"></a>
+    <strong>Direction:is_vertical ()</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_IS_VERTICAL</code>.
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">direction</span>
-         a <code>Direction</code> object.
-        </li>
-    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1413,19 +2139,13 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_IS_FORWARD"></a>
-    <strong>Direction.HB_DIRECTION_IS_FORWARD (direction)</strong>
+    <a name = "Direction:is_forward"></a>
+    <strong>Direction:is_forward ()</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_IS_FORWARD</code>.
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">direction</span>
-         a <code>Direction</code> object.
-        </li>
-    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1438,19 +2158,13 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_IS_BACKWARD"></a>
-    <strong>Direction.HB_DIRECTION_IS_BACKWARD (direction)</strong>
+    <a name = "Direction:is_backward"></a>
+    <strong>Direction:is_backward ()</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_IS_BACKWARD</code>.
 
 
-    <h3>Parameters:</h3>
-    <ul>
-        <li><span class="parameter">direction</span>
-         a <code>Direction</code> object.
-        </li>
-    </ul>
 
     <h3>Returns:</h3>
     <ol>
@@ -1470,8 +2184,8 @@
           </div>
     <dl class="function">
     <dt>
-    <a name = "Direction.HB_DIRECTION_LTR"></a>
-    <strong>Direction.HB_DIRECTION_LTR</strong>
+    <a name = "Direction.LTR"></a>
+    <strong>Direction.LTR</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_LTR</code>.
@@ -1484,8 +2198,8 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_RTL"></a>
-    <strong>Direction.HB_DIRECTION_RTL</strong>
+    <a name = "Direction.RTL"></a>
+    <strong>Direction.RTL</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_RTL</code>.
@@ -1498,8 +2212,8 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_TTB"></a>
-    <strong>Direction.HB_DIRECTION_TTB</strong>
+    <a name = "Direction.TTB"></a>
+    <strong>Direction.TTB</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_TTB</code>.
@@ -1512,8 +2226,8 @@
 
 </dd>
     <dt>
-    <a name = "Direction.HB_DIRECTION_BTT"></a>
-    <strong>Direction.HB_DIRECTION_BTT</strong>
+    <a name = "Direction.BTT"></a>
+    <strong>Direction.BTT</strong>
     </dt>
     <dd>
     Wraps <code>HB_DIRECTION_LTR</code>.
@@ -1603,8 +2317,8 @@
           </div>
     <dl class="function">
     <dt>
-    <a name = "Language.HB_LANGUAGE_INVALID"></a>
-    <strong>Language.HB_LANGUAGE_INVALID</strong>
+    <a name = "Language.INVALID"></a>
+    <strong>Language.INVALID</strong>
     </dt>
     <dd>
     Wraps <code>HB_LANGUAGE_INVALID</code>.
@@ -1646,13 +2360,440 @@
 
 </dd>
 </dl>
+    <h2 class="section-header has-description"><a name="Predefined_Name_IDs"></a>Predefined Name IDs </h2>
+
+          <div class="section-description">
+           Predefined OpenType 'name' table name identifier.
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "ot.NAME_ID_COPYRIGHT"></a>
+    <strong>ot.NAME_ID_COPYRIGHT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_COPYRIGHT</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_FONT_FAMILY"></a>
+    <strong>ot.NAME_ID_FONT_FAMILY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_FONT_FAMILY</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_FONT_SUBFAMILY"></a>
+    <strong>ot.NAME_ID_FONT_SUBFAMILY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_FONT_SUBFAMILY</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_UNIQUE_ID"></a>
+    <strong>ot.NAME_ID_UNIQUE_ID</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_UNIQUE_ID</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_FULL_NAME"></a>
+    <strong>ot.NAME_ID_FULL_NAME</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_FULL_NAME</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_VERSION_STRING"></a>
+    <strong>ot.NAME_ID_VERSION_STRING</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_VERSION_STRING</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_POSTSCRIPT_NAME"></a>
+    <strong>ot.NAME_ID_POSTSCRIPT_NAME</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_POSTSCRIPT_NAME</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_TRADEMARK"></a>
+    <strong>ot.NAME_ID_TRADEMARK</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_TRADEMARK</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_MANUFACTURER"></a>
+    <strong>ot.NAME_ID_MANUFACTURER</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_MANUFACTURER</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_DESIGNER"></a>
+    <strong>ot.NAME_ID_DESIGNER</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_DESIGNER</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_DESCRIPTION"></a>
+    <strong>ot.NAME_ID_DESCRIPTION</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_DESCRIPTION</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_VENDOR_URL"></a>
+    <strong>ot.NAME_ID_VENDOR_URL</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_VENDOR_URL</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_DESIGNER_URL"></a>
+    <strong>ot.NAME_ID_DESIGNER_URL</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_DESIGNER_URL</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_LICENSE"></a>
+    <strong>ot.NAME_ID_LICENSE</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_LICENSE</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_LICENSE_URL"></a>
+    <strong>ot.NAME_ID_LICENSE_URL</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_LICENSE_URL</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_TYPOGRAPHIC_FAMILY"></a>
+    <strong>ot.NAME_ID_TYPOGRAPHIC_FAMILY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_TYPOGRAPHIC_FAMILY</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_TYPOGRAPHIC_SUBFAMILY"></a>
+    <strong>ot.NAME_ID_TYPOGRAPHIC_SUBFAMILY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_TYPOGRAPHIC_SUBFAMILY</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_MAC_FULL_NAME"></a>
+    <strong>ot.NAME_ID_MAC_FULL_NAME</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_MAC_FULL_NAME</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_SAMPLE_TEXT"></a>
+    <strong>ot.NAME_ID_SAMPLE_TEXT</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_SAMPLE_TEXT</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_CID_FINDFONT_NAME"></a>
+    <strong>ot.NAME_ID_CID_FINDFONT_NAME</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_CID_FINDFONT_NAME</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_WWS_FAMILY"></a>
+    <strong>ot.NAME_ID_WWS_FAMILY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_WWS_FAMILY</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_WWS_SUBFAMILY"></a>
+    <strong>ot.NAME_ID_WWS_SUBFAMILY</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_WWS_SUBFAMILY</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_LIGHT_BACKGROUND"></a>
+    <strong>ot.NAME_ID_LIGHT_BACKGROUND</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_LIGHT_BACKGROUND</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_DARK_BACKGROUND"></a>
+    <strong>ot.NAME_ID_DARK_BACKGROUND</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_DARK_BACKGROUND</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_VARIATIONS_PS_PREFIX"></a>
+    <strong>ot.NAME_ID_VARIATIONS_PS_PREFIX</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_VARIATIONS_PS_PREFIX</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.NAME_ID_INVALID"></a>
+    <strong>ot.NAME_ID_INVALID</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_NAME_ID_INVALID</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.LAYOUT_NO_SCRIPT_INDEX"></a>
+    <strong>ot.LAYOUT_NO_SCRIPT_INDEX</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_LAYOUT_NO_SCRIPT_INDEX</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.LAYOUT_NO_FEATURE_INDEX"></a>
+    <strong>ot.LAYOUT_NO_FEATURE_INDEX</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_LAYOUT_NO_FEATURE_INDEX</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.LAYOUT_DEFAULT_LANGUAGE_INDEX"></a>
+    <strong>ot.LAYOUT_DEFAULT_LANGUAGE_INDEX</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_LAYOUT_DEFAULT_LANGUAGE_INDEX</code>
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ot.LAYOUT_NO_VARIATIONS_INDEX"></a>
+    <strong>ot.LAYOUT_NO_VARIATIONS_INDEX</strong>
+    </dt>
+    <dd>
+    Wraps <code>HB_OT_LAYOUT_NO_VARIATIONS_INDEX</code>
+
+
+
+
+
+
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2017-05-22 10:03:52 </i>
+<i style="float:right;">Last updated 2019-04-13 17:03:03 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
