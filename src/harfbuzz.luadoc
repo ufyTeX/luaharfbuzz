@@ -78,24 +78,6 @@
 --  @return table of `Tag`s representing face table tags.
 --  @function Face:get_table_tags
 
---- Wraps `hb_ot_layout_table_get_script_tags`.
---  @function Face:get_script_tags
-
---- Wraps `hb_ot_layout_script_get_language_tags`.
---  @function Face:get_language_tags
-
---- Wraps `hb_ot_layout_language_get_feature_tags`.
---  @function Face:get_feature_tags
-
---- Wraps `hb_ot_layout_table_find_script`.
---  @function Face:find_script
-
---- Wraps `hb_ot_layout_script_find_language`.
---  @function Face:find_language
-
---- Wraps `hb_ot_layout_language_find_feature`.
---  @function Face:find_feature
-
 --- Wraps `hb_face_get_upem`.
 --  @function Face:get_upem
 
@@ -116,6 +98,24 @@
 
 --- Wraps `hb_ot_color_has_png`.
 --  @function Face:ot_color_has_png
+
+--- Wraps `hb_ot_layout_table_get_script_tags`.
+--  @function Face:ot_layout_get_script_tags
+
+--- Wraps `hb_ot_layout_script_get_language_tags`.
+--  @function Face:ot_layout_get_language_tags
+
+--- Wraps `hb_ot_layout_language_get_feature_tags`.
+--  @function Face:ot_layout_get_feature_tags
+
+--- Wraps `hb_ot_layout_table_find_script`.
+--  @function Face:ot_layout_find_script
+
+--- Wraps `hb_ot_layout_script_find_language`.
+--  @function Face:ot_layout_find_language
+
+--- Wraps `hb_ot_layout_language_find_feature`.
+--  @function Face:ot_layout_find_feature
 
 
 --- Lua wrapper for `hb_font_t` type
