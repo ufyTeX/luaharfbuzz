@@ -203,6 +203,15 @@ static int buffer_set_cluster_level(lua_State *L) {
   return 0;
 }
 
+static int buffer_pre_allocate(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  unsigned int n = luaL_checkinteger(L, 2);
+
+  lua_pushboolean(L, hb_buffer_pre_allocate(*b, n));
+  return 1;
+}
+
 static const struct luaL_Reg buffer_methods[] = {
   { "__gc", buffer_destroy },
   { "add_utf8", buffer_add_utf8 },
@@ -219,6 +228,7 @@ static const struct luaL_Reg buffer_methods[] = {
   { "get_length", buffer_get_length },
   { "get_cluster_level", buffer_get_cluster_level },
   { "set_cluster_level", buffer_set_cluster_level },
+  { "pre_allocate", buffer_pre_allocate },
   { NULL, NULL }
 };
 
