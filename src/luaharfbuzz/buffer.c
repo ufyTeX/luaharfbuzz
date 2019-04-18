@@ -137,11 +137,11 @@ static int buffer_get_glyphs(lua_State *L) {
   unsigned int i;
 
   // Create Lua table and push glyph data onto it.
-  lua_newtable(L); // parent table
+  lua_createtable(L, len, 0); // parent table
 
   for (i = 0; i < len; i++) {
     lua_pushinteger(L, i+1); // 1-indexed key parent table
-    lua_newtable(L);        // child table
+    lua_createtable(L, 0, 7); // child table
 
     lua_pushinteger(L, info[i].codepoint);
     lua_setfield(L, -2, "codepoint");
