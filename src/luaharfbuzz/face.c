@@ -241,7 +241,7 @@ static int face_ot_layout_find_language(lua_State *L) {
   Tag *language = (Tag *)luaL_checkudata(L, 4, "harfbuzz.Tag");
   unsigned int index = 0;
 
-  int found = hb_ot_layout_script_find_language(*face, *table, script_index, *language, &index);
+  int found = hb_ot_layout_script_select_language(*face, *table, script_index, 1, &(*language), &index);
   lua_pushboolean(L, found);
   lua_pushinteger(L, index);
   return 2;
