@@ -56,7 +56,7 @@ static int face_get_name(lua_State *L) {
   hb_ot_name_id_t name_id = (hb_ot_name_id_t) luaL_checkinteger(L, 2);
   hb_language_t lang = HB_LANGUAGE_INVALID;
   char name[STATIC_ARRAY_SIZE];
-  int text_size = STATIC_ARRAY_SIZE, len;
+  unsigned int text_size = STATIC_ARRAY_SIZE, len;
 
   if (lua_gettop(L) > 2)
     lang = *((Language*)luaL_checkudata(L, 3, "harfbuzz.Language"));
