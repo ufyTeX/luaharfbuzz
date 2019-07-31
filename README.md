@@ -25,7 +25,7 @@ can be used with any Lua codebase.
 
 luaharfbuzz is currently being used inside [HarfTeX], a TeX engine built
 on top of LuaTeX and designed to use Harfbuzz for shaping text. For more
-details read this TUGboat journal article titled [Bringing world scripts to LuaTEX: The
+details read this TUGboat journal article titled [Bringing world scripts to LuaTeX: The
 HarfBuzz experiment][tugboat-article]
 
 [HarfTeX]: https://github.com/khaledhosny/harftex
