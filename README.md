@@ -43,9 +43,6 @@ brew install harfbuzz
 apt-get install libharfbuzz0b libharfbuzz-dev
 ```
 
-#### Windows
-Getting the whole setup running on Windows is very tedious, so all instructions are in their own file [README-win.md](https://github.com/deepakjois/luaharfbuzz/blob/master/README-win.md).
-
 #### Other Platforms
 _Send a pull request if you want to include specific instructions to install
 Harfbuzz on your preferred platform._
