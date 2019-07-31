@@ -19,10 +19,17 @@ HarfBuzz is an OpenType text shaping engine. It is used in software like Qt,
 Pango, Firefox, Chromium, XeTeX and LibreOffice.
 
 _luaharfbuzz_ provides bindings for the most common types in Harfbuzz. The
-initial motivation for building it is to use Harfbuzz with the [LuaTeX]
+initial motivation for building it was to use Harfbuzz with the [LuaTeX]
 typesetting system. However, the module isn’t tied to LuaTeX in any way. It
 can be used with any Lua codebase.
 
+luaharfbuzz is currently being used inside [HarfTeX], a TeX engine built
+on top of LuaTeX and designed to use Harfbuzz for shaping text. For more
+details read this TUGboat journal article titled [Bringing world scripts to LuaTEX: The
+HarfBuzz experiment][tugboat-article]
+
+[HarfTeX]: https://github.com/khaledhosny/harftex
+[tugboat-article]: https://tug.org/members/TUGboat/tb40-1/tb124hosny-harfbuzz.pdf
 [LuaTeX]:luatex.org
 
 ## Installing Harfbuzz
