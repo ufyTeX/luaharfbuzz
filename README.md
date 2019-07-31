@@ -137,6 +137,7 @@ In order to make changes to the code and run the tests, the following dependenci
 * [Busted](http://olivinelabs.com/busted/) – `luarocks install busted`
 * [luacheck](luacheck.readthedocs.org) – `luarocks install luacheck`
 * [luacov](https://keplerproject.github.io/luacov/) – `luarocks install luacov`
+* [ldoc](https://stevedonovan.github.io/ldoc/) – `luarocks install ldoc`
 
 Run the test suite:
 ```
@@ -146,6 +147,11 @@ make spec
 Lint the codebase:
 ```
 make lint
+```
+
+Generate documentation from sources:
+```
+make doc
 ```
 
 ## Contact
