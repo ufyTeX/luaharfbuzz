@@ -84,16 +84,14 @@ static int buffer_add_codepoints(lua_State *L) {
   item_offset = luaL_optinteger(L, 3, 0);
   item_length = luaL_optinteger(L, 4, -1);
 
-  lua_len (L, 2);
-  unsigned int n = luaL_checkinteger(L, -1);
-  lua_pop(L, 1);
+  int n = lua_rawlen(L, 2);
 
   hb_codepoint_t *text = (hb_codepoint_t *) malloc(n * sizeof(hb_codepoint_t));
 
-  lua_pushnil(L); int i = 0;
-  while (lua_next(L, 2) != 0) {
+  for (unsigned int i = 0; i != n; ++i) {
+    lua_geti(L, 2, i + 1);
     hb_codepoint_t c = (hb_codepoint_t) luaL_checkinteger(L, -1);
-    text[i++] = c;
+    text[i] = c;
     lua_pop(L, 1);
   }
 
