@@ -415,7 +415,7 @@ static int face_ot_color_glyph_get_svg(lua_State *L) {
     luaL_getmetatable(L, "harfbuzz.Blob");
     lua_setmetatable(L, -2);
 
-    *b = hb_ot_color_glyph_reference_svg(*f, gid);
+    *b = blob;
   } else {
     lua_pushnil(L);
   }
