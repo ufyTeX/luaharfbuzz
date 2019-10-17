@@ -140,10 +140,26 @@ describe("harfbuzz module", function()
       assert.are_same(layers,f:ot_color_glyph_get_layers(100))
     end)
 
-    it("can check color layers", function()
+    it("can check PNG glyph support", function()
       local f = harfbuzz.Face.new('fonts/notocoloremoji-subset.ttf')
       assert.are_equal(false,face:ot_color_has_png())
       assert.are_equal(true,f:ot_color_has_png())
+    end)
+
+    it("can check SVG glyph support", function()
+      local f = harfbuzz.Face.new('fonts/TwitterColorEmoji-SVGinOT.ttf')
+      assert.are_equal(false,face:ot_color_has_svg())
+      assert.are_equal(true,f:ot_color_has_svg())
+    end)
+
+    it("can return glyph color png", function()
+      local f = harfbuzz.Face.new('fonts/TwitterColorEmoji-SVGinOT.ttf')
+
+      assert.are_equal(nil,face:ot_color_glyph_get_svg(100))
+      assert.are_equal(nil,f:ot_color_glyph_get_svg(0))
+      assert.are_same(751,f:ot_color_glyph_get_svg(5):get_length())
+      assert.are_same(804,f:ot_color_glyph_get_svg(6):get_length())
+      assert.are_same("<?xml version='1.0' encoding='UTF-8'?>",f:ot_color_glyph_get_svg(5):get_data():sub(1, 38))
     end)
 
     it("can return script tags", function()
