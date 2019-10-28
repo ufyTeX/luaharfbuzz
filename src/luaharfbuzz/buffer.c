@@ -37,6 +37,22 @@ static int buffer_set_direction(lua_State *L) {
   return 0;
 }
 
+static int buffer_get_flags(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  lua_pushinteger(L, hb_buffer_get_flags(*b));
+  return 1;
+}
+
+static int buffer_set_flags(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  unsigned int l = luaL_checkinteger(L, 2);
+
+  hb_buffer_set_flags(*b, l);
+  return 0;
+}
+
 static int buffer_get_language(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
 
@@ -75,6 +91,38 @@ static int buffer_set_script(lua_State *L) {
   return 0;
 }
 
+static int buffer_get_invisible_glyph(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  lua_pushinteger(L, hb_buffer_get_invisible_glyph(*b));
+  return 1;
+}
+
+static int buffer_set_invisible_glyph(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  hb_codepoint_t cp = (hb_codepoint_t) luaL_checkinteger(L, 2);
+
+  hb_buffer_set_invisible_glyph(*b, cp);
+  return 0;
+}
+
+static int buffer_get_replacement_codepoint(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  lua_pushinteger(L, hb_buffer_get_replacement_codepoint(*b));
+  return 1;
+}
+
+static int buffer_set_replacement_codepoint(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  hb_codepoint_t cp = (hb_codepoint_t) luaL_checkinteger(L, 2);
+
+  hb_buffer_set_replacement_codepoint(*b, cp);
+  return 0;
+}
+
 static int buffer_add_codepoints(lua_State *L) {
   Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
   unsigned int item_offset;
@@ -99,6 +147,20 @@ static int buffer_add_codepoints(lua_State *L) {
 
   free(text);
 
+  return 0;
+}
+
+static int buffer_clear_contents(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  hb_buffer_clear_contents(*b);
+  return 0;
+}
+
+static int buffer_reset(lua_State *L) {
+  Buffer *b = (Buffer *)luaL_checkudata(L, 1, "harfbuzz.Buffer");
+
+  hb_buffer_reset(*b);
   return 0;
 }
 
@@ -214,14 +276,22 @@ static const struct luaL_Reg buffer_methods[] = {
   { "__gc", buffer_destroy },
   { "add_utf8", buffer_add_utf8 },
   { "add_codepoints", buffer_add_codepoints },
+  { "clear_contents", buffer_clear_contents },
   { "set_direction", buffer_set_direction },
   { "get_direction", buffer_get_direction },
+  { "set_flags", buffer_set_flags },
+  { "get_flags", buffer_get_flags },
   { "set_language", buffer_set_language },
   { "get_language", buffer_get_language },
   { "set_script", buffer_set_script },
   { "get_script", buffer_get_script },
+  { "set_invisible_glyph", buffer_set_invisible_glyph },
+  { "get_invisible_glyph", buffer_get_invisible_glyph },
+  { "set_replacement_codepoint", buffer_set_replacement_codepoint },
+  { "get_replacement_codepoint", buffer_get_replacement_codepoint },
   { "get_glyphs", buffer_get_glyphs },
   { "guess_segment_properties", buffer_guess_segment_properties },
+  { "reset", buffer_reset },
   { "reverse", buffer_reverse },
   { "get_length", buffer_get_length },
   { "get_cluster_level", buffer_get_cluster_level },
@@ -240,6 +310,12 @@ static const struct luahb_constant_t buffer_constants[] = {
   { "CLUSTER_LEVEL_MONOTONE_CHARACTERS", HB_BUFFER_CLUSTER_LEVEL_MONOTONE_CHARACTERS },
   { "CLUSTER_LEVEL_CHARACTERS", HB_BUFFER_CLUSTER_LEVEL_CHARACTERS },
   { "CLUSTER_LEVEL_DEFAULT", HB_BUFFER_CLUSTER_LEVEL_DEFAULT },
+  { "FLAG_DEFAULT", HB_BUFFER_FLAG_DEFAULT },
+  { "FLAG_BOT", HB_BUFFER_FLAG_BOT },
+  { "FLAG_EOT", HB_BUFFER_FLAG_EOT },
+  { "FLAG_PRESERVE_DEFAULT_IGNORABLES", HB_BUFFER_FLAG_PRESERVE_DEFAULT_IGNORABLES },
+  { "FLAG_REMOVE_DEFAULT_IGNORABLES", HB_BUFFER_FLAG_REMOVE_DEFAULT_IGNORABLES },
+  { "FLAG_DO_NOT_INSERT_DOTTED_CIRCLE", HB_BUFFER_FLAG_DO_NOT_INSERT_DOTTED_CIRCLE },
   { "GLYPH_FLAG_UNSAFE_TO_BREAK", HB_GLYPH_FLAG_UNSAFE_TO_BREAK },
   { "GLYPH_FLAG_DEFINED", HB_GLYPH_FLAG_DEFINED },
   { NULL, 0 }
