@@ -336,6 +336,30 @@ describe("harfbuzz module", function()
       local f = harfbuzz.Feature.new(fs)
       assert.are_equal(fs, tostring(f))
     end)
+
+    it("has visible fields", function()
+      local f = harfbuzz.Feature.new('-kern')
+      print(getmetatable(f).__index)
+      assert.are_equal(tostring(f.tag), 'kern')
+      assert.are_equal(f.value, 0)
+      assert.are_equal(f.start, nil)
+      assert.are_equal(f._end, nil)
+
+      f = harfbuzz.Feature.new('aalt[3:5]=4')
+      assert.are_equal(tostring(f.tag), 'aalt')
+      assert.are_equal(f.value, 4)
+      assert.are_equal(f.start, 3)
+      assert.are_equal(f._end, 5)
+    end)
+
+    it("has editable fields", function()
+      local f = harfbuzz.Feature.new('-kern')
+      f.tag, f.value, f.start, f._end = harfbuzz.Tag.new"aalt", 4, 3, 5
+      assert.are_equal(tostring(f), "aalt[3:5]=4")
+
+      f.tag, f.value, f.start, f._end = harfbuzz.Tag.new"harf", 0, nil, nil
+      assert.are_equal(tostring(f), "-harf")
+    end)
   end)
 
   describe("harfbuzz.Tag", function()
