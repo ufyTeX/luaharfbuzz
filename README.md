@@ -29,7 +29,7 @@ details read this TUGboat journal article titled [Bringing world scripts to LuaT
 HarfBuzz experiment][tugboat-article]
 
 [HarfTeX]: https://github.com/khaledhosny/harftex
-[tugboat-article]: https://tug.org/members/TUGboat/tb40-1/tb124hosny-harfbuzz.pdf
+[tugboat-article]: https://tug.org/TUGboat/tb40-1/tb124hosny-harfbuzz.pdf
 [LuaTeX]:luatex.org
 
 ## Installing Harfbuzz
