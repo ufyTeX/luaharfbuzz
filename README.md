@@ -20,16 +20,16 @@ Pango, Firefox, Chromium, XeTeX and LibreOffice.
 
 _luaharfbuzz_ provides bindings for the most common types in Harfbuzz. The
 initial motivation for building it was to use Harfbuzz with the [LuaTeX]
-typesetting system. However, the module isn’t tied to LuaTeX in any way. It
+typesetting system. However, the module isn’t tied to LuaTeX. It
 can be used with any Lua codebase.
 
 As of 2020, luaharfbuzz is bundled with [LuaTeX]. Additional support to use
 the HarfBuzz renderer with LuaLaTeX and other formats is available via [luaotfload]. Read more:
 
 * [TUG 2020 — Marcel Krüger — HarfBuzz in LuaLaTeX](https://www.youtube.com/watch?v=xPj6vNo8exY&t=2120s)
-* [Bringing world scripts to LuaTeX: The HarfBuzz experiment][tugboat-article]
+* [Typesetting Bangla script with LuaLaTeX](http://tug.org/TUGboat/tb41-1/tb127fischer-bangla.pdf)
+* [Bringing world scripts to LuaTeX: The HarfBuzz experiment](https://tug.org/TUGboat/tb40-1/tb124hosny-harfbuzz.pdf)
 
-[tugboat-article]: https://tug.org/TUGboat/tb40-1/tb124hosny-harfbuzz.pdf
 [LuaTeX]:luatex.org
 [luaotfload]: https://github.com/latex3/luaotfload
 
