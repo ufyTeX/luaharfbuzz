@@ -13,7 +13,7 @@ description = {
   labels = {"unicode", "fonts"}
 }
 dependencies = {
-  "lua >= 5.2"
+  "lua >= 5.3"
 }
 build = {
   type = "builtin",
