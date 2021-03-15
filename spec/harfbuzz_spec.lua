@@ -339,7 +339,6 @@ describe("harfbuzz module", function()
 
     it("has visible fields", function()
       local f = harfbuzz.Feature.new('-kern')
-      print(getmetatable(f).__index)
       assert.are_equal(tostring(f.tag), 'kern')
       assert.are_equal(f.value, 0)
       assert.are_equal(f.start, nil)
