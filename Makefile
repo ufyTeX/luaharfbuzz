@@ -1,7 +1,7 @@
 DOCS_DIR := docs
 
 spec:
-	busted .
+	busted --no-coverage .
 
 clean:
 	rm -rf build *.so
