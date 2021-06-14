@@ -184,6 +184,7 @@ describe("harfbuzz.Buffer", function()
 
   it("can set the replacement glyph for invisible characters of the buffer", function()
     local b = harfbuzz.Buffer.new()
+    ; test
     b:set_invisible_glyph(3)
     assert.are_equal(3, b:get_invisible_glyph())
   end)
