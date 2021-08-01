@@ -361,6 +361,44 @@ describe("harfbuzz module", function()
     end)
   end)
 
+  describe("harfbuzz.Variation", function()
+    it("can be initialised with a valid variation string", function()
+      harfbuzz.Variation.new('wght=default')
+      harfbuzz.Variation.new('wght=400')
+      harfbuzz.Variation.new('wght=-20')
+    end)
+
+    it("throws an error when trying to initialise a new variation with an invalid string", function()
+       assert.are_equal(nil, harfbuzz.Variation.new(''))
+       assert.are_equal(nil, harfbuzz.Variation.new('wght'))
+    end)
+
+    it("has a valid tostring value", function()
+      local vs = 'wght=200'
+      local v = harfbuzz.Variation.new(vs)
+      assert.are_equal(vs, tostring(v))
+    end)
+
+    it("has visible fields", function()
+      local v = harfbuzz.Variation.new('wght=400')
+      assert.are_equal(tostring(v.tag), 'wght')
+      assert.are_equal(v.value, 400)
+
+      v = harfbuzz.Variation.new('slnt=-7.5')
+      assert.are_equal(tostring(v.tag), 'slnt')
+      assert.are_equal(v.value, -7.5)
+    end)
+
+    it("has editable fields", function()
+      local f = harfbuzz.Variation.new('slnt=5')
+      f.tag, f.value = harfbuzz.Tag.new"wght", 7
+      assert.are_equal(tostring(f), "wght=7")
+
+      f.tag, f.value = harfbuzz.Tag.new"hght", 0
+      assert.are_equal(tostring(f), "hght=0")
+    end)
+  end)
+
   describe("harfbuzz.Tag", function()
     it("can be initialised with a valid tag string", function()
       harfbuzz.Tag.new('Zyyy')
