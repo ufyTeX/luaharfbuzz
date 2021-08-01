@@ -376,6 +376,25 @@ describe("harfbuzz module", function()
       assert.are_same(2857,f:ot_color_glyph_get_png(2):get_length())
       assert.are_same("\137PNG",f:ot_color_glyph_get_png(2):get_data():sub(1, 4))
     end)
+
+    it("can set variations", function()
+      local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/STIXTwoText[wght].ttf'))
+
+      f:set_variations(harfbuzz.Variation.new("wght=500"))
+      local normalized, after = f:get_var_coords_normalized()
+      assert.is_nil(after)
+      assert.are_same(5174, normalized)
+
+      f:set_var_coords_design(600)
+      local normalized, after = f:get_var_coords_normalized()
+      assert.is_nil(after)
+      assert.are_same(10348, normalized)
+
+      f:set_var_coords_normalized(1<<13)
+      local normalized, after = f:get_var_coords_normalized()
+      assert.is_nil(after)
+      assert.are_same(1<<13, normalized)
+    end)
   end)
 
   describe("harfbuzz.Feature", function()
