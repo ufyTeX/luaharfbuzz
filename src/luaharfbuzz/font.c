@@ -166,6 +166,17 @@ static int font_get_nominal_glyph(lua_State *L) {
   return 1;
 }
 
+#if HB_VERSION_MAJOR >= 3
+static int font_style_get_value(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Tag *t = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+
+  lua_pushnumber(L, hb_style_get_value(*f, *t));
+
+  return 1;
+}
+#endif
+
 
 static int font_destroy(lua_State *L) {
   Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
@@ -188,6 +199,46 @@ static int font_ot_color_glyph_get_png(lua_State *L) {
   } else {
     lua_pushnil(L);
   }
+
+  return 1;
+}
+
+static int font_ot_metrics_get_position(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Tag *t = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+  hb_position_t result;
+
+  if (hb_ot_metrics_get_position(*f, *t, &result))
+    lua_pushinteger(L, result);
+  else
+    lua_pushnil(L);
+
+  return 1;
+}
+
+static int font_ot_metrics_get_variation(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Tag *t = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+
+  lua_pushnumber(L, hb_ot_metrics_get_variation(*f, *t));
+
+  return 1;
+}
+
+static int font_ot_metrics_get_x_variation(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Tag *t = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+
+  lua_pushinteger(L, hb_ot_metrics_get_x_variation(*f, *t));
+
+  return 1;
+}
+
+static int font_ot_metrics_get_y_variation(lua_State *L) {
+  Font *f = (Font *)luaL_checkudata(L, 1, "harfbuzz.Font");
+  Tag *t = (Tag *)luaL_checkudata(L, 2, "harfbuzz.Tag");
+
+  lua_pushinteger(L, hb_ot_metrics_get_y_variation(*f, *t));
 
   return 1;
 }
@@ -260,7 +311,14 @@ static const struct luaL_Reg font_methods[] = {
   { "get_glyph_h_advance", font_get_glyph_h_advance },
   { "get_glyph_v_advance", font_get_glyph_v_advance },
   { "get_nominal_glyph", font_get_nominal_glyph },
+#if HB_VERSION_MAJOR >= 3
+  { "style_get_value", font_style_get_value },
+#endif
   { "ot_color_glyph_get_png", font_ot_color_glyph_get_png },
+  { "ot_metrics_get_position", font_ot_metrics_get_position },
+  { "ot_metrics_get_variation", font_ot_metrics_get_variation },
+  { "ot_metrics_get_x_variation", font_ot_metrics_get_x_variation },
+  { "ot_metrics_get_y_variation", font_ot_metrics_get_y_variation },
   { "set_variations", font_set_variations },
   { "set_var_coords_design", font_set_var_coords_design },
   { "set_var_coords_normalized", font_set_var_coords_normalized },

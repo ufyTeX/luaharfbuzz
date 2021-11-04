@@ -395,6 +395,22 @@ describe("harfbuzz module", function()
       assert.is_nil(after)
       assert.are_same(1<<13, normalized)
     end)
+
+    it("allows querying style parameters", function()
+      local font = harfbuzz.Font.new(face)
+      local wght = font:style_get_value(harfbuzz.Tag.new"wght")
+      assert.are_equal(400, wght)
+    end)
+
+    it("allows querying variation metrics", function()
+      local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/STIXTwoText[wght].ttf'))
+      f:set_variations(harfbuzz.Variation.new("wght=500"))
+
+      local subscript_offset = f:ot_metrics_get_x_variation(harfbuzz.Tag.new"sbxo")
+      local cap_height = f:ot_metrics_get_y_variation(harfbuzz.Tag.new"cpht")
+      assert.are_equal(0, cap_height)
+      assert.are_equal(0, subscript_offset)
+    end)
   end)
 
   describe("harfbuzz.Feature", function()
