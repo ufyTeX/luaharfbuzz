@@ -396,11 +396,13 @@ describe("harfbuzz module", function()
       assert.are_same(1<<13, normalized)
     end)
 
-    it("allows querying style parameters", function()
-      local font = harfbuzz.Font.new(face)
-      local wght = font:style_get_value(harfbuzz.Tag.new"wght")
-      assert.are_equal(400, wght)
-    end)
+    if not harfbuzz:version():match'^2%.' then
+      it("allows querying style parameters", function()
+        local font = harfbuzz.Font.new(face)
+        local wght = font:style_get_value(harfbuzz.Tag.new"wght")
+        assert.are_equal(400, wght)
+      end)
+    end
 
     it("allows querying variation metrics", function()
       local f = harfbuzz.Font.new(harfbuzz.Face.new('fonts/STIXTwoText[wght].ttf'))
