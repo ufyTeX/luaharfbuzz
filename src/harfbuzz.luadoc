@@ -308,7 +308,7 @@
 
 --- Wraps `hb_tag_to_string`. Enable nice output with `tostring(…)`.
 -- @return Returns a string representation for the tag object.
--- @function Tag:__to_string
+-- @function Tag:__tostring
 
 --- Enables equality comparisions with `==` between two tags.
 -- @return `true` or `false` depending on whether the two tags are equal.
@@ -333,7 +333,7 @@
 
 --- Enable nice output with `tostring(…)`
 -- @return Returns a 4-letter [ISO 15924 script code](http://www.unicode.org/iso15924/iso15924-num.html) for the script object.
--- @function Script:__to_string
+-- @function Script:__tostring
 
 --- Enables equality comparisions with `==` between two scripts.
 -- @return `true` or `false` depending on whether the two scripts are equal.
@@ -365,7 +365,7 @@
 
 --- Wraps `hb_direction_to_string`. Enable nice output with `tostring(…)`.
 -- @return Returns a string representation for direction.
--- @function Direction:__to_string
+-- @function Direction:__tostring
 
 --- Enables equality comparisions with `==` between two directions.
 -- @return `true` or `false` depending on whether the two tags are equal.
@@ -417,7 +417,7 @@
 
 --- Wraps `hb_language_to_string`. Enable nice output with `tostring(…)`.
 -- @return Returns a string representation for the language object.
--- @function Language:__to_string
+-- @function Language:__tostring
 
 --- Enables equality comparisions with `==` between two languages.
 -- @return `true` or `false` depending on whether the two languages are equal.
