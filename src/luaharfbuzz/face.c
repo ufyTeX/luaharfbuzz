@@ -272,8 +272,8 @@ static int face_collect_unicodes(lua_State *L) {
     hb_codepoint_t c = HB_SET_VALUE_INVALID;
 
     while (hb_set_next(codes, &c)) {
-      lua_pushnumber(L, ++i);
-      lua_pushnumber(L, c);
+      lua_pushinteger(L, ++i);
+      lua_pushinteger(L, c);
       lua_rawset(L, -3);
     }
   }
